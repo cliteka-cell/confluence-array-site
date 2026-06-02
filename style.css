@@ -316,17 +316,11 @@ nav {
 }
 
 /* ── JOURNAL ───────────────────────────────────────────────────────────────── */
-.journal-grid {
+.journal-features-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.journal-features {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 48px;
 }
 
 .j-feature {
@@ -742,7 +736,7 @@ footer {
 .journal-img-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
 }
 
 .journal-img {
