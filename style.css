@@ -739,6 +739,12 @@ footer {
   box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 }
 
+.journal-img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 .journal-img {
   width: 100%;
   border-radius: var(--radius);
