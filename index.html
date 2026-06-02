@@ -275,43 +275,46 @@
         </div>
       </div>
 
-      <form class="contact-form" action="https://formspree.io/f/xgoqgdqz" method="POST">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="John Doe" required />
+      <div class="contact-card">
+        <form class="contact-form" action="https://formspree.io/f/xgoqgdqz" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tv_username">TradingView Username</label>
+              <input type="text" id="tv_username" name="tv_username" placeholder="e.g. john_trader" required />
+            </div>
+            <div class="form-group">
+              <label for="plan">Plan</label>
+              <select id="plan" name="plan" required>
+                <option value="" disabled selected>Select a plan</option>
+                <option value="Trial (14 days free)">Trial — 14 days free</option>
+                <option value="Indicator — $50/mo">Indicator — $50/mo</option>
+                <option value="Bundle — $60/mo">Bundle (Indicator + Journal) — $60/mo</option>
+                <option value="Indicator — 3 months $130">Indicator — 3 months $130</option>
+                <option value="Indicator — Annual $480">Indicator — Annual $480</option>
+                <option value="Trading Journal — $30 one-time">Trading Journal — $30 one-time</option>
+              </select>
+            </div>
           </div>
           <div class="form-group">
-            <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" placeholder="john@example.com" required />
+            <label for="message">Message <span class="label-opt">(optional)</span></label>
+            <textarea id="message" name="message" placeholder="Any questions or notes…" rows="3"></textarea>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="tv_username">TradingView Username</label>
-          <input type="text" id="tv_username" name="tv_username" placeholder="Your TradingView username" required />
-        </div>
-        <div class="form-group">
-          <label for="plan">Plan</label>
-          <select id="plan" name="plan" required>
-            <option value="" disabled selected>Select a plan</option>
-            <option value="Trial (14 days free)">Trial — 14 days free</option>
-            <option value="Indicator — $50/mo">Indicator — $50/mo</option>
-            <option value="Bundle — $60/mo">Bundle (Indicator + Journal) — $60/mo</option>
-            <option value="Indicator — 3 months $130">Indicator — 3 months $130</option>
-            <option value="Indicator — Annual $480">Indicator — Annual $480</option>
-            <option value="Trading Journal — $30 one-time">Trading Journal — $30 one-time</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Message <span style="color:var(--muted);font-weight:400">(optional)</span></label>
-          <textarea id="message" name="message" placeholder="Any questions or notes…" rows="3"></textarea>
-        </div>
-        <!-- Honeypot anti-spam -->
-        <input type="text" name="_gotcha" style="display:none" />
-        <input type="hidden" name="_subject" value="New Access Request — The Confluence Array" />
-        <button type="submit" class="btn-primary" style="width:100%;margin-top:8px;">Send Request</button>
-        <p class="buy-note" style="margin-top:12px;">Average response time: under 12 hours · Payments via USDT / USDC</p>
-      </form>
+          <input type="text" name="_gotcha" style="display:none" />
+          <input type="hidden" name="_subject" value="New Access Request — The Confluence Array" />
+          <button type="submit" class="btn-primary form-submit">Send Request</button>
+          <p class="buy-note">Average response time: under 12 hours · Payments via USDT / USDC</p>
+        </form>
+      </div>
 
       <div class="buy-links">
         <a href="https://x.com/ConfluenceArray" target="_blank" class="btn-ghost">X / Twitter</a>

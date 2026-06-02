@@ -529,11 +529,17 @@ footer {
 }
 
 /* ── CONTACT FORM ──────────────────────────────────────────────────────────── */
-.contact-form {
-  max-width: 640px;
-  margin: 0 auto 32px;
+.contact-card {
+  max-width: 680px;
+  margin: 0 auto 40px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
   text-align: left;
 }
+
+.contact-form { width: 100%; }
 
 .form-row {
   display: grid;
@@ -549,17 +555,24 @@ footer {
 }
 
 .form-group label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: var(--muted);
-  letter-spacing: .04em;
+  letter-spacing: .06em;
   text-transform: uppercase;
+}
+
+.label-opt {
+  color: #3a4a5a;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background: var(--bg2);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
@@ -569,6 +582,7 @@ footer {
   outline: none;
   transition: border-color .2s;
   width: 100%;
+  -webkit-appearance: none;
 }
 
 .form-group input:focus,
@@ -579,17 +593,23 @@ footer {
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #3a4a5a;
+  color: #2a3a4a;
 }
 
 .form-group select option {
-  background: var(--bg2);
+  background: var(--bg);
   color: var(--text);
 }
 
 .form-group textarea {
   resize: vertical;
   min-height: 90px;
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 8px;
+  justify-content: center;
 }
 
 .buy-links {
