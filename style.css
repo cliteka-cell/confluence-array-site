@@ -593,11 +593,13 @@ footer {
 }
 
 .cf-field label {
+  display: block;
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--muted);
   letter-spacing: .08em;
   text-transform: uppercase;
+  width: 100%;
 }
 
 .cf-opt {
@@ -614,6 +616,7 @@ footer {
 
 .cf-field input,
 .cf-field textarea {
+  display: block;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 10px;
