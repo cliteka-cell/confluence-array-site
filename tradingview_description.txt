@@ -6,7 +6,13 @@ Built and refined through live trading on CME futures and crypto perpetuals. Eve
 
 [hr]
 
-[b]⚡ ABSOLUTE MOVING AVERAGE SYSTEM (ARMAS)[/b]
+[b]Why this script requires source protection[/b]
+
+While the Confluence Array incorporates familiar concepts such as VWAP, RSI, ADX, and Fibonacci levels, what justifies source protection is the original logic connecting them. The core of this script is the [b]Absolute Moving Average System (ARMAS)[/b] — an original EWMA-based channel built from highs and lows that is fundamentally different from any public-domain implementation — and the [b]OI Signal Matrix[/b], an original 7-state classification engine that cross-references price action with open interest to identify who is driving a move and why. These two systems, and the logic integrating them with VWAP, pivots, session analysis, and bar coloring, represent original work that is not available in any open-source publication on TradingView.
+
+[hr]
+
+[b]⚡ Absolute Moving Average System (ARMAS)[/b]
 
 ARMAS is the backbone of the indicator. It constructs a dynamic price pipe using EWMA (Exponentially Weighted Moving Average) of highs and lows, forming upper and lower bands that hug price action and adapt naturally to market structure. The result is a clean, responsive channel that tells you at a glance whether price is trending, ranging, or overextended — without the lag of traditional moving averages.
 
@@ -20,7 +26,7 @@ ARMAS is the backbone of the indicator. It constructs a dynamic price pipe using
 
 [hr]
 
-[b]📊 MULTI-TIMEFRAME VWAP[/b]
+[b]📊 Multi-Timeframe VWAP[/b]
 
 Institutional traders anchor to VWAP. Now you can too — across every relevant timeframe simultaneously.
 
@@ -42,7 +48,7 @@ Institutional traders anchor to VWAP. Now you can too — across every relevant 
 
 [hr]
 
-[b]🎯 FIBONACCI PIVOT LEVELS[/b]
+[b]🎯 Fibonacci Pivot Levels[/b]
 
 Key institutional reference levels — automatically plotted, always visible.
 
@@ -61,7 +67,7 @@ Key institutional reference levels — automatically plotted, always visible.
 
 [hr]
 
-[b]🔍 OPEN INTEREST SIGNAL MATRIX[/b]
+[b]🔍 Open Interest Signal Matrix[/b]
 
 Most indicators tell you what price did. The OI Matrix tells you [i]why[/i]. By cross-referencing price action with open interest changes, it classifies current market conditions into 7 distinct states — so you always know who is actually moving price.
 
@@ -77,7 +83,7 @@ Most indicators tell you what price did. The OI Matrix tells you [i]why[/i]. By 
 
 [hr]
 
-[b]🎨 INTELLIGENT BAR COLORING[/b]
+[b]🎨 Intelligent Bar Coloring[/b]
 
 Two bar coloring modes — toggle between them based on what you need to read at a glance.
 
@@ -89,7 +95,7 @@ Two bar coloring modes — toggle between them based on what you need to read at
 
 [hr]
 
-[b]🕐 SESSION HIGHLIGHTS & LIVE DASHBOARD[/b]
+[b]🕐 Session Highlights & Live Dashboard[/b]
 
 [list]
 [*] London, New York, and Asia sessions highlighted automatically
@@ -100,7 +106,7 @@ Two bar coloring modes — toggle between them based on what you need to read at
 
 [hr]
 
-[b]⚙️ COMPATIBILITY[/b]
+[b]⚙️ Compatibility[/b]
 
 [list]
 [*] CME Futures — ES, NQ, YM, GC, CL and all major contracts
@@ -111,20 +117,6 @@ Two bar coloring modes — toggle between them based on what you need to read at
 
 [hr]
 
-[b]🔒 ACCESS[/b]
+[b]🔒 Access[/b]
 
-This is an invite-only, protected script. The source code is not visible.
-
-[b]14-day free trial available.[/b] No payment required to start.
-
-To get access:
-[list]
-[*] DM me on X: [url=https://x.com/ConfluenceArray]@ConfluenceArray[/url]
-[*] Send your TradingView username
-[*] Get added within 24 hours
-[/list]
-
-Subscription: $50/month · 3-month: $130 · Annual: $480
-Payments accepted in USDT / USDC only.
-
-[url=https://cliteka-cell.github.io/confluence-array-site/]View full details and pricing →[/url]
+This is an invite-only, protected script. The source code is not visible. Access instructions are available in the Author's Instructions field below.
