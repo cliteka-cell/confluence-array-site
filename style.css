@@ -159,7 +159,13 @@ nav {
   gap: 16px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  margin-bottom: 14px;
+}
+
+.hero-trial {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 48px;
 }
 
 .hero-img-wrap {

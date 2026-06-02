@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080c14"/>
+      <stop offset="100%" style="stop-color:#0d1a2e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0a500"/>
+      <stop offset="100%" style="stop-color:#ff8c00"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="circle">
+      <circle cx="200" cy="200" r="200"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="200" cy="200" r="200" fill="url(#bg)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.05" stroke="#ffffff" stroke-width="1" clip-path="url(#circle)">
+    <line x1="0" y1="100" x2="400" y2="100"/>
+    <line x1="0" y1="200" x2="400" y2="200"/>
+    <line x1="0" y1="300" x2="400" y2="300"/>
+    <line x1="100" y1="0" x2="100" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="400"/>
+  </g>
+
+  <!-- Outer ring -->
+  <circle cx="200" cy="200" r="185" fill="none" stroke="#1e2d45" stroke-width="1.5"/>
+
+  <!-- Inner glow -->
+  <circle cx="200" cy="200" r="120" fill="#f0a500" opacity="0.04"/>
+
+  <!-- Converging lines logo mark -->
+  <g transform="translate(200, 200)" filter="url(#glow)">
+    <!-- Three lines converging to a point at top -->
+    <line x1="-55" y1="50" x2="0" y2="-55" stroke="url(#gold)" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="0"   y1="55" x2="0" y2="-55" stroke="url(#gold)" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="55"  y1="50" x2="0" y2="-55" stroke="url(#gold)" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- Horizontal base line -->
+    <line x1="-65" y1="55" x2="65" y2="55" stroke="#f0a500" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <!-- Apex dot -->
+    <circle cx="0" cy="-55" r="7" fill="#f0a500"/>
+    <!-- Base dots -->
+    <circle cx="-55" cy="50" r="4" fill="#f0a500" opacity="0.6"/>
+    <circle cx="0"   cy="55" r="4" fill="#f0a500" opacity="0.6"/>
+    <circle cx="55"  cy="50" r="4" fill="#f0a500" opacity="0.6"/>
+  </g>
+
+  <!-- TCA text below mark -->
+  <text x="200" y="310"
+    font-family="Georgia, serif"
+    font-size="18"
+    font-weight="700"
+    fill="#f0a500"
+    text-anchor="middle"
+    letter-spacing="6"
+    opacity="0.9">TCA</text>
+
+</svg>

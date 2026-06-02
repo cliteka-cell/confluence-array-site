@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="500" viewBox="0 0 1500 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080c14"/>
+      <stop offset="100%" style="stop-color:#0d1a2e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f0a500"/>
+      <stop offset="100%" style="stop-color:#ff8c00"/>
+    </linearGradient>
+    <linearGradient id="line-fade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f0a500;stop-opacity:0"/>
+      <stop offset="30%" style="stop-color:#f0a500;stop-opacity:0.6"/>
+      <stop offset="70%" style="stop-color:#f0a500;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#f0a500;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1500" height="500" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <g opacity="0.04" stroke="#ffffff" stroke-width="1">
+    <line x1="0" y1="100" x2="1500" y2="100"/>
+    <line x1="0" y1="200" x2="1500" y2="200"/>
+    <line x1="0" y1="300" x2="1500" y2="300"/>
+    <line x1="0" y1="400" x2="1500" y2="400"/>
+    <line x1="300" y1="0" x2="300" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+    <line x1="900" y1="0" x2="900" y2="500"/>
+    <line x1="1200" y1="0" x2="1200" y2="500"/>
+  </g>
+
+  <!-- Decorative chart line left -->
+  <polyline points="0,400 80,380 160,360 220,340 260,290 300,310 340,280 380,260 420,240 460,260 500,220 540,200 580,230 620,210 660,180 700,160"
+    fill="none" stroke="#1e3a5a" stroke-width="2" opacity="0.5"/>
+
+  <!-- Decorative chart line right -->
+  <polyline points="800,320 860,300 920,280 980,260 1040,230 1100,210 1160,190 1220,170 1280,150 1340,130 1400,120 1500,100"
+    fill="none" stroke="#1e3a5a" stroke-width="2" opacity="0.5"/>
+
+  <!-- Gold accent line -->
+  <line x1="0" y1="249" x2="1500" y2="249" stroke="url(#line-fade)" stroke-width="1"/>
+
+  <!-- Left decorative bars (candlestick-like) -->
+  <g opacity="0.15">
+    <rect x="60" y="300" width="12" height="80" rx="2" fill="#00d084"/>
+    <rect x="90" y="320" width="12" height="60" rx="2" fill="#ff4c4c"/>
+    <rect x="120" y="290" width="12" height="90" rx="2" fill="#00d084"/>
+    <rect x="150" y="310" width="12" height="50" rx="2" fill="#00d084"/>
+    <rect x="180" y="330" width="12" height="70" rx="2" fill="#ff4c4c"/>
+    <rect x="210" y="280" width="12" height="100" rx="2" fill="#00d084"/>
+  </g>
+
+  <!-- Right decorative bars -->
+  <g opacity="0.15">
+    <rect x="1260" y="300" width="12" height="80" rx="2" fill="#00d084"/>
+    <rect x="1290" y="320" width="12" height="60" rx="2" fill="#ff4c4c"/>
+    <rect x="1320" y="290" width="12" height="90" rx="2" fill="#00d084"/>
+    <rect x="1350" y="310" width="12" height="50" rx="2" fill="#ff4c4c"/>
+    <rect x="1380" y="280" width="12" height="100" rx="2" fill="#00d084"/>
+    <rect x="1410" y="300" width="12" height="70" rx="2" fill="#00d084"/>
+  </g>
+
+  <!-- Center glow -->
+  <ellipse cx="750" cy="250" rx="400" ry="180" fill="#f0a500" opacity="0.03"/>
+
+  <!-- Logo mark — converging lines symbol -->
+  <g transform="translate(620, 175)" filter="url(#glow)">
+    <line x1="0" y1="50" x2="40" y2="0" stroke="url(#gold)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="20" y1="50" x2="40" y2="0" stroke="url(#gold)" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="40" y1="50" x2="40" y2="0" stroke="url(#gold)" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="40" cy="0" r="5" fill="#f0a500"/>
+  </g>
+
+  <!-- Main title -->
+  <text x="750" y="235"
+    font-family="Georgia, serif"
+    font-size="72"
+    font-weight="700"
+    fill="white"
+    text-anchor="middle"
+    letter-spacing="-1">The Confluence Array</text>
+
+  <!-- Gold underline -->
+  <rect x="550" y="248" width="400" height="2" rx="1" fill="url(#gold)" opacity="0.8"/>
+
+  <!-- Tagline -->
+  <text x="750" y="295"
+    font-family="Arial, sans-serif"
+    font-size="22"
+    font-weight="400"
+    fill="#64748b"
+    text-anchor="middle"
+    letter-spacing="3">TRADE WITH CONFLUENCE · TRADE WITH PRECISION</text>
+
+  <!-- Bottom label -->
+  <text x="750" y="430"
+    font-family="Arial, sans-serif"
+    font-size="14"
+    fill="#1e2d45"
+    text-anchor="middle"
+    letter-spacing="4">TRADINGVIEW INDICATOR SUITE</text>
+
+</svg>
