@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Confluence Array</title>
+  <meta name="description" content="Professional-grade TradingView indicator suite for futures and forex traders. Trade with confluence. Trade with precision." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <span class="nav-logo">The Confluence Array</span>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#journal">Journal</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#buy" class="btn-nav">Get Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-badge">TradingView Indicator Suite</div>
+    <h1>Trade With<br /><span class="gradient-text">Confluence.</span></h1>
+    <p class="hero-sub">
+      A professional-grade indicator suite built for futures and forex traders who
+      demand precision — combining order flow, market structure, and multi-timeframe
+      analysis into a single, unified overlay.
+    </p>
+    <div class="hero-cta">
+      <a href="#buy" class="btn-primary">Get Access — $50/mo</a>
+      <a href="#features" class="btn-ghost">See Features</a>
+    </div>
+    <div class="hero-img-wrap">
+      <img src="chart.png" alt="The Confluence Array on SP500 1h chart" class="hero-img" />
+    </div>
+  </section>
+
+  <!-- ── FEATURES ──────────────────────────────────────────────────────────── -->
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-label">The Indicator</div>
+      <h2>Everything You Need.<br />Nothing You Don't.</h2>
+      <p class="section-sub">Built and refined through live trading. Every tool earns its place on the chart.</p>
+
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>ARMAS</h3>
+          <p>Adaptive Range & Moving Average System — dynamic volatility bands that shift with the market, not against it. Instantly see whether price is trending, ranging, or extended.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Multi-Timeframe VWAP</h3>
+          <p>Daily, Weekly, and Monthly VWAP with standard deviation bands. Anchored to the correct session for each instrument — crypto and CME futures handled separately.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Fibonacci Pivots</h3>
+          <p>Previous week and previous day high/low levels with Fibonacci retracements automatically plotted. Key institutional reference levels, always visible.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>OI Signal Matrix</h3>
+          <p>Classifies market conditions into 7 states using Open Interest divergence — New Longs, Short Cover, Long Liquidation, and more. Know who is actually moving price.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Intelligent Bar Coloring</h3>
+          <p>Two modes: color bars by trend direction or by OI signal. ADX-based opacity means color intensity reflects conviction — faded in choppy markets, vivid in strong trends.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🕐</div>
+          <h3>Session Highlights</h3>
+          <p>London, New York, and Asia sessions highlighted automatically. Never miss a session open or lose track of which liquidity window you're trading in.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── OI MATRIX ─────────────────────────────────────────────────────────── -->
+  <section class="oi-section">
+    <div class="container">
+      <div class="section-label">OI Signal Matrix</div>
+      <h2>Know Who Is Moving Price</h2>
+      <p class="section-sub">Most indicators tell you what price did. The OI Matrix tells you why.</p>
+      <div class="oi-panel-wrap">
+        <img src="panel.png" alt="OI Signal Panel" class="oi-panel-img" />
+      </div>
+      <div class="oi-grid">
+        <div class="oi-card bull"><span class="oi-dot" style="background:#00ff88"></span><strong>New Longs</strong><p>Price up + OI up — genuine buyers entering</p></div>
+        <div class="oi-card bull"><span class="oi-dot" style="background:#00e5ff"></span><strong>Short Cover</strong><p>Price up + OI down — shorts being forced out</p></div>
+        <div class="oi-card neutral"><span class="oi-dot" style="background:#ffd700"></span><strong>Weak Rally</strong><p>Price up + OI flat — low conviction move</p></div>
+        <div class="oi-card bear"><span class="oi-dot" style="background:#ff4444"></span><strong>New Shorts</strong><p>Price down + OI up — genuine sellers entering</p></div>
+        <div class="oi-card bear"><span class="oi-dot" style="background:#ff8800"></span><strong>Long Liq</strong><p>Price down + OI down — longs being stopped out</p></div>
+        <div class="oi-card bear"><span class="oi-dot" style="background:#cc44ff"></span><strong>Liq Bounce</strong><p>Price down + OI flat — weak selling pressure</p></div>
+        <div class="oi-card neutral"><span class="oi-dot" style="background:#888"></span><strong>Mixed</strong><p>No clear signal — stay patient</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── JOURNAL ────────────────────────────────────────────────────────────── -->
+  <section id="journal" class="section">
+    <div class="container">
+      <div class="section-label">Trading Journal</div>
+      <h2>Your Edge Lives<br />in Your Data.</h2>
+      <p class="section-sub">A local-first trading journal that runs on your machine. Your data never leaves your computer.</p>
+
+      <div class="journal-grid">
+        <div class="journal-features">
+          <div class="j-feature">
+            <div class="j-icon">🔒</div>
+            <div>
+              <strong>100% Private</strong>
+              <p>Runs locally on your machine. No accounts, no cloud, no subscription for the journal itself.</p>
+            </div>
+          </div>
+          <div class="j-feature">
+            <div class="j-icon">📸</div>
+            <div>
+              <strong>Pre / Post Analysis</strong>
+              <p>Upload screenshots and write notes for each stage of a trade — before entry, at execution, and after exit.</p>
+            </div>
+          </div>
+          <div class="j-feature">
+            <div class="j-icon">📈</div>
+            <div>
+              <strong>Full Analytics</strong>
+              <p>Win rate, profit factor, performance by session, day of week, hour of day, and a monthly calendar heatmap.</p>
+            </div>
+          </div>
+          <div class="j-feature">
+            <div class="j-icon">📥</div>
+            <div>
+              <strong>MT5 Import</strong>
+              <p>Import your trade history directly from a MetaTrader 5 report. No manual entry needed.</p>
+            </div>
+          </div>
+          <div class="j-feature">
+            <div class="j-icon">💾</div>
+            <div>
+              <strong>Auto Backup</strong>
+              <p>Daily automatic backups with one-click restore. Never lose your trade history again.</p>
+            </div>
+          </div>
+          <div class="j-feature">
+            <div class="j-icon">📄</div>
+            <div>
+              <strong>PDF Export</strong>
+              <p>Export a full trading report with charts, stats, and trade history to share or review offline.</p>
+            </div>
+          </div>
+        </div>
+        <div class="journal-img-wrap">
+          <img src="journal-dashboard.png" alt="Trading Journal Dashboard" class="journal-img" />
+          <img src="journal-analytics.png" alt="Trading Journal Analytics" class="journal-img" style="margin-top:16px;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ────────────────────────────────────────────────────────────── -->
+  <section id="pricing" class="section pricing-section">
+    <div class="container">
+      <div class="section-label">Pricing</div>
+      <h2>Simple, Transparent Pricing</h2>
+      <p class="section-sub">Payments accepted in USDT and USDC only. No chargebacks. No middlemen.</p>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card">
+          <div class="pricing-name">Confluence Array</div>
+          <div class="pricing-type">Indicator Suite</div>
+          <div class="pricing-price">$50<span>/month</span></div>
+          <ul class="pricing-features">
+            <li>✓ Full ARMAS system</li>
+            <li>✓ Multi-TF VWAP + bands</li>
+            <li>✓ Fibonacci pivot levels</li>
+            <li>✓ OI Signal Matrix (7 states)</li>
+            <li>✓ Intelligent bar coloring</li>
+            <li>✓ Session highlights</li>
+            <li>✓ TradingView invite access</li>
+            <li>✓ Updates included</li>
+          </ul>
+          <a href="#buy" class="btn-primary" style="display:block;text-align:center;">Get Access</a>
+          <p class="pricing-note">3-month $130 · Annual $480</p>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Best Value</div>
+          <div class="pricing-name">Bundle</div>
+          <div class="pricing-type">Indicator + Journal</div>
+          <div class="pricing-price">$50<span>/month</span></div>
+          <ul class="pricing-features">
+            <li>✓ Everything in Indicator</li>
+            <li>✓ Trading Journal included free</li>
+            <li>✓ Windows + Mac installer</li>
+            <li>✓ MT5 import support</li>
+            <li>✓ Lifetime journal updates</li>
+          </ul>
+          <a href="#buy" class="btn-primary" style="display:block;text-align:center;">Get Bundle</a>
+          <p class="pricing-note">Journal free with any subscription</p>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-name">Trading Journal</div>
+          <div class="pricing-type">One-Time Purchase</div>
+          <div class="pricing-price">$30<span> once</span></div>
+          <ul class="pricing-features">
+            <li>✓ Local-first, private</li>
+            <li>✓ Dashboard + analytics</li>
+            <li>✓ Pre/post analysis notes</li>
+            <li>✓ MT5 import</li>
+            <li>✓ PDF export</li>
+            <li>✓ Windows + Mac installer</li>
+            <li>✓ Lifetime access</li>
+          </ul>
+          <a href="#buy" class="btn-ghost" style="display:block;text-align:center;">Buy Journal</a>
+          <p class="pricing-note">No subscription required</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW TO BUY ─────────────────────────────────────────────────────────── -->
+  <section id="buy" class="section buy-section">
+    <div class="container">
+      <div class="section-label">How to Buy</div>
+      <h2>Get Access in Minutes</h2>
+      <p class="section-sub">Payments are processed manually via stablecoins. Follow the steps below.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <strong>Choose your plan</strong>
+            <p>Pick the indicator, journal, or bundle above. DM us on X with your choice.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <strong>Send payment</strong>
+            <p>Send USDT or USDC to our wallet address. We'll confirm receipt and send you the wallet address via DM.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <strong>Get access</strong>
+            <p>For the indicator: send us your TradingView username and we'll add you within 24 hours. For the journal: you'll receive a download link.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <strong>Stay subscribed</strong>
+            <p>You'll receive a renewal reminder before your period ends. Simply repeat step 2 to keep access.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="buy-cta">
+        <a href="https://x.com/" target="_blank" class="btn-primary">DM on X to Get Started</a>
+        <p class="buy-note">Average response time: under 12 hours</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="nav-logo">The Confluence Array</span>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#buy">Get Access</a>
+          <a href="https://x.com/" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+      <p class="footer-disc">
+        Trading involves significant risk of loss. The Confluence Array is an analytical tool, not financial advice.
+        Past performance of any indicator does not guarantee future results.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
