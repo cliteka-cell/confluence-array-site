@@ -4,13 +4,19 @@ A professional-grade, all-in-one indicator suite built for futures and forex tra
 
 Built and refined through live trading on CME futures and crypto perpetuals. Every tool on this chart earns its place.
 
-[hr]
 
 [b]Why this script requires source protection[/b]
 
-While the Confluence Array incorporates familiar concepts such as VWAP, RSI, ADX, and Fibonacci levels, what justifies source protection is the original logic connecting them. The core of this script is the [b]Absolute Moving Average System (ARMAS)[/b] — an original EWMA-based channel built from highs and lows that is fundamentally different from any public-domain implementation — and the [b]OI Signal Matrix[/b], an original 7-state classification engine that cross-references price action with open interest to identify who is driving a move and why. These two systems, and the logic integrating them with VWAP, pivots, session analysis, and bar coloring, represent original work that is not available in any open-source publication on TradingView.
+While the Confluence Array incorporates familiar concepts such as VWAP, RSI, ADX, and Fibonacci levels, what justifies source protection is the original logic connecting them. The core of this script is built on three original systems:
 
-[hr]
+The [b]Absolute Moving Average System (ARMAS)[/b] — an original EWMA-based channel constructed from highs and lows, fundamentally different from any public-domain moving average or band implementation.
+
+The [b]OI Signal Matrix[/b] — an original 7-state classification engine that cross-references price action with open interest to identify who is driving a move and why, producing actionable context no standard indicator provides.
+
+The [b]Confluence Engine[/b] — an original scoring system that evaluates every key level on the chart (VWAP bands, ARMAS boundaries, pivot levels, session highs/lows) and assigns a real-time confluence score to each zone. It surfaces the highest-scoring support and resistance areas automatically, along with a multi-timeframe bias alignment score, removing the guesswork from zone selection entirely.
+
+These three systems, and the logic integrating them with session analysis, bar coloring, and the live dashboard, represent original work that is not available in any open-source publication on TradingView.
+
 
 [b]⚡ Absolute Moving Average System (ARMAS)[/b]
 
@@ -24,7 +30,6 @@ ARMAS is the backbone of the indicator. It constructs a dynamic price pipe using
 [*] Identifies extended price moves before mean reversion
 [/list]
 
-[hr]
 
 [b]📊 Multi-Timeframe VWAP[/b]
 
@@ -46,7 +51,6 @@ Institutional traders anchor to VWAP. Now you can too — across every relevant 
 [b]Macro View (Daily / Weekly / Monthly)[/b]
 [image]https://www.tradingview.com/x/0DXw3CUH[/image]
 
-[hr]
 
 [b]🎯 Fibonacci Pivot Levels[/b]
 
@@ -65,7 +69,6 @@ Key institutional reference levels — automatically plotted, always visible.
 [b]Clean Mode — Minimal Overlay[/b]
 [image]https://www.tradingview.com/x/AhXpAVjv[/image]
 
-[hr]
 
 [b]🔍 Open Interest Signal Matrix[/b]
 
@@ -81,7 +84,6 @@ Most indicators tell you what price did. The OI Matrix tells you [i]why[/i]. By 
 [*] [b]Mixed[/b] — No clear signal → stay patient
 [/list]
 
-[hr]
 
 [b]🎨 Intelligent Bar Coloring[/b]
 
@@ -93,7 +95,6 @@ Two bar coloring modes — toggle between them based on what you need to read at
 [b]Color Bars by OI Signal[/b] — candles colored by the OI Signal Matrix state. Each color maps directly to a market condition: lime = New Longs, aqua = Short Cover, yellow = Weak Rally, red = New Shorts, orange = Long Liq, purple = Liq Bounce. ADX-based opacity ensures colors are vivid in strong trends and faded in choppy conditions — so you never react to a weak signal.
 [image]https://www.tradingview.com/x/G0Pn0pbd[/image]
 
-[hr]
 
 [b]🕐 Session Highlights & Live Dashboard[/b]
 
@@ -104,7 +105,6 @@ Two bar coloring modes — toggle between them based on what you need to read at
 [*] Best Zone — automatically identifies the highest-scoring zone on the chart
 [/list]
 
-[hr]
 
 [b]⚙️ Compatibility[/b]
 
@@ -115,7 +115,6 @@ Two bar coloring modes — toggle between them based on what you need to read at
 [*] Works on all timeframes from 1m to 1W
 [/list]
 
-[hr]
 
 [b]🔒 Access[/b]
 
