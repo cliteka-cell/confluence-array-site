@@ -1,35 +1,33 @@
 // Contact form AJAX submission
-const contactForm = document.getElementById('contactForm');
-const formSuccess = document.getElementById('formSuccess');
+async function handleForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const btn = form.querySelector('.cf-submit');
 
-if (contactForm) {
-  contactForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = contactForm.querySelector('.cf-submit');
-    btn.textContent = 'Sending…';
-    btn.style.opacity = '0.7';
-    btn.disabled = true;
+  btn.textContent = 'Sending…';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
 
-    try {
-      const res = await fetch(contactForm.action, {
-        method: 'POST',
-        body: new FormData(contactForm),
-        headers: { 'Accept': 'application/json' }
-      });
-      if (res.ok) {
-        contactForm.style.setProperty('display', 'none', 'important');
-        formSuccess.style.setProperty('display', 'flex', 'important');
-      } else {
-        btn.textContent = 'Failed — try again';
-        btn.style.opacity = '1';
-        btn.disabled = false;
-      }
-    } catch {
+  try {
+    const res = await fetch('https://formspree.io/f/xgoqgdqz', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.cssText = 'display:none!important';
+      success.style.cssText = 'display:flex!important';
+    } else {
       btn.textContent = 'Failed — try again';
       btn.style.opacity = '1';
       btn.disabled = false;
     }
-  });
+  } catch {
+    btn.textContent = 'Failed — try again';
+    btn.style.opacity = '1';
+    btn.disabled = false;
+  }
 }
 
 // Smooth nav background on scroll
