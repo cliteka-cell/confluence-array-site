@@ -1,3 +1,22 @@
+// Lightbox
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lightbox-img').src = src;
+  lb.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// Make all chart/journal images clickable
+document.querySelectorAll('.hero-img, .oi-panel-img, .journal-img').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => openLightbox(img.src));
+});
+
 // Contact form AJAX submission
 async function handleForm(e) {
   e.preventDefault();
