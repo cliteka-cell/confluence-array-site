@@ -7,7 +7,32 @@
   <meta name="description" content="Professional-grade TradingView indicator suite for futures and forex traders. Trade with confluence. Trade with precision." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
+  <style>
+    .contact-card{max-width:700px;margin:0 auto 40px;background:#0d1220;border:1px solid #1e2d45;border-radius:20px;padding:44px 48px;text-align:left}
+    .form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:40px 20px;gap:12px}
+    .form-success-icon{width:56px;height:56px;background:rgba(0,208,132,.1);border:1px solid rgba(0,208,132,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:#00d084;margin-bottom:8px}
+    .form-success h3{font-size:1.4rem;font-weight:700;color:#e2e8f0}
+    .form-success p{font-size:.9rem;color:#64748b}
+    .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+    .cf-field{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+    .cf-row .cf-field{margin-bottom:0}
+    .cf-field label{display:block;font-size:.75rem;font-weight:700;color:#64748b;letter-spacing:.08em;text-transform:uppercase;width:100%;margin-bottom:4px}
+    .cf-opt{font-size:.7rem;font-weight:400;color:#2a3a4a;text-transform:none;letter-spacing:0;margin-left:6px;border:1px solid #1e2d45;border-radius:4px;padding:1px 6px}
+    .cf-field input,.cf-field textarea{display:block;background:#080c14;border:1px solid #1e2d45;border-radius:10px;color:#e2e8f0;font-family:Inter,sans-serif;font-size:.9rem;padding:13px 16px;outline:none;width:100%;box-sizing:border-box;transition:border-color .2s}
+    .cf-field input:focus,.cf-field textarea:focus{border-color:#f0a500}
+    .cf-field input::placeholder,.cf-field textarea::placeholder{color:#2a3a4a}
+    .cf-field textarea{resize:vertical;min-height:100px}
+    .cf-select-wrap{position:relative}
+    .cf-select-wrap select{display:block;background:#080c14;border:1px solid #1e2d45;border-radius:10px;color:#e2e8f0;font-family:Inter,sans-serif;font-size:.9rem;padding:13px 40px 13px 16px;outline:none;width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;cursor:pointer;transition:border-color .2s}
+    .cf-select-wrap select:focus{border-color:#f0a500}
+    .cf-select-wrap select option{background:#0d1220;color:#e2e8f0}
+    .cf-select-arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:#64748b;pointer-events:none}
+    .cf-submit{display:block;width:100%;padding:16px;background:#f0a500;color:#000;font-family:Inter,sans-serif;font-size:1rem;font-weight:700;border:none;border-radius:10px;cursor:pointer;margin-top:4px;transition:opacity .2s}
+    .cf-submit:hover{opacity:.88}
+    .buy-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+    @media(max-width:600px){.contact-card{padding:28px 20px}.cf-row{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
 

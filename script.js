@@ -17,8 +17,8 @@ if (contactForm) {
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
-        contactForm.style.display = 'none';
-        formSuccess.style.display = 'flex';
+        contactForm.style.setProperty('display', 'none', 'important');
+        formSuccess.style.setProperty('display', 'flex', 'important');
       } else {
         btn.textContent = 'Failed — try again';
         btn.style.opacity = '1';
