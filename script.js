@@ -1,3 +1,37 @@
+// Contact form AJAX submission
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.cf-submit');
+    btn.textContent = 'Sending…';
+    btn.style.opacity = '0.7';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        contactForm.style.display = 'none';
+        formSuccess.style.display = 'flex';
+      } else {
+        btn.textContent = 'Failed — try again';
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Failed — try again';
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    }
+  });
+}
+
 // Smooth nav background on scroll
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {

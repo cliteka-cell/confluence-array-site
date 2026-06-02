@@ -539,6 +539,41 @@ footer {
   text-align: left;
 }
 
+.form-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 12px;
+}
+
+.form-success-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(0,208,132,0.1);
+  border: 1px solid rgba(0,208,132,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--accent2);
+  margin-bottom: 8px;
+}
+
+.form-success h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.form-success p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 .cf-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
