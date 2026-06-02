@@ -169,8 +169,9 @@ nav {
 }
 
 .hero-img-wrap {
-  max-width: 960px;
+  max-width: 1300px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .hero-img-placeholder,
@@ -713,10 +714,12 @@ footer {
 /* ── IMAGES ────────────────────────────────────────────────────────────────── */
 .hero-img {
   width: 100%;
+  max-width: 1200px;
   border-radius: 16px;
   border: 1px solid var(--border);
   box-shadow: 0 24px 80px rgba(0,0,0,0.5);
   display: block;
+  margin: 0 auto;
 }
 
 .oi-panel-wrap {
