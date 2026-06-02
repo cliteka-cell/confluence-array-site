@@ -1,0 +1,130 @@
+[b]The Confluence Array — Confluence Terminal[/b]
+
+A professional-grade, all-in-one indicator suite built for futures and forex traders who demand precision. The Confluence Array combines open interest flow analysis, multi-timeframe VWAP, adaptive range bands, Fibonacci pivots, and intelligent bar coloring into a single, unified overlay — eliminating the need for multiple indicators cluttering your chart.
+
+Built and refined through live trading on CME futures and crypto perpetuals. Every tool on this chart earns its place.
+
+[hr]
+
+[b]⚡ ABSOLUTE MOVING AVERAGE SYSTEM (ARMAS)[/b]
+
+ARMAS is the backbone of the indicator. It constructs a dynamic price pipe using EWMA (Exponentially Weighted Moving Average) of highs and lows, forming upper and lower bands that hug price action and adapt naturally to market structure. The result is a clean, responsive channel that tells you at a glance whether price is trending, ranging, or overextended — without the lag of traditional moving averages.
+
+[list]
+[*] EWMA-based pipe built from highs and lows — not ATR, not static multipliers
+[*] Upper and lower bands track price structure dynamically
+[*] Multi-timeframe trend bias derived from the EWMA channel
+[*] Color-coded channels: bullish (blue/green), bearish (red), ranging (neutral)
+[*] Identifies extended price moves before mean reversion
+[/list]
+
+[hr]
+
+[b]📊 MULTI-TIMEFRAME VWAP[/b]
+
+Institutional traders anchor to VWAP. Now you can too — across every relevant timeframe simultaneously.
+
+[list]
+[*] Daily, Weekly, and Monthly VWAP plotted simultaneously
+[*] Standard deviation bands (1σ, 2σ, 3σ) for each timeframe
+[*] Correct session anchoring — crypto and CME futures handled separately
+[*] Previous session VWAP as a key reference level
+[/list]
+
+[b]Intraday View[/b]
+[image]https://www.tradingview.com/x/i2aYnXJi[/image]
+
+[b]Hourly View[/b]
+[image]https://www.tradingview.com/x/bJfyCVUU[/image]
+
+[b]Macro View (Daily / Weekly / Monthly)[/b]
+[image]https://www.tradingview.com/x/0DXw3CUH[/image]
+
+[hr]
+
+[b]🎯 FIBONACCI PIVOT LEVELS[/b]
+
+Key institutional reference levels — automatically plotted, always visible.
+
+[list]
+[*] Previous Week High / Low with Fibonacci retracements
+[*] Previous Day High / Low
+[*] Handles CME Sunday open correctly for crypto vs traditional futures
+[*] Clean label display — no chart clutter
+[/list]
+
+[b]Default Mode — All Levels Visible[/b]
+[image]https://www.tradingview.com/x/hd0jDavR[/image]
+
+[b]Clean Mode — Minimal Overlay[/b]
+[image]https://www.tradingview.com/x/AhXpAVjv[/image]
+
+[hr]
+
+[b]🔍 OPEN INTEREST SIGNAL MATRIX[/b]
+
+Most indicators tell you what price did. The OI Matrix tells you [i]why[/i]. By cross-referencing price action with open interest changes, it classifies current market conditions into 7 distinct states — so you always know who is actually moving price.
+
+[list]
+[*] [b]New Longs[/b] — Price up + OI up → genuine buyers entering the market
+[*] [b]Short Cover[/b] — Price up + OI down → shorts being forced out
+[*] [b]Weak Rally[/b] — Price up + OI flat → low conviction, fade candidate
+[*] [b]New Shorts[/b] — Price down + OI up → genuine sellers entering the market
+[*] [b]Long Liquidation[/b] — Price down + OI down → longs being stopped out
+[*] [b]Liq Bounce[/b] — Price down + OI flat → weak selling pressure
+[*] [b]Mixed[/b] — No clear signal → stay patient
+[/list]
+
+[hr]
+
+[b]🎨 INTELLIGENT BAR COLORING[/b]
+
+Two bar coloring modes — toggle between them based on what you need to read at a glance.
+
+[b]Color Bars by Trend[/b] — candles colored by ARMAS trend direction. Instantly see whether the current bar is aligned with the macro bias or fighting it.
+[image]https://www.tradingview.com/x/smHv0SXR[/image]
+
+[b]Color Bars by OI Signal[/b] — candles colored by the OI Signal Matrix state. Each color maps directly to a market condition: lime = New Longs, aqua = Short Cover, yellow = Weak Rally, red = New Shorts, orange = Long Liq, purple = Liq Bounce. ADX-based opacity ensures colors are vivid in strong trends and faded in choppy conditions — so you never react to a weak signal.
+[image]https://www.tradingview.com/x/G0Pn0pbd[/image]
+
+[hr]
+
+[b]🕐 SESSION HIGHLIGHTS & LIVE DASHBOARD[/b]
+
+[list]
+[*] London, New York, and Asia sessions highlighted automatically
+[*] Live dashboard panel showing: Session, Volatility, RSI, ADX, OI Signal, Flow Divergence, Macro/HTF/Intraday bias, Alignment score
+[*] Hourly zone scoring — rates key support/resistance zones by confluence strength
+[*] Best Zone — automatically identifies the highest-scoring zone on the chart
+[/list]
+
+[hr]
+
+[b]⚙️ COMPATIBILITY[/b]
+
+[list]
+[*] CME Futures — ES, NQ, YM, GC, CL and all major contracts
+[*] Crypto Perpetuals — BTC, ETH and all major pairs
+[*] Forex — all major and minor pairs
+[*] Works on all timeframes from 1m to 1W
+[/list]
+
+[hr]
+
+[b]🔒 ACCESS[/b]
+
+This is an invite-only, protected script. The source code is not visible.
+
+[b]14-day free trial available.[/b] No payment required to start.
+
+To get access:
+[list]
+[*] DM me on X: [url=https://x.com/ConfluenceArray]@ConfluenceArray[/url]
+[*] Send your TradingView username
+[*] Get added within 24 hours
+[/list]
+
+Subscription: $50/month · 3-month: $130 · Annual: $480
+Payments accepted in USDT / USDC only.
+
+[url=https://cliteka-cell.github.io/confluence-array-site/]View full details and pricing →[/url]
