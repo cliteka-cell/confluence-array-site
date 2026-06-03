@@ -11,7 +11,7 @@
   pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
   document.body.appendChild(pCanvas);
   const pCtx = pCanvas.getContext('2d');
-  let textAura = false, glowOpacity = 0;
+  let textAura = false, glowOpacity = 0, nebulaTime = 0;
 
   window._triggerTextAura = function () { textAura = true; };
 
@@ -87,17 +87,57 @@
 
         // Fade nebula in over ~5 seconds
         glowOpacity = Math.min(1, glowOpacity + 0.004);
+        nebulaTime += 0.3;
 
-        // Draw nebula on galaxy canvas (sits behind page content)
         ctx.save();
-        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        grad.addColorStop(0,    `rgba(255,255,255,${0.22 * glowOpacity})`);
-        grad.addColorStop(0.28, `rgba(235,242,255,${0.16 * glowOpacity})`);
-        grad.addColorStop(0.55, `rgba(180,210,255,${0.09 * glowOpacity})`);
-        grad.addColorStop(0.80, `rgba(120,170,255,${0.04 * glowOpacity})`);
-        grad.addColorStop(1,    'rgba(0,0,0,0)');
-        ctx.fillStyle = grad;
+
+        // Hollow shell — bright ring, dark hollow center like a supernova remnant
+        const shell = ctx.createRadialGradient(cx, cy, r * 0.22, cx, cy, r);
+        shell.addColorStop(0,    'rgba(0,0,0,0)');
+        shell.addColorStop(0.42, `rgba(160,200,255,${0.07 * glowOpacity})`);
+        shell.addColorStop(0.68, `rgba(230,242,255,${0.18 * glowOpacity})`);
+        shell.addColorStop(0.86, `rgba(200,225,255,${0.10 * glowOpacity})`);
+        shell.addColorStop(1,    'rgba(0,0,0,0)');
+        ctx.fillStyle = shell;
         ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+
+        // Cloud puff lobes around the rim — irregular sizes and positions
+        const LOBES = 10;
+        for (let i = 0; i < LOBES; i++) {
+          const baseA  = (i / LOBES) * Math.PI * 2;
+          const wobble = Math.sin(nebulaTime * 0.008 + i * 1.37) * 0.07;
+          const angle  = baseA + wobble;
+          const dist   = r * (0.60 + Math.sin(i * 2.1 + 1.2) * 0.13);
+          const px     = cx + Math.cos(angle) * dist;
+          const py     = cy + Math.sin(angle) * dist;
+          const pr     = r * (0.17 + Math.abs(Math.sin(i * 1.7)) * 0.11);
+          const g = ctx.createRadialGradient(px, py, 0, px, py, pr);
+          g.addColorStop(0,   `rgba(245,250,255,${0.20 * glowOpacity})`);
+          g.addColorStop(0.5, `rgba(200,225,255,${0.10 * glowOpacity})`);
+          g.addColorStop(1,   'rgba(0,0,0,0)');
+          ctx.fillStyle = g;
+          ctx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
+        }
+
+        // Radial filaments — elongated blobs pointing outward
+        const FILS = 6;
+        for (let i = 0; i < FILS; i++) {
+          const angle = (i / FILS) * Math.PI * 2 + Math.PI / FILS;
+          const dist  = r * (0.75 + Math.sin(i * 2.7) * 0.10);
+          const fx = cx + Math.cos(angle) * dist;
+          const fy = cy + Math.sin(angle) * dist;
+          ctx.save();
+          ctx.translate(fx, fy);
+          ctx.rotate(angle);
+          ctx.scale(1, 0.28);
+          const fg = ctx.createRadialGradient(0, 0, 0, 0, 0, r * 0.24);
+          fg.addColorStop(0, `rgba(255,255,255,${0.14 * glowOpacity})`);
+          fg.addColorStop(1, 'rgba(0,0,0,0)');
+          ctx.fillStyle = fg;
+          ctx.fillRect(-r * 0.24, -r * 0.24, r * 0.48, r * 0.48);
+          ctx.restore();
+        }
+
         ctx.restore();
 
         // Spawn streaks from outer rim
