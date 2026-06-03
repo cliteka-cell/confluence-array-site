@@ -220,31 +220,12 @@ nav {
 }
 
 #hero-line2.shimmer-active {
-  background: linear-gradient(90deg,
-    #1040c0 0%,
-    #2060f0 10%,
-    #c8dcff 20%,
-    #ffffff 26%,
-    #90b8ff 32%,
-    #2060f0 44%,
-    #1040c0 54%,
-    #2060f0 64%,
-    #c8dcff 72%,
-    #ffffff 78%,
-    #80b0ff 86%,
-    #2060f0 94%,
-    #1040c0 100%
-  );
-  background-size: 500% auto;
+  background: linear-gradient(90deg, #1040c0 0%, #2060f0 20%, #80b0ff 50%, #2060f0 80%, #1040c0 100%);
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: starshine 3s linear infinite, aura-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes starshine {
-  0%   { background-position: 0% center; }
-  100% { background-position: 500% center; }
+  animation: textshine 4s linear infinite, aura-pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes aura-pulse {
