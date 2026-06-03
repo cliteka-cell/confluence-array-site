@@ -133,12 +133,13 @@ nav {
 /* ── CURSOR ────────────────────────────────────────────────────────────────── */
 .cursor {
   display: inline-block;
-  color: var(--accent);
-  font-family: var(--display);
+  color: #ffffff;
   font-weight: 400;
-  margin-left: 3px;
-  animation: blink 1s step-end infinite;
+  line-height: 1;
+  animation: blink 0.7s step-end infinite;
 }
+
+.cursor.hidden { display: none; }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
