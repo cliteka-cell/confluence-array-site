@@ -293,7 +293,8 @@ nav {
   opacity: 0.9;
 }
 
-.section h2 {
+.section h2,
+.oi-section h2 {
   font-family: var(--display);
   font-size: clamp(2rem, 4.5vw, 3.2rem);
   font-weight: 800;
@@ -371,16 +372,6 @@ nav {
   position: relative;
 }
 
-.oi-section::before,
-.oi-section::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
-}
-.oi-section::before { top: 0; }
-.oi-section::after  { bottom: 0; }
 
 .oi-section .section-sub { margin-bottom: 52px; }
 
@@ -478,16 +469,6 @@ nav {
   position: relative;
 }
 
-.pricing-section::before,
-.pricing-section::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
-}
-.pricing-section::before { top: 0; }
-.pricing-section::after  { bottom: 0; }
 
 .pricing-grid {
   display: grid;
@@ -607,10 +588,10 @@ nav {
 }
 
 .step {
-  background: var(--bg2);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 22px;
   transition: border-color .25s, transform .25s;
 }
 
@@ -662,13 +643,6 @@ footer {
   position: relative;
 }
 
-footer::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
-}
 
 .footer-inner {
   display: flex;
@@ -698,7 +672,7 @@ footer::before {
 .contact-card {
   max-width: 700px;
   margin: 0 auto 40px;
-  background: var(--bg2);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 44px 48px;
