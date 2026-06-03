@@ -111,6 +111,8 @@
           sp.x += sp.vx;
           sp.y += sp.vy;
           if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
+          const outside = sp.x < rect.left || sp.x > rect.right || sp.y < rect.top || sp.y > rect.bottom;
+          if (!outside) continue;
           pCtx.globalAlpha = sp.life * 0.85;
           pCtx.strokeStyle = sp.color;
           pCtx.lineWidth   = sp.r * 1.8;
