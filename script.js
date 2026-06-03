@@ -106,14 +106,11 @@
           sp.x += sp.vx;
           sp.y += sp.vy;
           if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
-          pCtx.globalAlpha = sp.life * 0.85;
-          pCtx.strokeStyle = sp.color;
-          pCtx.lineWidth = sp.r * 1.8;
-          pCtx.lineCap = 'round';
+          pCtx.globalAlpha = sp.life * 0.9;
+          pCtx.fillStyle = sp.color;
           pCtx.beginPath();
-          pCtx.moveTo(sp.x, sp.y);
-          pCtx.lineTo(sp.x - sp.vx * 7, sp.y - sp.vy * 7);
-          pCtx.stroke();
+          pCtx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
+          pCtx.fill();
         }
         pCtx.globalAlpha = 1;
       }
