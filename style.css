@@ -220,13 +220,19 @@ nav {
 }
 
 #hero-line2.shimmer-active {
-  background: linear-gradient(90deg, #1a50d8 0%, #2060f0 35%, #3070f4 50%, #2060f0 65%, #1a50d8 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: textshine 10s linear infinite;
-  filter: drop-shadow(0 0 18px rgba(80,130,255,0.9)) drop-shadow(0 0 50px rgba(100,160,255,0.65)) drop-shadow(0 0 100px rgba(180,210,255,0.4));
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  -webkit-text-fill-color: #2060f0;
+  color: #2060f0;
+  animation: none;
+  filter: none;
+  text-shadow:
+    0 0 8px rgba(120,170,255,1),
+    0 0 22px rgba(80,140,255,0.95),
+    0 0 55px rgba(60,120,255,0.8),
+    0 0 110px rgba(40,100,255,0.55),
+    0 0 200px rgba(20,80,255,0.3);
 }
 
 #hero-line2 {
