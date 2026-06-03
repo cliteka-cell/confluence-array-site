@@ -6,7 +6,28 @@
   let W, H, stars = [], nebulas = [], textSparkles = [];
   let textAura = false;
 
-  window._triggerTextAura = function () { textAura = true; };
+  window._triggerTextAura = function () {
+    textAura = true;
+    const el = document.getElementById('hero-line2');
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width  / 2;
+    const cy = rect.top  + rect.height / 2;
+    for (let b = 0; b < 55; b++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 6 + 1.5;
+      textSparkles.push({
+        x:     cx + (Math.random() - 0.5) * rect.width  * 0.7,
+        y:     cy + (Math.random() - 0.5) * rect.height * 0.8,
+        vx:    Math.cos(angle) * speed,
+        vy:    Math.sin(angle) * speed,
+        r:     Math.random() * 1.8 + 0.4,
+        life:  1.0,
+        decay: 0.018 + Math.random() * 0.014,
+        burst: true,
+      });
+    }
+  };
 
   const STAR_COUNT = 280;
   const STAR_COLORS = ['#ffffff', '#ffffff', '#ffffff', '#a8c8ff', '#7ab3ff', '#fffde8'];
@@ -73,15 +94,19 @@
       const el = document.getElementById('hero-line2');
       if (el) {
         const rect = el.getBoundingClientRect();
-        if (Math.random() < 0.35) {
+        // gentle trickle after burst settles
+        if (Math.random() < 0.12) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 1.2 + 0.4;
           textSparkles.push({
-            x:    rect.left + Math.random() * rect.width,
-            y:    rect.top  + rect.height * 0.5 + (Math.random() - 0.5) * rect.height,
-            vx:   (Math.random() - 0.5) * 0.6,
-            vy:   -(Math.random() * 0.9 + 0.2),
-            r:    Math.random() * 1.3 + 0.3,
-            life: 1.0,
-            decay: 0.012 + Math.random() * 0.01,
+            x:     rect.left + Math.random() * rect.width,
+            y:     rect.top  + rect.height * 0.5 + (Math.random() - 0.5) * rect.height,
+            vx:    Math.cos(angle) * speed,
+            vy:    Math.sin(angle) * speed,
+            r:     Math.random() * 1.0 + 0.3,
+            life:  1.0,
+            decay: 0.014 + Math.random() * 0.01,
+            burst: false,
           });
         }
         for (let i = textSparkles.length - 1; i >= 0; i--) {
@@ -90,8 +115,8 @@
           sp.x += sp.vx;
           sp.y += sp.vy;
           if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
-          ctx.globalAlpha = sp.life * 0.75;
-          ctx.fillStyle = Math.random() < 0.7 ? '#ffffff' : '#a8c8ff';
+          ctx.globalAlpha = sp.life * (sp.burst ? 0.9 : 0.6);
+          ctx.fillStyle = Math.random() < 0.65 ? '#ffffff' : '#a8c8ff';
           ctx.beginPath();
           ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
           ctx.fill();

@@ -225,12 +225,7 @@ nav {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textshine 4s linear infinite, aura-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes aura-pulse {
-  0%, 100% { filter: drop-shadow(0 0 6px rgba(255,255,255,0.2)) drop-shadow(0 0 16px rgba(120,170,255,0.2)); }
-  50%       { filter: drop-shadow(0 0 14px rgba(255,255,255,0.5)) drop-shadow(0 0 32px rgba(160,210,255,0.4)); }
+  animation: textshine 4s linear infinite;
 }
 
 #hero-line2 {
