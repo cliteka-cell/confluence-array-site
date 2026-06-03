@@ -8,7 +8,7 @@
 
   // Overlay canvas for particles (drawn above text)
   const pCanvas = document.createElement('canvas');
-  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
+  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;mix-blend-mode:screen;';
   document.body.appendChild(pCanvas);
   const pCtx = pCanvas.getContext('2d');
   let textAura = false, glowOpacity = 0, nebulaTime = 0;
@@ -89,27 +89,26 @@
         glowOpacity = Math.min(1, glowOpacity + 0.008);
         nebulaTime += 0.3;
 
-        ctx.save();
-
-        // Soft base glow so something is always visible
-        const base = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        base.addColorStop(0,   `rgba(100,150,255,${0.12 * glowOpacity})`);
-        base.addColorStop(0.5, `rgba(80,130,255,${0.08 * glowOpacity})`);
+        // Draw nebula on pCtx with mix-blend-mode:screen (illuminates without covering)
+        // Soft base
+        const base = pCtx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        base.addColorStop(0,   `rgba(80,120,255,${0.18 * glowOpacity})`);
+        base.addColorStop(0.5, `rgba(60,100,220,${0.10 * glowOpacity})`);
         base.addColorStop(1,   'rgba(0,0,0,0)');
-        ctx.fillStyle = base;
-        ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+        pCtx.fillStyle = base;
+        pCtx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
-        // Hollow shell — bright ring, dark hollow center
-        const shell = ctx.createRadialGradient(cx, cy, r * 0.22, cx, cy, r);
+        // Hollow shell ring
+        const shell = pCtx.createRadialGradient(cx, cy, r * 0.22, cx, cy, r);
         shell.addColorStop(0,    'rgba(0,0,0,0)');
-        shell.addColorStop(0.42, `rgba(160,200,255,${0.20 * glowOpacity})`);
-        shell.addColorStop(0.68, `rgba(230,242,255,${0.55 * glowOpacity})`);
-        shell.addColorStop(0.86, `rgba(200,225,255,${0.30 * glowOpacity})`);
+        shell.addColorStop(0.42, `rgba(160,200,255,${0.30 * glowOpacity})`);
+        shell.addColorStop(0.68, `rgba(230,242,255,${0.70 * glowOpacity})`);
+        shell.addColorStop(0.86, `rgba(200,225,255,${0.40 * glowOpacity})`);
         shell.addColorStop(1,    'rgba(0,0,0,0)');
-        ctx.fillStyle = shell;
-        ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+        pCtx.fillStyle = shell;
+        pCtx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
-        // Cloud puff lobes around the rim
+        // Cloud puff lobes
         const LOBES = 10;
         for (let i = 0; i < LOBES; i++) {
           const baseA  = (i / LOBES) * Math.PI * 2;
@@ -119,34 +118,32 @@
           const px     = cx + Math.cos(angle) * dist;
           const py     = cy + Math.sin(angle) * dist;
           const pr     = r * (0.17 + Math.abs(Math.sin(i * 1.7)) * 0.11);
-          const g = ctx.createRadialGradient(px, py, 0, px, py, pr);
-          g.addColorStop(0,   `rgba(245,250,255,${0.55 * glowOpacity})`);
-          g.addColorStop(0.5, `rgba(200,225,255,${0.28 * glowOpacity})`);
+          const g = pCtx.createRadialGradient(px, py, 0, px, py, pr);
+          g.addColorStop(0,   `rgba(245,250,255,${0.65 * glowOpacity})`);
+          g.addColorStop(0.5, `rgba(200,225,255,${0.35 * glowOpacity})`);
           g.addColorStop(1,   'rgba(0,0,0,0)');
-          ctx.fillStyle = g;
-          ctx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
+          pCtx.fillStyle = g;
+          pCtx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
         }
 
-        // Radial filaments — elongated blobs pointing outward
+        // Radial filaments
         const FILS = 6;
         for (let i = 0; i < FILS; i++) {
           const angle = (i / FILS) * Math.PI * 2 + Math.PI / FILS;
           const dist  = r * (0.75 + Math.sin(i * 2.7) * 0.10);
           const fx = cx + Math.cos(angle) * dist;
           const fy = cy + Math.sin(angle) * dist;
-          ctx.save();
-          ctx.translate(fx, fy);
-          ctx.rotate(angle);
-          ctx.scale(1, 0.28);
-          const fg = ctx.createRadialGradient(0, 0, 0, 0, 0, r * 0.24);
-          fg.addColorStop(0, `rgba(255,255,255,${0.45 * glowOpacity})`);
+          pCtx.save();
+          pCtx.translate(fx, fy);
+          pCtx.rotate(angle);
+          pCtx.scale(1, 0.28);
+          const fg = pCtx.createRadialGradient(0, 0, 0, 0, 0, r * 0.24);
+          fg.addColorStop(0, `rgba(255,255,255,${0.55 * glowOpacity})`);
           fg.addColorStop(1, 'rgba(0,0,0,0)');
-          ctx.fillStyle = fg;
-          ctx.fillRect(-r * 0.24, -r * 0.24, r * 0.48, r * 0.48);
-          ctx.restore();
+          pCtx.fillStyle = fg;
+          pCtx.fillRect(-r * 0.24, -r * 0.24, r * 0.48, r * 0.48);
+          pCtx.restore();
         }
-
-        ctx.restore();
 
         // Spawn streaks from outer rim
         for (let t = 0; t < 3; t++) {
