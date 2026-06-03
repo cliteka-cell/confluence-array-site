@@ -14,9 +14,8 @@
         el1.textContent += line1[i++];
         setTimeout(type, 75);
       } else {
-        // switch cursor to line 2
-        cursor1.classList.add('hidden');
-        cursor2.classList.remove('hidden');
+        cursor1.style.display = 'none';
+        cursor2.style.display = 'inline';
         phase = 2; i = 0;
         setTimeout(type, 300);
       }
@@ -25,8 +24,7 @@
         el2.textContent += line2[i++];
         setTimeout(type, 75);
       } else {
-        // hide cursor when done
-        cursor2.classList.add('hidden');
+        cursor2.style.display = 'none';
       }
     }
   }
