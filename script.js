@@ -88,23 +88,18 @@
         // Fade in over ~4 seconds
         glowOpacity = Math.min(1, glowOpacity + 0.006);
 
-        // Spawn from the 4 edges of the text bounding rect (the invisible rim)
+        // Spawn from an ellipse matching the text's aspect ratio (no box edges)
+        const rx = rect.width  / 2 * 1.05;
+        const ry = rect.height / 2 * 1.05;
         for (let t = 0; t < 3; t++) {
-          const side = Math.floor(Math.random() * 4);
-          let sx, sy;
-          if      (side === 0) { sx = rect.left  + Math.random() * rect.width;  sy = rect.top;    }
-          else if (side === 1) { sx = rect.left  + Math.random() * rect.width;  sy = rect.bottom; }
-          else if (side === 2) { sx = rect.left;  sy = rect.top + Math.random() * rect.height; }
-          else                 { sx = rect.right; sy = rect.top + Math.random() * rect.height; }
-
-          // Velocity: radially outward from text center
-          const dx = sx - cx, dy = sy - cy;
-          const len = Math.sqrt(dx * dx + dy * dy) || 1;
+          const angle = Math.random() * Math.PI * 2;
+          const sx    = cx + Math.cos(angle) * rx;
+          const sy    = cy + Math.sin(angle) * ry;
           const speed = Math.random() * 0.9 + 0.3;
           streaks.push({
             x: sx, y: sy,
-            vx: (dx / len) * speed,
-            vy: (dy / len) * speed,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
             life:  1.0,
             decay: 0.022 + Math.random() * 0.016,
           });
