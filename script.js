@@ -87,18 +87,18 @@
           let sx, sy, vx, vy;
           if (edge === 0) {
             sx = rect.left + Math.random() * rect.width;
-            sy = rect.top - 4;
+            sy = rect.top - 22;
             vx = 0; vy = -speed;
           } else if (edge === 1) {
             sx = rect.left + Math.random() * rect.width;
-            sy = rect.bottom + 4;
+            sy = rect.bottom + 22;
             vx = 0; vy = speed;
           } else if (edge === 2) {
-            sx = rect.left - 4;
+            sx = rect.left - 22;
             sy = rect.top + Math.random() * rect.height;
             vx = -speed; vy = 0;
           } else {
-            sx = rect.right + 4;
+            sx = rect.right + 22;
             sy = rect.top + Math.random() * rect.height;
             vx = speed; vy = 0;
           }
