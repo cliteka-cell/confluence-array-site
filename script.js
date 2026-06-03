@@ -83,7 +83,7 @@
         const rect = el.getBoundingClientRect();
         const cx   = rect.left + rect.width  / 2;
         const cy   = rect.top  + rect.height / 2;
-        const r    = rect.width * 0.54;
+        const r    = rect.height * 1.4;
 
         // Fade in over ~3 seconds
         glowOpacity = Math.min(1, glowOpacity + 0.008);
