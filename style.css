@@ -226,6 +226,7 @@ nav {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: textshine 4s linear infinite;
+  filter: drop-shadow(0 0 18px rgba(255,255,255,0.3)) drop-shadow(0 0 48px rgba(180,210,255,0.18));
 }
 
 #hero-line2 {
