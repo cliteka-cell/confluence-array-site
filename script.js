@@ -3,14 +3,21 @@
   const canvas = document.getElementById('galaxy');
   const ctx    = canvas.getContext('2d');
 
-  let W, H, stars = [], nebulas = [];
+  let W, H, stars = [], nebulas = [], streaks = [];
+
+  const pCanvas = document.createElement('canvas');
+  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
+  document.body.appendChild(pCanvas);
+  const pCtx = pCanvas.getContext('2d');
+  let textAura = false, lastScrollY = window.scrollY;
+  window._triggerTextAura = function () { textAura = true; };
 
   const STAR_COUNT = 280;
   const STAR_COLORS = ['#ffffff', '#ffffff', '#ffffff', '#a8c8ff', '#7ab3ff', '#fffde8'];
 
   function init() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    W = canvas.width  = pCanvas.width  = window.innerWidth;
+    H = canvas.height = pCanvas.height = window.innerHeight;
 
     stars = Array.from({ length: STAR_COUNT }, () => ({
       x:           Math.random() * W,
@@ -65,6 +72,52 @@
 
     ctx.globalAlpha = 1;
 
+    // ── White streaks hugging Confluence. text ────────────────────
+    const scrollDelta = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+    streaks.forEach(s => { s.y -= scrollDelta; });
+
+    pCtx.clearRect(0, 0, W, H);
+    if (textAura) {
+      const el = document.getElementById('hero-line2');
+      if (el) {
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width  / 2;
+        const cy = rect.top  + rect.height / 2;
+
+        for (let t = 0; t < 4; t++) {
+          const angle = Math.random() * Math.PI * 2;
+          streaks.push({
+            x:     rect.left + Math.random() * rect.width,
+            y:     rect.top  + Math.random() * rect.height,
+            vx:    Math.cos(angle) * (Math.random() * 0.6 + 0.2),
+            vy:    Math.sin(angle) * (Math.random() * 0.6 + 0.2),
+            life:  1.0,
+            decay: 0.028 + Math.random() * 0.018,
+          });
+        }
+
+        for (let i = streaks.length - 1; i >= 0; i--) {
+          const s = streaks[i];
+          s.life -= s.decay;
+          s.x += s.vx;
+          s.y += s.vy;
+          if (s.life <= 0) { streaks.splice(i, 1); continue; }
+          const outside = s.x < rect.left || s.x > rect.right || s.y < rect.top || s.y > rect.bottom;
+          if (!outside) continue;
+          pCtx.globalAlpha = s.life * 0.7;
+          pCtx.strokeStyle = '#ffffff';
+          pCtx.lineWidth   = 1.2;
+          pCtx.lineCap     = 'round';
+          pCtx.beginPath();
+          pCtx.moveTo(s.x, s.y);
+          pCtx.lineTo(s.x - s.vx * 6, s.y - s.vy * 6);
+          pCtx.stroke();
+        }
+        pCtx.globalAlpha = 1;
+      }
+    }
+
     requestAnimationFrame(draw);
   }
 
@@ -108,6 +161,7 @@
         // Phase 4: type "Confluence."
         setTimeout(() => type(correct, el2, 0, () => {
           el2.classList.remove('typing');
+          if (window._triggerTextAura) window._triggerTextAura();
         }), 150);
       }), 500);
     }), 300);
