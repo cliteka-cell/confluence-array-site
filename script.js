@@ -3,6 +3,7 @@
   const canvas = document.getElementById('galaxy');
   const ctx    = canvas.getContext('2d');
 
+  const SUPERNOVA = ['#ffffff','#fffde0','#ffd700','#ffaa00','#ff6600','#ff2244','#ff44aa','#cc44ff','#6644ff','#2288ff','#00ccff','#00ffcc'];
   let W, H, stars = [], nebulas = [], textSparkles = [];
   let textAura = false;
 
@@ -104,7 +105,7 @@
           sp.y += sp.vy;
           if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
           ctx.globalAlpha = sp.life * (sp.burst ? 0.9 : 0.6);
-          ctx.fillStyle = Math.random() < 0.65 ? '#ffffff' : '#a8c8ff';
+          ctx.fillStyle = SUPERNOVA[Math.floor(Math.random() * SUPERNOVA.length)];
           ctx.beginPath();
           ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
           ctx.fill();
