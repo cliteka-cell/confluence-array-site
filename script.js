@@ -89,13 +89,13 @@
         const cx   = rect.left + rect.width  / 2;
         const cy   = rect.top  + rect.height / 2;
 
-        // Spawn radially from within text bounds
+        // Spawn across full text width
         for (let t = 0; t < 3; t++) {
-          const angle  = Math.random() * Math.PI * 2;
-          const spawnR = Math.random() * rect.width * 0.45;
+          const angle = Math.random() * Math.PI * 2;
+          const sx    = rect.left + Math.random() * rect.width;
+          const sy    = rect.top  + Math.random() * rect.height;
           textSparkles.push({
-            x:     cx + Math.cos(angle) * spawnR,
-            y:     cy + Math.sin(angle) * spawnR * 0.35,
+            x: sx, y: sy,
             vx:    Math.cos(angle) * (Math.random() * 1.3 + 0.5),
             vy:    Math.sin(angle) * (Math.random() * 1.3 + 0.5),
             r:     Math.random() * 0.9 + 0.3,
