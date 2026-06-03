@@ -219,6 +219,39 @@ nav {
   100% { background-position: 300% center; }
 }
 
+#hero-line2.shimmer-active {
+  background: linear-gradient(90deg,
+    #1040c0 0%,
+    #2060f0 10%,
+    #c8dcff 20%,
+    #ffffff 26%,
+    #90b8ff 32%,
+    #2060f0 44%,
+    #1040c0 54%,
+    #2060f0 64%,
+    #c8dcff 72%,
+    #ffffff 78%,
+    #80b0ff 86%,
+    #2060f0 94%,
+    #1040c0 100%
+  );
+  background-size: 500% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: starshine 3s linear infinite, aura-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes starshine {
+  0%   { background-position: 0% center; }
+  100% { background-position: 500% center; }
+}
+
+@keyframes aura-pulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(255,255,255,0.2)) drop-shadow(0 0 16px rgba(120,170,255,0.2)); }
+  50%       { filter: drop-shadow(0 0 14px rgba(255,255,255,0.5)) drop-shadow(0 0 32px rgba(160,210,255,0.4)); }
+}
+
 #hero-line2 {
   display: inline-block;
   transform: translateX(0.5ch);
