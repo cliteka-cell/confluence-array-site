@@ -73,34 +73,45 @@
 
 // Terminal typing animation
 (function () {
-  const line1 = 'Trade With';
-  const line2 = 'Confluence.';
-  const el1   = document.getElementById('hero-line1');
-  const el2   = document.getElementById('hero-line2');
-  let i = 0, phase = 1;
+  const line1   = 'Trade With';
+  const wrong   = 'Confidence.';
+  const correct = 'Confluence.';
+  const el1 = document.getElementById('hero-line1');
+  const el2 = document.getElementById('hero-line2');
 
-  function type() {
-    if (phase === 1) {
-      if (i < line1.length) {
-        el1.textContent += line1[i++];
-        setTimeout(type, 75);
-      } else {
-        el1.classList.remove('typing');
-        el2.classList.add('typing');
-        phase = 2; i = 0;
-        setTimeout(type, 300);
-      }
+  function type(text, el, i, cb) {
+    if (i < text.length) {
+      el.textContent += text[i];
+      setTimeout(() => type(text, el, i + 1, cb), 75);
     } else {
-      if (i < line2.length) {
-        el2.textContent += line2[i++];
-        setTimeout(type, 75);
-      } else {
-        el2.classList.remove('typing');
-      }
+      cb();
     }
   }
 
-  type();
+  function erase(el, cb) {
+    if (el.textContent.length > 0) {
+      el.textContent = el.textContent.slice(0, -1);
+      setTimeout(() => erase(el, cb), 45);
+    } else {
+      cb();
+    }
+  }
+
+  // Phase 1: type "Trade With"
+  type(line1, el1, 0, () => {
+    el1.classList.remove('typing');
+    el2.classList.add('typing');
+    // Phase 2: type "Confidence." after short pause
+    setTimeout(() => type(wrong, el2, 0, () => {
+      // Phase 3: pause, then delete "Confidence."
+      setTimeout(() => erase(el2, () => {
+        // Phase 4: type "Confluence."
+        setTimeout(() => type(correct, el2, 0, () => {
+          el2.classList.remove('typing');
+        }), 150);
+      }), 500);
+    }), 300);
+  });
 })();
 
 // Lightbox
