@@ -5,6 +5,12 @@
 
   const SUPERNOVA = ['#ffffff','#fffde0','#ffd700','#ffaa00','#ff6600','#ff2244','#ff44aa','#cc44ff','#6644ff','#2288ff','#00ccff','#00ffcc'];
   let W, H, stars = [], nebulas = [], textSparkles = [];
+
+  // Overlay canvas for particles (drawn above text)
+  const pCanvas = document.createElement('canvas');
+  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:5;pointer-events:none;';
+  document.body.appendChild(pCanvas);
+  const pCtx = pCanvas.getContext('2d');
   let textAura = false;
 
   window._triggerTextAura = function () { textAura = true; };
@@ -13,8 +19,8 @@
   const STAR_COLORS = ['#ffffff', '#ffffff', '#ffffff', '#a8c8ff', '#7ab3ff', '#fffde8'];
 
   function init() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    W = canvas.width  = pCanvas.width  = window.innerWidth;
+    H = canvas.height = pCanvas.height = window.innerHeight;
 
     stars = Array.from({ length: STAR_COUNT }, () => ({
       x:           Math.random() * W,
@@ -69,12 +75,12 @@
 
     ctx.globalAlpha = 1;
 
-    // text sparkles
+    // text sparkles — drawn on overlay canvas (above text)
+    pCtx.clearRect(0, 0, W, H);
     if (textAura) {
       const el = document.getElementById('hero-line2');
       if (el) {
         const rect = el.getBoundingClientRect();
-        // gentle trickle after burst settles
         for (let t = 0; t < 4; t++) {
           const angle = Math.random() * Math.PI * 2;
           const speed = Math.random() * 1.2 + 0.4;
@@ -88,14 +94,13 @@
             sy = rect.top + Math.random() * rect.height;
           }
           textSparkles.push({
-            x:     sx,
-            y:     sy,
-            vx:    Math.cos(angle) * speed,
-            vy:    Math.sin(angle) * speed,
-            r:     Math.random() * 1.0 + 0.3,
-            life:  1.0,
+            x: sx, y: sy,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            r:  Math.random() * 1.0 + 0.3,
+            life: 1.0,
             decay: 0.014 + Math.random() * 0.01,
-            burst: false,
+            color: SUPERNOVA[Math.floor(Math.random() * SUPERNOVA.length)],
           });
         }
         for (let i = textSparkles.length - 1; i >= 0; i--) {
@@ -104,13 +109,13 @@
           sp.x += sp.vx;
           sp.y += sp.vy;
           if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
-          ctx.globalAlpha = sp.life * (sp.burst ? 0.9 : 0.6);
-          ctx.fillStyle = SUPERNOVA[Math.floor(Math.random() * SUPERNOVA.length)];
-          ctx.beginPath();
-          ctx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
-          ctx.fill();
+          pCtx.globalAlpha = sp.life * 0.85;
+          pCtx.fillStyle = sp.color;
+          pCtx.beginPath();
+          pCtx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
+          pCtx.fill();
         }
-        ctx.globalAlpha = 1;
+        pCtx.globalAlpha = 1;
       }
     }
 
