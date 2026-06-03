@@ -206,26 +206,26 @@ nav {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #1040c0 0%, #2060f0 20%, #80b0ff 50%, #2060f0 80%, #1040c0 100%);
-  background-size: 300% auto;
+  background: linear-gradient(90deg, #1a4ad0 0%, #2060f0 35%, #5090e8 50%, #2060f0 65%, #1a4ad0 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textshine 4s linear infinite;
+  animation: textshine 10s linear infinite;
 }
 
 @keyframes textshine {
   0%   { background-position: 0% center; }
-  100% { background-position: 300% center; }
+  100% { background-position: 200% center; }
 }
 
 #hero-line2.shimmer-active {
-  background: linear-gradient(90deg, #1040c0 0%, #2060f0 20%, #80b0ff 50%, #2060f0 80%, #1040c0 100%);
-  background-size: 300% auto;
+  background: linear-gradient(90deg, #1a4ad0 0%, #2060f0 35%, #5090e8 50%, #2060f0 65%, #1a4ad0 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textshine 4s linear infinite;
+  animation: textshine 10s linear infinite;
   filter: drop-shadow(0 0 18px rgba(255,255,255,0.3)) drop-shadow(0 0 48px rgba(180,210,255,0.18));
 }
 
