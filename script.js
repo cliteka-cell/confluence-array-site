@@ -85,23 +85,31 @@
         const cy   = rect.top  + rect.height / 2;
         const r    = rect.width * 0.54;
 
-        // Fade nebula in over ~5 seconds
-        glowOpacity = Math.min(1, glowOpacity + 0.004);
+        // Fade in over ~3 seconds
+        glowOpacity = Math.min(1, glowOpacity + 0.008);
         nebulaTime += 0.3;
 
         ctx.save();
 
-        // Hollow shell — bright ring, dark hollow center like a supernova remnant
+        // Soft base glow so something is always visible
+        const base = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        base.addColorStop(0,   `rgba(100,150,255,${0.12 * glowOpacity})`);
+        base.addColorStop(0.5, `rgba(80,130,255,${0.08 * glowOpacity})`);
+        base.addColorStop(1,   'rgba(0,0,0,0)');
+        ctx.fillStyle = base;
+        ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+
+        // Hollow shell — bright ring, dark hollow center
         const shell = ctx.createRadialGradient(cx, cy, r * 0.22, cx, cy, r);
         shell.addColorStop(0,    'rgba(0,0,0,0)');
-        shell.addColorStop(0.42, `rgba(160,200,255,${0.07 * glowOpacity})`);
-        shell.addColorStop(0.68, `rgba(230,242,255,${0.18 * glowOpacity})`);
-        shell.addColorStop(0.86, `rgba(200,225,255,${0.10 * glowOpacity})`);
+        shell.addColorStop(0.42, `rgba(160,200,255,${0.20 * glowOpacity})`);
+        shell.addColorStop(0.68, `rgba(230,242,255,${0.55 * glowOpacity})`);
+        shell.addColorStop(0.86, `rgba(200,225,255,${0.30 * glowOpacity})`);
         shell.addColorStop(1,    'rgba(0,0,0,0)');
         ctx.fillStyle = shell;
         ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
-        // Cloud puff lobes around the rim — irregular sizes and positions
+        // Cloud puff lobes around the rim
         const LOBES = 10;
         for (let i = 0; i < LOBES; i++) {
           const baseA  = (i / LOBES) * Math.PI * 2;
@@ -112,8 +120,8 @@
           const py     = cy + Math.sin(angle) * dist;
           const pr     = r * (0.17 + Math.abs(Math.sin(i * 1.7)) * 0.11);
           const g = ctx.createRadialGradient(px, py, 0, px, py, pr);
-          g.addColorStop(0,   `rgba(245,250,255,${0.20 * glowOpacity})`);
-          g.addColorStop(0.5, `rgba(200,225,255,${0.10 * glowOpacity})`);
+          g.addColorStop(0,   `rgba(245,250,255,${0.55 * glowOpacity})`);
+          g.addColorStop(0.5, `rgba(200,225,255,${0.28 * glowOpacity})`);
           g.addColorStop(1,   'rgba(0,0,0,0)');
           ctx.fillStyle = g;
           ctx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
@@ -131,7 +139,7 @@
           ctx.rotate(angle);
           ctx.scale(1, 0.28);
           const fg = ctx.createRadialGradient(0, 0, 0, 0, 0, r * 0.24);
-          fg.addColorStop(0, `rgba(255,255,255,${0.14 * glowOpacity})`);
+          fg.addColorStop(0, `rgba(255,255,255,${0.45 * glowOpacity})`);
           fg.addColorStop(1, 'rgba(0,0,0,0)');
           ctx.fillStyle = fg;
           ctx.fillRect(-r * 0.24, -r * 0.24, r * 0.48, r * 0.48);
