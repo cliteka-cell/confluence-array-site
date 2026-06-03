@@ -228,6 +228,9 @@ nav {
   color: #ffffff;
   animation: none;
   filter: none;
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.55),
+    0 0 28px rgba(200,220,255,0.25);
 }
 
 #hero-line2.shimmer-active::after {

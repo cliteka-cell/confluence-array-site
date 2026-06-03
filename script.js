@@ -8,10 +8,11 @@
 
   // Overlay canvas for particles (drawn above text)
   const pCanvas = document.createElement('canvas');
-  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;mix-blend-mode:screen;';
+  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
   document.body.appendChild(pCanvas);
   const pCtx = pCanvas.getContext('2d');
-  let textAura = false, glowOpacity = 0, nebulaTime = 0;
+  let textAura = false;
+  let lastScrollY = window.scrollY;
 
   window._triggerTextAura = function () { textAura = true; };
 
@@ -75,7 +76,11 @@
 
     ctx.globalAlpha = 1;
 
-    // ── Nebula cloud + rim streaks ────────────────────────────────
+    // ── Streaks anchored to text ──────────────────────────────────
+    const scrollDelta = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+    textSparkles.forEach(sp => { sp.y -= scrollDelta; });
+
     pCtx.clearRect(0, 0, W, H);
     if (textAura) {
       const el = document.getElementById('hero-line2');
@@ -83,66 +88,14 @@
         const rect = el.getBoundingClientRect();
         const cx   = rect.left + rect.width  / 2;
         const cy   = rect.top  + rect.height / 2;
-        const r    = rect.height * 0.55;
 
-        // Fade in over ~3 seconds
-        glowOpacity = Math.min(1, glowOpacity + 0.008);
-        nebulaTime += 0.3;
-
-        // Hollow shell ring — sharp cutoff at edge (screen blend mode makes faint gradients glow)
-        const shell = pCtx.createRadialGradient(cx, cy, r * 0.20, cx, cy, r);
-        shell.addColorStop(0,    'rgba(0,0,0,0)');
-        shell.addColorStop(0.40, `rgba(140,190,255,${0.20 * glowOpacity})`);
-        shell.addColorStop(0.62, `rgba(220,238,255,${0.60 * glowOpacity})`);
-        shell.addColorStop(0.78, `rgba(190,215,255,${0.15 * glowOpacity})`);
-        shell.addColorStop(0.88, 'rgba(0,0,0,0)');
-        pCtx.fillStyle = shell;
-        pCtx.fillRect(cx - r, cy - r, r * 2, r * 2);
-
-        // Cloud puff lobes — tight, cut off sharply
-        const LOBES = 10;
-        for (let i = 0; i < LOBES; i++) {
-          const baseA  = (i / LOBES) * Math.PI * 2;
-          const wobble = Math.sin(nebulaTime * 0.008 + i * 1.37) * 0.07;
-          const angle  = baseA + wobble;
-          const dist   = r * (0.60 + Math.sin(i * 2.1 + 1.2) * 0.13);
-          const px     = cx + Math.cos(angle) * dist;
-          const py     = cy + Math.sin(angle) * dist;
-          const pr     = r * (0.16 + Math.abs(Math.sin(i * 1.7)) * 0.09);
-          const g = pCtx.createRadialGradient(px, py, 0, px, py, pr);
-          g.addColorStop(0,    `rgba(240,248,255,${0.60 * glowOpacity})`);
-          g.addColorStop(0.55, `rgba(200,225,255,${0.25 * glowOpacity})`);
-          g.addColorStop(0.80, 'rgba(0,0,0,0)');
-          pCtx.fillStyle = g;
-          pCtx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
-        }
-
-        // Radial filaments
-        const FILS = 6;
-        for (let i = 0; i < FILS; i++) {
-          const angle = (i / FILS) * Math.PI * 2 + Math.PI / FILS;
-          const dist  = r * (0.72 + Math.sin(i * 2.7) * 0.08);
-          const fx = cx + Math.cos(angle) * dist;
-          const fy = cy + Math.sin(angle) * dist;
-          pCtx.save();
-          pCtx.translate(fx, fy);
-          pCtx.rotate(angle);
-          pCtx.scale(1, 0.25);
-          const fg = pCtx.createRadialGradient(0, 0, 0, 0, 0, r * 0.20);
-          fg.addColorStop(0,    `rgba(255,255,255,${0.50 * glowOpacity})`);
-          fg.addColorStop(0.65, 'rgba(0,0,0,0)');
-          pCtx.fillStyle = fg;
-          pCtx.fillRect(-r * 0.20, -r * 0.20, r * 0.40, r * 0.40);
-          pCtx.restore();
-        }
-
-        // Spawn streaks from outer rim
+        // Spawn radially from within text bounds
         for (let t = 0; t < 3; t++) {
-          const angle = Math.random() * Math.PI * 2;
-          const rimR  = r * (0.82 + Math.random() * 0.14);
+          const angle  = Math.random() * Math.PI * 2;
+          const spawnR = Math.random() * rect.width * 0.45;
           textSparkles.push({
-            x:     cx + Math.cos(angle) * rimR,
-            y:     cy + Math.sin(angle) * rimR,
+            x:     cx + Math.cos(angle) * spawnR,
+            y:     cy + Math.sin(angle) * spawnR * 0.35,
             vx:    Math.cos(angle) * (Math.random() * 1.3 + 0.5),
             vy:    Math.sin(angle) * (Math.random() * 1.3 + 0.5),
             r:     Math.random() * 0.9 + 0.3,
@@ -152,7 +105,6 @@
           });
         }
 
-        // Draw streaks on overlay canvas (above text)
         for (let i = textSparkles.length - 1; i >= 0; i--) {
           const sp = textSparkles[i];
           sp.life -= sp.decay;
