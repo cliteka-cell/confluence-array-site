@@ -82,24 +82,32 @@
       if (el) {
         const rect = el.getBoundingClientRect();
         for (let t = 0; t < 4; t++) {
-          const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 1.2 + 0.4;
-          const edge = Math.random();
-          let sx, sy;
-          if (edge < 0.5) {
+          const speed = Math.random() * 1.4 + 0.6;
+          const edge = Math.floor(Math.random() * 4);
+          let sx, sy, vx, vy;
+          if (edge === 0) {
             sx = rect.left + Math.random() * rect.width;
-            sy = edge < 0.25 ? rect.top - 4 : rect.bottom + 4;
-          } else {
-            sx = edge < 0.75 ? rect.left - 4 : rect.right + 4;
+            sy = rect.top - 4;
+            vx = 0; vy = -speed;
+          } else if (edge === 1) {
+            sx = rect.left + Math.random() * rect.width;
+            sy = rect.bottom + 4;
+            vx = 0; vy = speed;
+          } else if (edge === 2) {
+            sx = rect.left - 4;
             sy = rect.top + Math.random() * rect.height;
+            vx = -speed; vy = 0;
+          } else {
+            sx = rect.right + 4;
+            sy = rect.top + Math.random() * rect.height;
+            vx = speed; vy = 0;
           }
           textSparkles.push({
             x: sx, y: sy,
-            vx: Math.cos(angle) * speed,
-            vy: Math.sin(angle) * speed,
+            vx, vy,
             r:  Math.random() * 1.0 + 0.3,
             life: 1.0,
-            decay: 0.014 + Math.random() * 0.01,
+            decay: 0.012 + Math.random() * 0.008,
             color: SUPERNOVA[Math.floor(Math.random() * SUPERNOVA.length)],
           });
         }
