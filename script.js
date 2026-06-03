@@ -77,9 +77,18 @@
         for (let t = 0; t < 4; t++) {
           const angle = Math.random() * Math.PI * 2;
           const speed = Math.random() * 1.2 + 0.4;
+          const edge = Math.random();
+          let sx, sy;
+          if (edge < 0.5) {
+            sx = rect.left + Math.random() * rect.width;
+            sy = edge < 0.25 ? rect.top - 4 : rect.bottom + 4;
+          } else {
+            sx = edge < 0.75 ? rect.left - 4 : rect.right + 4;
+            sy = rect.top + Math.random() * rect.height;
+          }
           textSparkles.push({
-            x:     rect.left + Math.random() * rect.width,
-            y:     rect.top  + rect.height * 0.5 + (Math.random() - 0.5) * rect.height,
+            x:     sx,
+            y:     sy,
             vx:    Math.cos(angle) * speed,
             vy:    Math.sin(angle) * speed,
             r:     Math.random() * 1.0 + 0.3,
