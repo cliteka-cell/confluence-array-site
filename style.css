@@ -404,8 +404,9 @@ nav {
 }
 
 .oi-card:hover {
+  border-color: var(--glow, rgba(32,96,240,0.2));
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+  box-shadow: 0 0 0 1px var(--glow, rgba(32,96,240,0.06)), 0 16px 40px rgba(0,0,0,0.5);
 }
 
 .oi-card.bull  { border-color: #1a3a2a; }
@@ -449,8 +450,9 @@ nav {
 }
 
 .j-feature:hover {
+  border-color: rgba(32,96,240,0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+  box-shadow: 0 0 0 1px rgba(32,96,240,0.06), 0 20px 50px rgba(0,0,0,0.55);
 }
 
 .j-dot {
@@ -542,8 +544,9 @@ nav {
 }
 
 .pricing-card:hover {
+  border-color: rgba(32,96,240,0.25);
   transform: translateY(-4px);
-  box-shadow: 0 20px 54px rgba(0,0,0,0.5);
+  box-shadow: 0 0 0 1px rgba(32,96,240,0.07), 0 20px 54px rgba(0,0,0,0.5);
 }
 
 .pricing-card.featured {
@@ -651,8 +654,9 @@ nav {
 }
 
 .step:hover {
-  border-color: rgba(32,96,240,0.18);
+  border-color: rgba(32,96,240,0.2);
   transform: translateY(-3px);
+  box-shadow: 0 0 0 1px rgba(32,96,240,0.06), 0 20px 50px rgba(0,0,0,0.55);
 }
 
 .step-num {
