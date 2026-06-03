@@ -4,11 +4,6 @@
   const ctx    = canvas.getContext('2d');
 
   let W, H, stars = [], nebulas = [], streaks = [];
-
-  const pCanvas = document.createElement('canvas');
-  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
-  document.body.appendChild(pCanvas);
-  const pCtx = pCanvas.getContext('2d');
   let textAura = false, glowOpacity = 0, lastScrollY = window.scrollY;
   window._triggerTextAura = function () { textAura = true; };
 
@@ -16,8 +11,8 @@
   const STAR_COLORS = ['#ffffff', '#ffffff', '#ffffff', '#a8c8ff', '#7ab3ff', '#fffde8'];
 
   function init() {
-    W = canvas.width  = pCanvas.width  = window.innerWidth;
-    H = canvas.height = pCanvas.height = window.innerHeight;
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
 
     stars = Array.from({ length: STAR_COUNT }, () => ({
       x:           Math.random() * W,
@@ -72,12 +67,11 @@
 
     ctx.globalAlpha = 1;
 
-    // ── White streaks from transparent rim around Confluence. ─────
+    // ── White streaks on galaxy canvas (renders under text) ──────
     const scrollDelta = window.scrollY - lastScrollY;
     lastScrollY = window.scrollY;
     streaks.forEach(s => { s.y -= scrollDelta; });
 
-    pCtx.clearRect(0, 0, W, H);
     if (textAura) {
       const el = document.getElementById('hero-line2');
       if (el) {
@@ -85,19 +79,17 @@
         const cx = rect.left + rect.width  / 2;
         const cy = rect.top  + rect.height / 2;
 
-        // Fade in over ~4 seconds
         glowOpacity = Math.min(1, glowOpacity + 0.006);
 
-        // Spawn from an ellipse matching the text's aspect ratio (no box edges)
-        const rx = rect.width  / 2 * 1.05;
-        const ry = rect.height / 2 * 1.05;
+        // Spawn from ellipse slightly inside the text boundary
+        const rx = rect.width  / 2 * 0.80;
+        const ry = rect.height / 2 * 0.80;
         for (let t = 0; t < 3; t++) {
           const angle = Math.random() * Math.PI * 2;
-          const sx    = cx + Math.cos(angle) * rx;
-          const sy    = cy + Math.sin(angle) * ry;
           const speed = Math.random() * 0.9 + 0.3;
           streaks.push({
-            x: sx, y: sy,
+            x: cx + Math.cos(angle) * rx,
+            y: cy + Math.sin(angle) * ry,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             life:  1.0,
@@ -105,23 +97,23 @@
           });
         }
 
-        // Draw streaks
+        // Draw on ctx — galaxy canvas is z-index:-1, text renders on top naturally
         for (let i = streaks.length - 1; i >= 0; i--) {
           const s = streaks[i];
           s.life -= s.decay;
           s.x += s.vx;
           s.y += s.vy;
           if (s.life <= 0) { streaks.splice(i, 1); continue; }
-          pCtx.globalAlpha = s.life * glowOpacity * 0.75;
-          pCtx.strokeStyle = '#ffffff';
-          pCtx.lineWidth   = 1.0;
-          pCtx.lineCap     = 'round';
-          pCtx.beginPath();
-          pCtx.moveTo(s.x, s.y);
-          pCtx.lineTo(s.x - s.vx * 5, s.y - s.vy * 5);
-          pCtx.stroke();
+          ctx.globalAlpha = s.life * glowOpacity * 0.75;
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth   = 1.0;
+          ctx.lineCap     = 'round';
+          ctx.beginPath();
+          ctx.moveTo(s.x, s.y);
+          ctx.lineTo(s.x - s.vx * 5, s.y - s.vy * 5);
+          ctx.stroke();
         }
-        pCtx.globalAlpha = 1;
+        ctx.globalAlpha = 1;
       }
     }
 
