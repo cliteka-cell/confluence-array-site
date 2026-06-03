@@ -14,7 +14,7 @@
         el1.textContent += line1[i++];
         setTimeout(type, 75);
       } else {
-        cursor1.style.display = 'none';
+        cursor1.remove();
         cursor2.style.display = 'inline';
         phase = 2; i = 0;
         setTimeout(type, 300);
@@ -24,7 +24,7 @@
         el2.textContent += line2[i++];
         setTimeout(type, 75);
       } else {
-        cursor2.style.display = 'none';
+        cursor2.remove();
       }
     }
   }
