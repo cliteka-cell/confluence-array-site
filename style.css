@@ -12,8 +12,8 @@
   --accent2:   #00d084;
   --blue:      #3b82f6;
   --radius:    14px;
-  --font:      'JetBrains Mono', monospace;
-  --display:   'JetBrains Mono', monospace;
+  --font:      monospace;
+  --display:   monospace;
   --mono:      'JetBrains Mono', monospace;
 }
 
