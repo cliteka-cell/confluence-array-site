@@ -206,7 +206,7 @@ nav {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #1a4ad0 0%, #2060f0 35%, #5090e8 50%, #2060f0 65%, #1a4ad0 100%);
+  background: linear-gradient(90deg, #1a50d8 0%, #2060f0 35%, #3070f4 50%, #2060f0 65%, #1a50d8 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -220,7 +220,7 @@ nav {
 }
 
 #hero-line2.shimmer-active {
-  background: linear-gradient(90deg, #1a4ad0 0%, #2060f0 35%, #5090e8 50%, #2060f0 65%, #1a4ad0 100%);
+  background: linear-gradient(90deg, #1a50d8 0%, #2060f0 35%, #3070f4 50%, #2060f0 65%, #1a50d8 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
