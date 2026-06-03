@@ -214,6 +214,7 @@ nav {
 #hero-line2 {
   display: inline-block;
   transform: translateX(0.5ch);
+  font-size: 1.25em;
 }
 
 .hero-sub {
