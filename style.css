@@ -132,12 +132,17 @@ nav {
 
 /* ── CURSOR ────────────────────────────────────────────────────────────────── */
 .typing::after {
-  content: '\258C';
+  content: '';
+  display: inline-block;
+  width: 0.45em;
+  height: 0.85em;
+  vertical-align: text-bottom;
+  margin-left: 4px;
   animation: blink 0.7s step-end infinite;
 }
 
-#hero-line1.typing::after { color: #ffffff; }
-#hero-line2.typing::after { color: #f0a500; -webkit-text-fill-color: #f0a500; }
+#hero-line1.typing::after { background: #ffffff; }
+#hero-line2.typing::after { background: #f0a500; }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
