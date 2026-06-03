@@ -377,8 +377,9 @@ nav {
 .oi-section .section-sub { margin-bottom: 52px; }
 
 .oi-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 
@@ -391,6 +392,14 @@ nav {
   flex-direction: column;
   gap: 8px;
   transition: transform .2s, box-shadow .2s;
+  flex: 0 1 calc(25% - 9px);
+  min-width: 180px;
+}
+
+.oi-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .oi-card:hover {
@@ -888,7 +897,7 @@ footer {
 /* ── RESPONSIVE ────────────────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .features-grid        { grid-template-columns: repeat(2, 1fr); }
-  .oi-grid              { grid-template-columns: repeat(2, 1fr); }
+  .oi-card              { flex: 0 1 calc(50% - 6px); }
   .pricing-grid         { grid-template-columns: 1fr; }
   .journal-grid         { grid-template-columns: 1fr; }
   .journal-features-row { grid-template-columns: repeat(2, 1fr); }
