@@ -198,10 +198,22 @@ nav {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #f0a500 0%, #ff6b00 100%);
+  background: linear-gradient(90deg, #ff6b00 0%, #f0a500 20%, #ffd166 50%, #f0a500 80%, #ff6b00 100%);
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: textshine 4s linear infinite;
+}
+
+@keyframes textshine {
+  0%   { background-position: 0% center; }
+  100% { background-position: 300% center; }
+}
+
+#hero-line2 {
+  display: inline-block;
+  transform: translateX(0.5ch);
 }
 
 .hero-sub {
