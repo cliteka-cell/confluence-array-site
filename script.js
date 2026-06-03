@@ -83,7 +83,7 @@
         const rect = el.getBoundingClientRect();
         const cx   = rect.left + rect.width  / 2;
         const cy   = rect.top  + rect.height / 2;
-        const r    = rect.height * 1.4;
+        const r    = rect.height * 0.65;
 
         // Fade in over ~3 seconds
         glowOpacity = Math.min(1, glowOpacity + 0.008);
@@ -101,10 +101,10 @@
         // Hollow shell ring
         const shell = pCtx.createRadialGradient(cx, cy, r * 0.22, cx, cy, r);
         shell.addColorStop(0,    'rgba(0,0,0,0)');
-        shell.addColorStop(0.42, `rgba(160,200,255,${0.30 * glowOpacity})`);
-        shell.addColorStop(0.68, `rgba(230,242,255,${0.70 * glowOpacity})`);
-        shell.addColorStop(0.86, `rgba(200,225,255,${0.40 * glowOpacity})`);
-        shell.addColorStop(1,    'rgba(0,0,0,0)');
+        shell.addColorStop(0.42, `rgba(160,200,255,${0.25 * glowOpacity})`);
+        shell.addColorStop(0.65, `rgba(230,242,255,${0.65 * glowOpacity})`);
+        shell.addColorStop(0.82, `rgba(200,225,255,${0.20 * glowOpacity})`);
+        shell.addColorStop(0.95, 'rgba(0,0,0,0)');
         pCtx.fillStyle = shell;
         pCtx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
