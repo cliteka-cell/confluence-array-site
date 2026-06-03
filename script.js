@@ -9,7 +9,7 @@
   pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
   document.body.appendChild(pCanvas);
   const pCtx = pCanvas.getContext('2d');
-  let textAura = false, lastScrollY = window.scrollY;
+  let textAura = false, glowOpacity = 0, lastScrollY = window.scrollY;
   window._triggerTextAura = function () { textAura = true; };
 
   const STAR_COUNT = 280;
@@ -72,7 +72,7 @@
 
     ctx.globalAlpha = 1;
 
-    // ── White streaks hugging Confluence. text ────────────────────
+    // ── White streaks from transparent rim around Confluence. ─────
     const scrollDelta = window.scrollY - lastScrollY;
     lastScrollY = window.scrollY;
     streaks.forEach(s => { s.y -= scrollDelta; });
@@ -85,33 +85,45 @@
         const cx = rect.left + rect.width  / 2;
         const cy = rect.top  + rect.height / 2;
 
-        for (let t = 0; t < 4; t++) {
-          const angle = Math.random() * Math.PI * 2;
+        // Fade in over ~4 seconds
+        glowOpacity = Math.min(1, glowOpacity + 0.006);
+
+        // Spawn from the 4 edges of the text bounding rect (the invisible rim)
+        for (let t = 0; t < 3; t++) {
+          const side = Math.floor(Math.random() * 4);
+          let sx, sy;
+          if      (side === 0) { sx = rect.left  + Math.random() * rect.width;  sy = rect.top;    }
+          else if (side === 1) { sx = rect.left  + Math.random() * rect.width;  sy = rect.bottom; }
+          else if (side === 2) { sx = rect.left;  sy = rect.top + Math.random() * rect.height; }
+          else                 { sx = rect.right; sy = rect.top + Math.random() * rect.height; }
+
+          // Velocity: radially outward from text center
+          const dx = sx - cx, dy = sy - cy;
+          const len = Math.sqrt(dx * dx + dy * dy) || 1;
+          const speed = Math.random() * 0.9 + 0.3;
           streaks.push({
-            x:     rect.left + Math.random() * rect.width,
-            y:     rect.top  + Math.random() * rect.height,
-            vx:    Math.cos(angle) * (Math.random() * 0.6 + 0.2),
-            vy:    Math.sin(angle) * (Math.random() * 0.6 + 0.2),
+            x: sx, y: sy,
+            vx: (dx / len) * speed,
+            vy: (dy / len) * speed,
             life:  1.0,
-            decay: 0.028 + Math.random() * 0.018,
+            decay: 0.022 + Math.random() * 0.016,
           });
         }
 
+        // Draw streaks
         for (let i = streaks.length - 1; i >= 0; i--) {
           const s = streaks[i];
           s.life -= s.decay;
           s.x += s.vx;
           s.y += s.vy;
           if (s.life <= 0) { streaks.splice(i, 1); continue; }
-          const outside = s.x < rect.left || s.x > rect.right || s.y < rect.top || s.y > rect.bottom;
-          if (!outside) continue;
-          pCtx.globalAlpha = s.life * 0.7;
+          pCtx.globalAlpha = s.life * glowOpacity * 0.75;
           pCtx.strokeStyle = '#ffffff';
-          pCtx.lineWidth   = 1.2;
+          pCtx.lineWidth   = 1.0;
           pCtx.lineCap     = 'round';
           pCtx.beginPath();
           pCtx.moveTo(s.x, s.y);
-          pCtx.lineTo(s.x - s.vx * 6, s.y - s.vy * 6);
+          pCtx.lineTo(s.x - s.vx * 5, s.y - s.vy * 5);
           pCtx.stroke();
         }
         pCtx.globalAlpha = 1;
