@@ -95,7 +95,7 @@
       if (el) {
         const rect = el.getBoundingClientRect();
         // gentle trickle after burst settles
-        if (Math.random() < 0.55) {
+        for (let t = 0; t < 4; t++) {
           const angle = Math.random() * Math.PI * 2;
           const speed = Math.random() * 1.2 + 0.4;
           textSparkles.push({
