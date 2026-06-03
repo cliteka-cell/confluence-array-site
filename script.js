@@ -1,3 +1,31 @@
+// Terminal typing animation
+(function () {
+  const line1 = 'Trade With';
+  const line2 = 'Confluence.';
+  const el1    = document.getElementById('hero-line1');
+  const el2    = document.getElementById('hero-line2');
+  let i = 0, phase = 1;
+
+  function type() {
+    if (phase === 1) {
+      if (i < line1.length) {
+        el1.textContent += line1[i++];
+        setTimeout(type, 75);
+      } else {
+        phase = 2; i = 0;
+        setTimeout(type, 300);
+      }
+    } else {
+      if (i < line2.length) {
+        el2.textContent += line2[i++];
+        setTimeout(type, 75);
+      }
+    }
+  }
+
+  type();
+})();
+
 // Lightbox
 function openLightbox(src) {
   const lb = document.getElementById('lightbox');
