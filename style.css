@@ -322,13 +322,14 @@ nav {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 22px;
+  padding: 28px;
   transition: border-color .25s, transform .25s, box-shadow .25s;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  text-align: center;
 }
 
 /* animated top-edge gold accent */
@@ -353,7 +354,7 @@ nav {
 }
 
 .feature-card h3 {
-  font-size: 0.875rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
