@@ -6,28 +6,7 @@
   let W, H, stars = [], nebulas = [], textSparkles = [];
   let textAura = false;
 
-  window._triggerTextAura = function () {
-    textAura = true;
-    const el = document.getElementById('hero-line2');
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const cx = rect.left + rect.width  / 2;
-    const cy = rect.top  + rect.height / 2;
-    for (let b = 0; b < 140; b++) {
-      const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 6 + 1.5;
-      textSparkles.push({
-        x:     cx + (Math.random() - 0.5) * rect.width  * 0.7,
-        y:     cy + (Math.random() - 0.5) * rect.height * 0.8,
-        vx:    Math.cos(angle) * speed,
-        vy:    Math.sin(angle) * speed,
-        r:     Math.random() * 1.8 + 0.4,
-        life:  1.0,
-        decay: 0.018 + Math.random() * 0.014,
-        burst: true,
-      });
-    }
-  };
+  window._triggerTextAura = function () { textAura = true; };
 
   const STAR_COUNT = 280;
   const STAR_COLORS = ['#ffffff', '#ffffff', '#ffffff', '#a8c8ff', '#7ab3ff', '#fffde8'];
