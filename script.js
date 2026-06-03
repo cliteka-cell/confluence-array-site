@@ -83,32 +83,23 @@
         const rect = el.getBoundingClientRect();
         const cx   = rect.left + rect.width  / 2;
         const cy   = rect.top  + rect.height / 2;
-        const r    = rect.height * 0.65;
+        const r    = rect.height * 0.55;
 
         // Fade in over ~3 seconds
         glowOpacity = Math.min(1, glowOpacity + 0.008);
         nebulaTime += 0.3;
 
-        // Draw nebula on pCtx with mix-blend-mode:screen (illuminates without covering)
-        // Soft base
-        const base = pCtx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        base.addColorStop(0,   `rgba(80,120,255,${0.18 * glowOpacity})`);
-        base.addColorStop(0.5, `rgba(60,100,220,${0.10 * glowOpacity})`);
-        base.addColorStop(1,   'rgba(0,0,0,0)');
-        pCtx.fillStyle = base;
-        pCtx.fillRect(cx - r, cy - r, r * 2, r * 2);
-
-        // Hollow shell ring
-        const shell = pCtx.createRadialGradient(cx, cy, r * 0.22, cx, cy, r);
+        // Hollow shell ring — sharp cutoff at edge (screen blend mode makes faint gradients glow)
+        const shell = pCtx.createRadialGradient(cx, cy, r * 0.20, cx, cy, r);
         shell.addColorStop(0,    'rgba(0,0,0,0)');
-        shell.addColorStop(0.42, `rgba(160,200,255,${0.25 * glowOpacity})`);
-        shell.addColorStop(0.65, `rgba(230,242,255,${0.65 * glowOpacity})`);
-        shell.addColorStop(0.82, `rgba(200,225,255,${0.20 * glowOpacity})`);
-        shell.addColorStop(0.95, 'rgba(0,0,0,0)');
+        shell.addColorStop(0.40, `rgba(140,190,255,${0.20 * glowOpacity})`);
+        shell.addColorStop(0.62, `rgba(220,238,255,${0.60 * glowOpacity})`);
+        shell.addColorStop(0.78, `rgba(190,215,255,${0.15 * glowOpacity})`);
+        shell.addColorStop(0.88, 'rgba(0,0,0,0)');
         pCtx.fillStyle = shell;
         pCtx.fillRect(cx - r, cy - r, r * 2, r * 2);
 
-        // Cloud puff lobes
+        // Cloud puff lobes — tight, cut off sharply
         const LOBES = 10;
         for (let i = 0; i < LOBES; i++) {
           const baseA  = (i / LOBES) * Math.PI * 2;
@@ -117,11 +108,11 @@
           const dist   = r * (0.60 + Math.sin(i * 2.1 + 1.2) * 0.13);
           const px     = cx + Math.cos(angle) * dist;
           const py     = cy + Math.sin(angle) * dist;
-          const pr     = r * (0.17 + Math.abs(Math.sin(i * 1.7)) * 0.11);
+          const pr     = r * (0.16 + Math.abs(Math.sin(i * 1.7)) * 0.09);
           const g = pCtx.createRadialGradient(px, py, 0, px, py, pr);
-          g.addColorStop(0,   `rgba(245,250,255,${0.65 * glowOpacity})`);
-          g.addColorStop(0.5, `rgba(200,225,255,${0.35 * glowOpacity})`);
-          g.addColorStop(1,   'rgba(0,0,0,0)');
+          g.addColorStop(0,    `rgba(240,248,255,${0.60 * glowOpacity})`);
+          g.addColorStop(0.55, `rgba(200,225,255,${0.25 * glowOpacity})`);
+          g.addColorStop(0.80, 'rgba(0,0,0,0)');
           pCtx.fillStyle = g;
           pCtx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
         }
@@ -130,18 +121,18 @@
         const FILS = 6;
         for (let i = 0; i < FILS; i++) {
           const angle = (i / FILS) * Math.PI * 2 + Math.PI / FILS;
-          const dist  = r * (0.75 + Math.sin(i * 2.7) * 0.10);
+          const dist  = r * (0.72 + Math.sin(i * 2.7) * 0.08);
           const fx = cx + Math.cos(angle) * dist;
           const fy = cy + Math.sin(angle) * dist;
           pCtx.save();
           pCtx.translate(fx, fy);
           pCtx.rotate(angle);
-          pCtx.scale(1, 0.28);
-          const fg = pCtx.createRadialGradient(0, 0, 0, 0, 0, r * 0.24);
-          fg.addColorStop(0, `rgba(255,255,255,${0.55 * glowOpacity})`);
-          fg.addColorStop(1, 'rgba(0,0,0,0)');
+          pCtx.scale(1, 0.25);
+          const fg = pCtx.createRadialGradient(0, 0, 0, 0, 0, r * 0.20);
+          fg.addColorStop(0,    `rgba(255,255,255,${0.50 * glowOpacity})`);
+          fg.addColorStop(0.65, 'rgba(0,0,0,0)');
           pCtx.fillStyle = fg;
-          pCtx.fillRect(-r * 0.24, -r * 0.24, r * 0.48, r * 0.48);
+          pCtx.fillRect(-r * 0.20, -r * 0.20, r * 0.40, r * 0.40);
           pCtx.restore();
         }
 
