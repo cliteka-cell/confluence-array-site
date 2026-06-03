@@ -318,13 +318,16 @@ nav {
 }
 
 .feature-card {
-  background: var(--bg2);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 22px;
   transition: border-color .25s, transform .25s, box-shadow .25s;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* animated top-edge gold accent */
@@ -348,24 +351,17 @@ nav {
   width: 100%;
 }
 
-.feature-icon {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-  display: block;
-}
-
 .feature-card h3 {
-  font-size: 1.05rem;
+  font-size: 0.875rem;
   font-weight: 700;
-  margin-bottom: 10px;
   color: var(--text);
   letter-spacing: -0.01em;
 }
 
 .feature-card p {
-  font-size: 0.875rem;
+  font-size: 0.78rem;
   color: var(--muted);
-  line-height: 1.7;
+  line-height: 1.5;
 }
 
 /* ── OI SECTION ────────────────────────────────────────────────────────────── */
