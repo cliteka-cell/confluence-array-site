@@ -371,7 +371,7 @@ nav {
 /* ── OI SECTION ────────────────────────────────────────────────────────────── */
 .oi-section {
   padding: 140px 0;
-  background: rgba(16, 16, 16, 0.85);
+  background: transparent;
   position: relative;
 }
 
@@ -478,7 +478,7 @@ nav {
 
 /* ── PRICING ───────────────────────────────────────────────────────────────── */
 .pricing-section {
-  background: rgba(16, 16, 16, 0.85);
+  background: transparent;
   position: relative;
 }
 

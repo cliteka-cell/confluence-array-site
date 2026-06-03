@@ -45,8 +45,8 @@
     nebulas.forEach(n => {
       const x = n.x * W, y = n.y * H;
       const g = ctx.createRadialGradient(x, y, 0, x, y, n.r);
-      g.addColorStop(0,   `rgba(${n.c[0]},${n.c[1]},${n.c[2]},0.08)`);
-      g.addColorStop(0.4, `rgba(${n.c[0]},${n.c[1]},${n.c[2]},0.04)`);
+      g.addColorStop(0,   `rgba(${n.c[0]},${n.c[1]},${n.c[2]},0.18)`);
+      g.addColorStop(0.4, `rgba(${n.c[0]},${n.c[1]},${n.c[2]},0.08)`);
       g.addColorStop(1,   'transparent');
       ctx.fillStyle = g;
       ctx.fillRect(x - n.r, y - n.r, n.r * 2, n.r * 2);
