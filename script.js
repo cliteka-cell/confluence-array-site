@@ -11,7 +11,7 @@
   pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
   document.body.appendChild(pCanvas);
   const pCtx = pCanvas.getContext('2d');
-  let textAura = false;
+  let textAura = false, glowOpacity = 0;
 
   window._triggerTextAura = function () { textAura = true; };
 
@@ -75,48 +75,62 @@
 
     ctx.globalAlpha = 1;
 
-    // text sparkles — drawn on overlay canvas (above text)
+    // ── Nebula cloud + rim streaks ────────────────────────────────
     pCtx.clearRect(0, 0, W, H);
     if (textAura) {
       const el = document.getElementById('hero-line2');
       if (el) {
         const rect = el.getBoundingClientRect();
-        for (let t = 0; t < 4; t++) {
-          const speed = Math.random() * 1.4 + 0.6;
-          const cx = rect.left + rect.width / 2;
-          const cy = rect.top + rect.height / 2;
-          const sx = rect.left + Math.random() * rect.width;
-          const sy = rect.top + Math.random() * rect.height;
-          const dx = sx - cx, dy = sy - cy;
-          const len = Math.sqrt(dx * dx + dy * dy) || 1;
-          const vx = (dx / len) * speed;
-          const vy = (dy / len) * speed;
+        const cx   = rect.left + rect.width  / 2;
+        const cy   = rect.top  + rect.height / 2;
+        const r    = rect.width * 0.54;
+
+        // Fade nebula in over ~5 seconds
+        glowOpacity = Math.min(1, glowOpacity + 0.004);
+
+        // Draw nebula on galaxy canvas (sits behind page content)
+        ctx.save();
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        grad.addColorStop(0,    `rgba(255,255,255,${0.22 * glowOpacity})`);
+        grad.addColorStop(0.28, `rgba(235,242,255,${0.16 * glowOpacity})`);
+        grad.addColorStop(0.55, `rgba(180,210,255,${0.09 * glowOpacity})`);
+        grad.addColorStop(0.80, `rgba(120,170,255,${0.04 * glowOpacity})`);
+        grad.addColorStop(1,    'rgba(0,0,0,0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+        ctx.restore();
+
+        // Spawn streaks from outer rim
+        for (let t = 0; t < 3; t++) {
+          const angle = Math.random() * Math.PI * 2;
+          const rimR  = r * (0.82 + Math.random() * 0.14);
           textSparkles.push({
-            x: sx, y: sy,
-            vx, vy,
-            r:  Math.random() * 1.0 + 0.3,
-            life: 1.0,
-            decay: 0.012 + Math.random() * 0.008,
+            x:     cx + Math.cos(angle) * rimR,
+            y:     cy + Math.sin(angle) * rimR,
+            vx:    Math.cos(angle) * (Math.random() * 1.3 + 0.5),
+            vy:    Math.sin(angle) * (Math.random() * 1.3 + 0.5),
+            r:     Math.random() * 0.9 + 0.3,
+            life:  1.0,
+            decay: 0.013 + Math.random() * 0.009,
             color: SUPERNOVA[Math.floor(Math.random() * SUPERNOVA.length)],
           });
         }
+
+        // Draw streaks on overlay canvas (above text)
         for (let i = textSparkles.length - 1; i >= 0; i--) {
           const sp = textSparkles[i];
           sp.life -= sp.decay;
           sp.x += sp.vx;
           sp.y += sp.vy;
           if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
-          const outside = sp.x < rect.left || sp.x > rect.right || sp.y < rect.top || sp.y > rect.bottom;
-          if (outside) {
-            pCtx.globalAlpha = sp.life * 0.85;
-            pCtx.strokeStyle = sp.color;
-            pCtx.lineWidth = sp.r * 1.8;
-            pCtx.lineCap = 'round';
-            pCtx.beginPath();
-            pCtx.moveTo(sp.x, sp.y);
-            pCtx.lineTo(sp.x - sp.vx * 7, sp.y - sp.vy * 7);
-            pCtx.stroke();
-          }
+          pCtx.globalAlpha = sp.life * 0.85;
+          pCtx.strokeStyle = sp.color;
+          pCtx.lineWidth   = sp.r * 1.8;
+          pCtx.lineCap     = 'round';
+          pCtx.beginPath();
+          pCtx.moveTo(sp.x, sp.y);
+          pCtx.lineTo(sp.x - sp.vx * 7, sp.y - sp.vy * 7);
+          pCtx.stroke();
         }
         pCtx.globalAlpha = 1;
       }
