@@ -7,7 +7,7 @@
   <meta name="description" content="Professional-grade TradingView indicator suite for futures, forex and crypto traders. Trade with confluence. Trade with precision." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=55" />
+  <link rel="stylesheet" href="style.css?v=56" />
   <style>
     .contact-card{max-width:700px;margin:0 auto 40px;background:#080808;border:1px solid #242424;border-radius:20px;padding:44px 48px;text-align:left}
     .form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:40px 20px;gap:12px}
@@ -191,12 +191,21 @@
       <h2>Simple, Transparent Pricing</h2>
       <p class="section-sub">Payments accepted in USDT and USDC only.<br>No chargebacks. No middlemen.</p>
 
+      <div class="pricing-toggle">
+        <button class="ptoggle active" data-period="monthly">Monthly</button>
+        <button class="ptoggle" data-period="3month">3 Months <span class="ptoggle-save">-13%</span></button>
+        <button class="ptoggle" data-period="annual">Annual <span class="ptoggle-save">-20%</span></button>
+      </div>
+
       <div class="pricing-grid">
 
         <div class="pricing-card">
           <div class="pricing-name">Confluence Array</div>
           <div class="pricing-type">Indicator Suite</div>
-          <div class="pricing-price">$50<span>/month</span></div>
+          <div class="pricing-price"
+            data-monthly="$50" data-monthly-period="/month"
+            data-3month="$43" data-3month-period="/mo · billed $130"
+            data-annual="$40" data-annual-period="/mo · billed $480">$50<span>/month</span></div>
           <ul class="pricing-features">
             <li>✓ Full ARMAS system</li>
             <li>✓ Multi-TF VWAP + bands</li>
@@ -208,14 +217,20 @@
             <li>✓ Updates included</li>
           </ul>
           <a href="#buy" class="btn-primary" style="display:block;text-align:center;">Start Free Trial</a>
-          <p class="pricing-note">14-day free trial · then $50/mo · 3-month $130 · Annual $480</p>
+          <p class="pricing-note"
+            data-monthly="14-day free trial · then $50/mo"
+            data-3month="Billed $130 every 3 months · Save $20"
+            data-annual="Billed $480/year · Save $120">14-day free trial · then $50/mo</p>
         </div>
 
         <div class="pricing-card featured">
           <div class="pricing-badge">Best Value</div>
           <div class="pricing-name">Bundle</div>
           <div class="pricing-type">Indicator + Journal</div>
-          <div class="pricing-price">$55<span>/month</span></div>
+          <div class="pricing-price"
+            data-monthly="$55" data-monthly-period="/month"
+            data-3month="$48" data-3month-period="/mo · billed $145"
+            data-annual="$44" data-annual-period="/mo · billed $530">$55<span>/month</span></div>
           <ul class="pricing-features">
             <li>✓ Everything in Indicator</li>
             <li>✓ Trading Journal included free</li>
@@ -224,7 +239,10 @@
             <li>✓ Lifetime journal updates</li>
           </ul>
           <a href="#buy" class="btn-primary" style="display:block;text-align:center;">Start Free Trial</a>
-          <p class="pricing-note">14-day free trial · Journal free with any subscription</p>
+          <p class="pricing-note"
+            data-monthly="14-day free trial · Journal free with any subscription"
+            data-3month="Billed $145 every 3 months · Save $20"
+            data-annual="Billed $530/year · Save $130">14-day free trial · Journal free with any subscription</p>
         </div>
 
         <div class="pricing-card">
@@ -366,6 +384,6 @@
     <img id="lightbox-img" src="" style="max-width:92vw;max-height:92vh;border-radius:8px;box-shadow:0 24px 80px rgba(0,0,0,0.8);" />
   </div>
 
-  <script src="script.js?v=22"></script>
+  <script src="script.js?v=23"></script>
 </body>
 </html>

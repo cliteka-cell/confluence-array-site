@@ -218,6 +218,21 @@ async function handleForm(e) {
   }
 }
 
+// Pricing period toggle
+document.querySelectorAll('.ptoggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.ptoggle').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const p = btn.dataset.period;
+    document.querySelectorAll('.pricing-price[data-monthly]').forEach(el => {
+      el.innerHTML = el.dataset[p] + '<span>' + el.dataset[p + 'Period'] + '</span>';
+    });
+    document.querySelectorAll('.pricing-note[data-monthly]').forEach(el => {
+      el.textContent = el.dataset[p];
+    });
+  });
+});
+
 // Smooth nav background on scroll
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
