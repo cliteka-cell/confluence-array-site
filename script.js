@@ -1,10 +1,11 @@
 // Terminal typing animation
 (function () {
-  const line1  = 'Trade With';
-  const line2  = 'Confluence.';
-  const el1    = document.getElementById('hero-line1');
-  const el2    = document.getElementById('hero-line2');
-  const cursor = document.getElementById('hero-cursor');
+  const line1   = 'Trade With';
+  const line2   = 'Confluence.';
+  const el1     = document.getElementById('hero-line1');
+  const el2     = document.getElementById('hero-line2');
+  const cursor1 = document.getElementById('cursor1');
+  const cursor2 = document.getElementById('cursor2');
   let i = 0, phase = 1;
 
   function type() {
@@ -13,9 +14,10 @@
         el1.textContent += line1[i++];
         setTimeout(type, 75);
       } else {
+        // switch cursor to line 2
+        cursor1.classList.add('hidden');
+        cursor2.classList.remove('hidden');
         phase = 2; i = 0;
-        // move cursor after line2
-        el2.after(cursor);
         setTimeout(type, 300);
       }
     } else {
@@ -24,7 +26,7 @@
         setTimeout(type, 75);
       } else {
         // hide cursor when done
-        cursor.classList.add('hidden');
+        cursor2.classList.add('hidden');
       }
     }
   }
