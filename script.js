@@ -83,25 +83,14 @@
         const rect = el.getBoundingClientRect();
         for (let t = 0; t < 4; t++) {
           const speed = Math.random() * 1.4 + 0.6;
-          const edge = Math.floor(Math.random() * 4);
-          let sx, sy, vx, vy;
-          if (edge === 0) {
-            sx = rect.left + Math.random() * rect.width;
-            sy = rect.top - 22;
-            vx = 0; vy = -speed;
-          } else if (edge === 1) {
-            sx = rect.left + Math.random() * rect.width;
-            sy = rect.bottom + 22;
-            vx = 0; vy = speed;
-          } else if (edge === 2) {
-            sx = rect.left - 22;
-            sy = rect.top + Math.random() * rect.height;
-            vx = -speed; vy = 0;
-          } else {
-            sx = rect.right + 22;
-            sy = rect.top + Math.random() * rect.height;
-            vx = speed; vy = 0;
-          }
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          const sx = rect.left + Math.random() * rect.width;
+          const sy = rect.top + Math.random() * rect.height;
+          const dx = sx - cx, dy = sy - cy;
+          const len = Math.sqrt(dx * dx + dy * dy) || 1;
+          const vx = (dx / len) * speed;
+          const vy = (dy / len) * speed;
           textSparkles.push({
             x: sx, y: sy,
             vx, vy,
