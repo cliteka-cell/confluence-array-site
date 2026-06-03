@@ -357,6 +357,7 @@ nav {
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.01em;
+  text-align: center;
 }
 
 .feature-card p {
