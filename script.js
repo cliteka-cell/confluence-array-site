@@ -106,11 +106,17 @@
           sp.x += sp.vx;
           sp.y += sp.vy;
           if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
-          pCtx.globalAlpha = sp.life * 0.9;
-          pCtx.fillStyle = sp.color;
-          pCtx.beginPath();
-          pCtx.arc(sp.x, sp.y, sp.r, 0, Math.PI * 2);
-          pCtx.fill();
+          const outside = sp.x < rect.left || sp.x > rect.right || sp.y < rect.top || sp.y > rect.bottom;
+          if (outside) {
+            pCtx.globalAlpha = sp.life * 0.85;
+            pCtx.strokeStyle = sp.color;
+            pCtx.lineWidth = sp.r * 1.8;
+            pCtx.lineCap = 'round';
+            pCtx.beginPath();
+            pCtx.moveTo(sp.x, sp.y);
+            pCtx.lineTo(sp.x - sp.vx * 7, sp.y - sp.vy * 7);
+            pCtx.stroke();
+          }
         }
         pCtx.globalAlpha = 1;
       }
