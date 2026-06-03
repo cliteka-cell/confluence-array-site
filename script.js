@@ -86,14 +86,14 @@
         const ry = rect.height / 2 * 0.80;
         for (let t = 0; t < 3; t++) {
           const angle = Math.random() * Math.PI * 2;
-          const speed = Math.random() * 0.9 + 0.3;
+          const speed = Math.random() * 2.0 + 0.8;
           streaks.push({
             x: cx + Math.cos(angle) * rx,
             y: cy + Math.sin(angle) * ry,
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             life:  1.0,
-            decay: 0.022 + Math.random() * 0.016,
+            decay: 0.010 + Math.random() * 0.008,
           });
         }
 
