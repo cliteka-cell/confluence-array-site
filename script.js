@@ -3,25 +3,14 @@
   const canvas = document.getElementById('galaxy');
   const ctx    = canvas.getContext('2d');
 
-  const SUPERNOVA = ['#ffffff','#fffde0','#ffd700','#ffaa00','#ff6600','#ff2244','#ff44aa','#cc44ff','#6644ff','#2288ff','#00ccff','#00ffcc'];
-  let W, H, stars = [], nebulas = [], textSparkles = [];
-
-  // Overlay canvas for particles (drawn above text)
-  const pCanvas = document.createElement('canvas');
-  pCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;pointer-events:none;';
-  document.body.appendChild(pCanvas);
-  const pCtx = pCanvas.getContext('2d');
-  let textAura = false;
-  let lastScrollY = window.scrollY;
-
-  window._triggerTextAura = function () { textAura = true; };
+  let W, H, stars = [], nebulas = [];
 
   const STAR_COUNT = 280;
   const STAR_COLORS = ['#ffffff', '#ffffff', '#ffffff', '#a8c8ff', '#7ab3ff', '#fffde8'];
 
   function init() {
-    W = canvas.width  = pCanvas.width  = window.innerWidth;
-    H = canvas.height = pCanvas.height = window.innerHeight;
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
 
     stars = Array.from({ length: STAR_COUNT }, () => ({
       x:           Math.random() * W,
@@ -76,56 +65,6 @@
 
     ctx.globalAlpha = 1;
 
-    // ── Streaks anchored to text ──────────────────────────────────
-    const scrollDelta = window.scrollY - lastScrollY;
-    lastScrollY = window.scrollY;
-    textSparkles.forEach(sp => { sp.y -= scrollDelta; });
-
-    pCtx.clearRect(0, 0, W, H);
-    if (textAura) {
-      const el = document.getElementById('hero-line2');
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const cx   = rect.left + rect.width  / 2;
-        const cy   = rect.top  + rect.height / 2;
-
-        // Spawn across full text width
-        for (let t = 0; t < 3; t++) {
-          const angle = Math.random() * Math.PI * 2;
-          const sx    = rect.left + Math.random() * rect.width;
-          const sy    = rect.top  + Math.random() * rect.height;
-          textSparkles.push({
-            x: sx, y: sy,
-            vx:    Math.cos(angle) * (Math.random() * 1.3 + 0.5),
-            vy:    Math.sin(angle) * (Math.random() * 1.3 + 0.5),
-            r:     Math.random() * 0.9 + 0.3,
-            life:  1.0,
-            decay: 0.013 + Math.random() * 0.009,
-            color: SUPERNOVA[Math.floor(Math.random() * SUPERNOVA.length)],
-          });
-        }
-
-        for (let i = textSparkles.length - 1; i >= 0; i--) {
-          const sp = textSparkles[i];
-          sp.life -= sp.decay;
-          sp.x += sp.vx;
-          sp.y += sp.vy;
-          if (sp.life <= 0) { textSparkles.splice(i, 1); continue; }
-          const outside = sp.x < rect.left || sp.x > rect.right || sp.y < rect.top || sp.y > rect.bottom;
-          if (!outside) continue;
-          pCtx.globalAlpha = sp.life * 0.85;
-          pCtx.strokeStyle = sp.color;
-          pCtx.lineWidth   = sp.r * 1.8;
-          pCtx.lineCap     = 'round';
-          pCtx.beginPath();
-          pCtx.moveTo(sp.x, sp.y);
-          pCtx.lineTo(sp.x - sp.vx * 7, sp.y - sp.vy * 7);
-          pCtx.stroke();
-        }
-        pCtx.globalAlpha = 1;
-      }
-    }
-
     requestAnimationFrame(draw);
   }
 
@@ -157,8 +96,6 @@
         setTimeout(type, 75);
       } else {
         el2.classList.remove('typing');
-        el2.classList.add('shimmer-active');
-        if (window._triggerTextAura) window._triggerTextAura();
       }
     }
   }

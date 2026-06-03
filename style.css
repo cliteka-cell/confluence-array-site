@@ -219,15 +219,6 @@ nav {
   100% { background-position: 200% center; }
 }
 
-#hero-line2.shimmer-active {
-  background: none;
-  -webkit-background-clip: unset;
-  background-clip: unset;
-  -webkit-text-fill-color: #1650cc;
-  color: #1650cc;
-  animation: none;
-  filter: none;
-}
 
 #hero-line2 {
   display: inline-block;
