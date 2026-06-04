@@ -483,6 +483,9 @@
       slots[C].style.transition = t;
       slots[R].style.transition = t;
 
+      /* distance the exiting slot travels — new side slot will enter from same distance */
+      var exitDist = fwd ? Math.round(lR.right - sr.left) + 20 : Math.round(sr.right - rR.left) + 20;
+
       if(fwd){
         /* clear mask on the slot moving to center — it has right-edge mask that would show during animation */
         slots[R].style.maskImage = 'none'; slots[R].style.webkitMaskImage = 'none';
@@ -508,10 +511,10 @@
           slots[L].className = 'jc-slot jc-slot-right';
           slots[C].className = 'jc-slot jc-slot-left';
           slots[R].className = 'jc-slot jc-slot-center';
-          /* slide new right slot in from further off-screen right */
+          /* slide new right slot in — same distance as the exiting left slot */
           var nR = slots[L];
-          nR.style.opacity  = '0';
-          nR.style.transform = 'translateX(70px)';
+          nR.style.opacity   = '0';
+          nR.style.transform = 'translateX('+exitDist+'px)';
           /* rotate index vars */
           var tmp=L; L=C; C=R; R=tmp;
           requestAnimationFrame(function(){
@@ -545,10 +548,10 @@
           slots[R].className = 'jc-slot jc-slot-left';
           slots[C].className = 'jc-slot jc-slot-right';
           slots[L].className = 'jc-slot jc-slot-center';
-          /* slide new left slot in from further off-screen left */
+          /* slide new left slot in — same distance as the exiting right slot */
           var nL = slots[R];
           nL.style.opacity   = '0';
-          nL.style.transform = 'translateX(-70px)';
+          nL.style.transform = 'translateX(-'+exitDist+'px)';
           var tmp=R; R=C; C=L; L=tmp;
           requestAnimationFrame(function(){
             nL.style.transition = 'transform .42s cubic-bezier(.4,0,.2,1), opacity .35s ease';
