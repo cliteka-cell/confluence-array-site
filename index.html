@@ -206,7 +206,7 @@
           <div class="jc-slot jc-slot-center" id="jcSlot1"><img id="jcImg1" src="" alt="" /></div>
           <div class="jc-slot jc-slot-right"  id="jcSlot2"><img id="jcImg2" src="" alt="" /></div>
           <!-- ghost: absolutely positioned, animates concurrently with main, then hands off -->
-          <div id="jcGhost" style="position:absolute;top:50%;visibility:hidden;pointer-events:none;z-index:4;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 10px 30px rgba(0,0,0,.5);overflow:hidden;"><img id="jcGhostImg" style="width:100%;display:block;border-radius:14px;" src="" alt="" /></div>
+          <div id="jcGhost" style="position:absolute;top:50%;visibility:hidden;pointer-events:none;z-index:4;"><img id="jcGhostImg" style="width:100%;display:block;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 10px 30px rgba(0,0,0,.5);" src="" alt="" /></div>
         </div>
         <div class="jc-controls">
           <button class="jc-arrow" id="jcPrev">&#8249;</button>
@@ -484,15 +484,19 @@
       if(fwd){
         /* ghost enters from right, lands at right-peek position */
         ghostTargetLeft = rR.left - sr.left;
-        ghost.style.width   = rR.width + 'px';
-        ghost.style.left    = ghostTargetLeft + 'px';
+        ghost.style.width          = rR.width + 'px';
+        ghost.style.left           = ghostTargetLeft + 'px';
+        ghost.style.maskImage      = 'linear-gradient(to left,transparent 0%,black 58%)';
+        ghost.style.webkitMaskImage= 'linear-gradient(to left,transparent 0%,black 58%)';
         ghostStartX  = Math.round(sr.right - rR.left) + rR.width + 10;
         ghostImg.src = imgs[(idx+1)%n].src;
       } else {
         /* ghost enters from left, lands at left-peek position */
         ghostTargetLeft = lR.left - sr.left;
-        ghost.style.width   = lR.width + 'px';
-        ghost.style.left    = ghostTargetLeft + 'px';
+        ghost.style.width          = lR.width + 'px';
+        ghost.style.left           = ghostTargetLeft + 'px';
+        ghost.style.maskImage      = 'linear-gradient(to right,transparent 0%,black 58%)';
+        ghost.style.webkitMaskImage= 'linear-gradient(to right,transparent 0%,black 58%)';
         ghostStartX  = -(Math.round(lR.right - sr.left) + lR.width + 10);
         ghostImg.src = imgs[(idx-1+n)%n].src;
       }
