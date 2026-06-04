@@ -33,23 +33,28 @@
     .buy-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
     @media(max-width:600px){.contact-card{padding:28px 20px}.cf-row{grid-template-columns:1fr}}
     .journal-features-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:52px}
-    .jc-wrap{position:relative;padding:8px 0 48px;user-select:none}
-    .jc-frame{display:grid;grid-template-columns:1fr 2.4fr 1fr;align-items:center;gap:14px;transition:opacity .2s ease}
-    .jc-frame.fading{opacity:0}
-    .jc-side{overflow:hidden;border-radius:12px;cursor:pointer;transition:opacity .3s}
-    .jc-side-prev{mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.7) 60%);-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.7) 60%)}
-    .jc-side-next{mask-image:linear-gradient(to left,transparent 0%,rgba(0,0,0,.7) 60%);-webkit-mask-image:linear-gradient(to left,transparent 0%,rgba(0,0,0,.7) 60%)}
-    .jc-side img{width:100%;display:block;border-radius:12px;opacity:.22;transition:opacity .3s}
-    .jc-side:hover img{opacity:.38}
-    .jc-main img{width:100%;display:block;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 20px 70px rgba(0,0,0,.65);cursor:zoom-in;transition:transform .3s,box-shadow .3s}
-    .jc-main img:hover{transform:translateY(-3px);box-shadow:0 28px 80px rgba(0,0,0,.75)}
-    .jc-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:22px}
-    .jc-arrow{background:#0d0d0d;border:1px solid #242424;color:#c8d0e0;width:42px;height:42px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;line-height:1;padding-bottom:1px}
-    .jc-arrow:hover{border-color:#2060f0;background:rgba(32,96,240,.12);color:#fff}
+    .jc-wrap{position:relative;padding-bottom:52px;user-select:none}
+    .jc-stage{display:flex;align-items:center;justify-content:center;overflow:hidden}
+    /* center: big, on top */
+    .jc-center{flex-shrink:0;width:74%;position:relative;z-index:3}
+    .jc-center img{width:100%;display:block;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 24px 90px rgba(0,0,0,.75);cursor:zoom-in}
+    /* sides: overlap center by ~half their width via negative margin */
+    .jc-sl,.jc-sr{flex-shrink:0;width:54%;position:relative;z-index:2}
+    .jc-sl{margin-right:-26%}   /* 26/54 ≈ 48% of side hidden behind center */
+    .jc-sr{margin-left:-26%}
+    .jc-sl img,.jc-sr img{width:100%;display:block;border-radius:12px;opacity:.28;cursor:pointer;transition:opacity .35s}
+    .jc-sl:hover img,.jc-sr:hover img{opacity:.5}
+    /* fade outer edges of side images to nothing */
+    .jc-sl{mask-image:linear-gradient(to right,transparent 0%,black 45%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 45%)}
+    .jc-sr{mask-image:linear-gradient(to left,transparent 0%,black 45%);-webkit-mask-image:linear-gradient(to left,transparent 0%,black 45%)}
+    /* controls */
+    .jc-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:24px}
+    .jc-arrow{background:#0d0d0d;border:1px solid #282828;color:#b0b8cc;width:44px;height:44px;border-radius:50%;font-size:1.6rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;line-height:1;padding-bottom:1px}
+    .jc-arrow:hover{border-color:#2060f0;background:rgba(32,96,240,.14);color:#fff}
     .jc-dots{display:flex;gap:7px;align-items:center}
     .jc-dot{width:6px;height:6px;border-radius:3px;background:#2a2a2a;cursor:pointer;transition:background .25s,width .25s}
     .jc-dot.active{background:#2060f0;width:22px}
-    @media(max-width:700px){.jc-frame{grid-template-columns:0 1fr 0}.jc-side{display:none}}
+    @media(max-width:700px){.jc-sl,.jc-sr{display:none}}
     @media(max-width:900px){.journal-features-row{grid-template-columns:repeat(2,1fr)}.journal-img-grid{grid-template-columns:1fr}}
     .hero-img-wrap{width:100vw!important;max-width:100vw!important;position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;padding:0 24px!important;box-sizing:border-box!important}
     .hero-img{max-width:1600px!important;width:100%!important;margin:0 auto!important;display:block!important}
@@ -198,16 +203,10 @@
       </div>
 
       <div class="jc-wrap">
-        <div class="jc-frame" id="jcFrame">
-          <div class="jc-side jc-side-prev" id="jcSidePrev">
-            <img id="jcImgPrev" src="" alt="" />
-          </div>
-          <div class="jc-main">
-            <img id="jcImgMain" src="" alt="" />
-          </div>
-          <div class="jc-side jc-side-next" id="jcSideNext">
-            <img id="jcImgNext" src="" alt="" />
-          </div>
+        <div class="jc-stage">
+          <div class="jc-sl" id="jcSL"><img id="jcImgPrev" src="" alt="" /></div>
+          <div class="jc-center"><img id="jcImgMain" src="" alt="" /></div>
+          <div class="jc-sr" id="jcSR"><img id="jcImgNext" src="" alt="" /></div>
         </div>
         <div class="jc-controls">
           <button class="jc-arrow" id="jcPrev">&#8249;</button>
@@ -431,57 +430,96 @@
       {src:'equity.png',      alt:'Equity'},
       {src:'hall-of-fame.png',alt:'Hall of Fame'},
     ];
-    var cur = 0;
-    var n   = imgs.length;
-    var frame   = document.getElementById('jcFrame');
+    var cur = 0, busy = false;
+    var n       = imgs.length;
     var imgPrev = document.getElementById('jcImgPrev');
     var imgMain = document.getElementById('jcImgMain');
     var imgNext = document.getElementById('jcImgNext');
-    var dots    = document.getElementById('jcDots');
+    var dotsEl  = document.getElementById('jcDots');
+    var stage   = document.querySelector('.jc-stage');
 
     imgs.forEach(function(_,i){
       var d = document.createElement('span');
-      d.className = 'jc-dot' + (i===0?' active':'');
+      d.className = 'jc-dot'+(i===0?' active':'');
       d.addEventListener('click', function(){ goTo(i); });
-      dots.appendChild(d);
+      dotsEl.appendChild(d);
     });
 
-    function goTo(idx){
-      frame.classList.add('fading');
-      setTimeout(function(){
-        cur = (idx % n + n) % n;
-        var p = (cur - 1 + n) % n;
-        var nx = (cur + 1) % n;
-        imgPrev.src = imgs[p].src;  imgPrev.alt = imgs[p].alt;
-        imgMain.src = imgs[cur].src; imgMain.alt = imgs[cur].alt;
-        imgNext.src = imgs[nx].src; imgNext.alt = imgs[nx].alt;
-        dots.querySelectorAll('.jc-dot').forEach(function(d,i){
-          d.classList.toggle('active', i===cur);
-        });
-        frame.classList.remove('fading');
-      }, 180);
+    function setDots(i){
+      dotsEl.querySelectorAll('.jc-dot').forEach(function(d,j){ d.classList.toggle('active',j===i); });
     }
 
-    goTo(0);
+    function setSides(c){
+      var p = (c-1+n)%n, nx = (c+1)%n;
+      imgPrev.src = imgs[p].src;  imgPrev.alt = imgs[p].alt;
+      imgNext.src = imgs[nx].src; imgNext.alt = imgs[nx].alt;
+    }
+
+    function goTo(idx){
+      if(busy) return;
+      idx = (idx%n+n)%n;
+      if(idx===cur){ return; }
+      busy = true;
+      var dir = idx > cur || (cur===n-1 && idx===0) ? 1 : -1;
+      /* special wraparound direction fix */
+      if(Math.abs(idx-cur) > n/2) dir = -dir;
+
+      var exitX  = dir===1 ? '-30%' : '30%';
+      var enterX = dir===1 ?  '30%' : '-30%';
+
+      /* slide out current main */
+      imgMain.style.transition = 'transform .38s cubic-bezier(.4,0,.2,1), opacity .32s ease';
+      imgMain.style.transform  = 'translateX('+exitX+')';
+      imgMain.style.opacity    = '0';
+
+      /* crossfade sides immediately */
+      imgPrev.style.transition = 'opacity .25s ease';
+      imgNext.style.transition = 'opacity .25s ease';
+      imgPrev.style.opacity = '0';
+      imgNext.style.opacity = '0';
+
+      setTimeout(function(){
+        cur = idx;
+        imgMain.style.transition = 'none';
+        imgMain.style.transform  = 'translateX('+enterX+')';
+        imgMain.style.opacity    = '0';
+        imgMain.src = imgs[cur].src;
+        imgMain.alt = imgs[cur].alt;
+        setSides(cur);
+        setDots(cur);
+
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          imgMain.style.transition = 'transform .38s cubic-bezier(.4,0,.2,1), opacity .32s ease';
+          imgMain.style.transform  = 'translateX(0)';
+          imgMain.style.opacity    = '1';
+          imgPrev.style.opacity    = '1';
+          imgNext.style.opacity    = '1';
+          setTimeout(function(){ busy=false; }, 400);
+        });});
+      }, 340);
+    }
+
+    /* init */
+    imgMain.src = imgs[0].src; imgMain.alt = imgs[0].alt;
+    setSides(0); setDots(0);
 
     document.getElementById('jcPrev').addEventListener('click', function(){ goTo(cur-1); });
     document.getElementById('jcNext').addEventListener('click', function(){ goTo(cur+1); });
-    document.getElementById('jcSidePrev').addEventListener('click', function(){ goTo(cur-1); });
-    document.getElementById('jcSideNext').addEventListener('click', function(){ goTo(cur+1); });
+    document.getElementById('jcSL').addEventListener('click', function(){ goTo(cur-1); });
+    document.getElementById('jcSR').addEventListener('click', function(){ goTo(cur+1); });
 
     imgMain.addEventListener('click', function(){
-      var lb = document.getElementById('lightbox');
-      var lbImg = document.getElementById('lightbox-img');
-      if(lb && lbImg){ lbImg.src = imgs[cur].src; lb.style.display='flex'; }
+      var lb=document.getElementById('lightbox'), li=document.getElementById('lightbox-img');
+      if(lb&&li){ li.src=imgs[cur].src; lb.style.display='flex'; }
     });
 
     document.addEventListener('keydown', function(e){
-      if(e.key==='ArrowLeft')  goTo(cur-1);
+      if(e.key==='ArrowLeft') goTo(cur-1);
       if(e.key==='ArrowRight') goTo(cur+1);
     });
 
-    var autoTimer = setInterval(function(){ goTo(cur+1); }, 4500);
-    frame.addEventListener('mouseenter', function(){ clearInterval(autoTimer); });
+    var auto = setInterval(function(){ goTo(cur+1); }, 4500);
+    stage.addEventListener('mouseenter', function(){ clearInterval(auto); });
   })();
   </script>
 </body>
