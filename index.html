@@ -38,6 +38,7 @@
     /* center: big, on top */
     .jc-center{flex-shrink:0;width:74%;position:relative;z-index:3}
     .jc-center img{width:100%;display:block;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 24px 90px rgba(0,0,0,.75);cursor:zoom-in}
+    #jcImgBuf{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;pointer-events:none;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 24px 90px rgba(0,0,0,.75)}
     /* sides: overlap center by ~half their width via negative margin */
     .jc-sl,.jc-sr{flex-shrink:0;width:54%;position:relative;z-index:2}
     .jc-sl{margin-right:-26%}   /* 26/54 ≈ 48% of side hidden behind center */
@@ -205,7 +206,7 @@
       <div class="jc-wrap">
         <div class="jc-stage">
           <div class="jc-sl" id="jcSL"><img id="jcImgPrev" src="" alt="" /></div>
-          <div class="jc-center"><img id="jcImgMain" src="" alt="" /></div>
+          <div class="jc-center"><img id="jcImgMain" src="" alt="" /><img id="jcImgBuf" src="" alt="" /></div>
           <div class="jc-sr" id="jcSR"><img id="jcImgNext" src="" alt="" /></div>
         </div>
         <div class="jc-controls">
@@ -430,15 +431,15 @@
       {src:'equity.png',      alt:'Equity'},
       {src:'hall-of-fame.png',alt:'Hall of Fame'},
     ];
-    var cur = 0, busy = false;
-    var n       = imgs.length;
+    var cur = 0, busy = false, n = imgs.length;
     var imgPrev = document.getElementById('jcImgPrev');
     var imgMain = document.getElementById('jcImgMain');
+    var imgBuf  = document.getElementById('jcImgBuf');
     var imgNext = document.getElementById('jcImgNext');
     var dotsEl  = document.getElementById('jcDots');
     var stage   = document.querySelector('.jc-stage');
 
-    /* preload all images so src swaps never blink */
+    /* preload all images into browser cache upfront */
     imgs.forEach(function(item){ (new Image()).src = item.src; });
 
     imgs.forEach(function(_,i){
@@ -451,63 +452,75 @@
     function setDots(i){
       dotsEl.querySelectorAll('.jc-dot').forEach(function(d,j){ d.classList.toggle('active',j===i); });
     }
-
     function setSides(c){
-      var p = (c-1+n)%n, nx = (c+1)%n;
-      imgPrev.src = imgs[p].src;  imgPrev.alt = imgs[p].alt;
-      imgNext.src = imgs[nx].src; imgNext.alt = imgs[nx].alt;
+      var p=(c-1+n)%n, nx=(c+1)%n;
+      imgPrev.src=imgs[p].src;  imgPrev.alt=imgs[p].alt;
+      imgNext.src=imgs[nx].src; imgNext.alt=imgs[nx].alt;
     }
+    function noTransition(el){ el.style.transition='none'; }
+    function reset(el){ el.style.transform=''; el.style.opacity=''; }
 
     function goTo(idx){
       if(busy) return;
       idx = (idx%n+n)%n;
-      if(idx===cur){ return; }
+      if(idx===cur) return;
       busy = true;
-      var dir = idx > cur || (cur===n-1 && idx===0) ? 1 : -1;
-      /* special wraparound direction fix */
-      if(Math.abs(idx-cur) > n/2) dir = -dir;
 
-      var exitX  = dir===1 ? '-30%' : '30%';
-      var enterX = dir===1 ?  '30%' : '-30%';
+      /* direction: 1=next, -1=prev */
+      var fwd = idx > cur || (cur===n-1 && idx===0);
+      if(Math.abs(idx-cur) > n/2) fwd = !fwd;
+      var dir = fwd ? 1 : -1;
 
-      /* slide out current main */
-      imgMain.style.transition = 'transform .18s cubic-bezier(.4,0,.2,1), opacity .15s ease';
-      imgMain.style.transform  = 'translateX('+exitX+')';
-      imgMain.style.opacity    = '0';
+      /* where main exits to, where buffer enters from */
+      var mainExit  = dir===1 ? 'translateX(30%) scale(0.76)' : 'translateX(-30%) scale(0.76)';
+      var bufEnter  = dir===1 ? 'translateX(-28%)'             : 'translateX(28%)';
 
-      /* crossfade sides immediately */
-      imgPrev.style.transition = 'opacity .15s ease';
-      imgNext.style.transition = 'opacity .15s ease';
+      /* load new image into hidden buffer — already in cache, no decode delay */
+      noTransition(imgBuf);
+      imgBuf.src = imgs[idx].src;
+      imgBuf.alt = imgs[idx].alt;
+      imgBuf.style.transform = bufEnter;
+      imgBuf.style.opacity   = '0';
+
+      /* sides fade out */
+      imgPrev.style.transition = 'opacity .22s ease';
+      imgNext.style.transition = 'opacity .22s ease';
       imgPrev.style.opacity = '0';
       imgNext.style.opacity = '0';
 
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        var DUR = '.32s cubic-bezier(.4,0,.2,1)';
+
+        /* main slides + shrinks toward the side it exits to */
+        imgMain.style.transition = 'transform '+DUR+', opacity .28s ease';
+        imgMain.style.transform  = mainExit;
+        imgMain.style.opacity    = '0.22';
+
+        /* buffer slides in from opposite side and grows to fill center */
+        imgBuf.style.transition = 'transform '+DUR+', opacity .28s ease';
+        imgBuf.style.transform  = 'translateX(0)';
+        imgBuf.style.opacity    = '1';
+      });});
+
       setTimeout(function(){
         cur = idx;
-        imgMain.style.transition = 'none';
-        imgMain.style.transform  = 'translateX('+enterX+')';
-        imgMain.style.opacity    = '0';
+        /* swap: make main show the new image, hide buffer */
+        noTransition(imgMain); noTransition(imgBuf);
         imgMain.src = imgs[cur].src;
         imgMain.alt = imgs[cur].alt;
+        reset(imgMain);
+        imgBuf.style.opacity   = '0';
+        imgBuf.style.transform = '';
+
         setSides(cur);
         setDots(cur);
 
-        function enterAnim(){
-          requestAnimationFrame(function(){ requestAnimationFrame(function(){
-            imgMain.style.transition = 'transform .2s cubic-bezier(.4,0,.2,1), opacity .18s ease';
-            imgMain.style.transform  = 'translateX(0)';
-            imgMain.style.opacity    = '1';
-            imgPrev.style.opacity    = '1';
-            imgNext.style.opacity    = '1';
-            setTimeout(function(){ busy=false; }, 220);
-          });});
-        }
-        /* only animate in once the new image is fully decoded — no blink */
-        if(imgMain.complete && imgMain.naturalWidth > 0){
-          enterAnim();
-        } else {
-          imgMain.onload = enterAnim;
-        }
-      }, 160);
+        /* restore sides */
+        imgPrev.style.opacity = '1';
+        imgNext.style.opacity = '1';
+
+        busy = false;
+      }, 350);
     }
 
     /* init */
@@ -516,8 +529,8 @@
 
     document.getElementById('jcPrev').addEventListener('click', function(){ goTo(cur-1); });
     document.getElementById('jcNext').addEventListener('click', function(){ goTo(cur+1); });
-    document.getElementById('jcSL').addEventListener('click', function(){ goTo(cur-1); });
-    document.getElementById('jcSR').addEventListener('click', function(){ goTo(cur+1); });
+    document.getElementById('jcSL').addEventListener('click',   function(){ goTo(cur-1); });
+    document.getElementById('jcSR').addEventListener('click',   function(){ goTo(cur+1); });
 
     imgMain.addEventListener('click', function(){
       var lb=document.getElementById('lightbox'), li=document.getElementById('lightbox-img');
@@ -525,7 +538,7 @@
     });
 
     document.addEventListener('keydown', function(e){
-      if(e.key==='ArrowLeft') goTo(cur-1);
+      if(e.key==='ArrowLeft')  goTo(cur-1);
       if(e.key==='ArrowRight') goTo(cur+1);
     });
 
