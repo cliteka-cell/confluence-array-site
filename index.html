@@ -33,9 +33,23 @@
     .buy-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
     @media(max-width:600px){.contact-card{padding:28px 20px}.cf-row{grid-template-columns:1fr}}
     .journal-features-row{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:52px}
-    .journal-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .journal-img{width:100%;border-radius:14px;border:1px solid #242424;box-shadow:0 12px 40px rgba(0,0,0,.4);display:block;cursor:zoom-in;transition:transform .25s,box-shadow .25s}
-    .journal-img:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(0,0,0,.55)}
+    .jc-wrap{position:relative;padding:8px 0 48px;user-select:none}
+    .jc-frame{display:grid;grid-template-columns:1fr 2.4fr 1fr;align-items:center;gap:14px;transition:opacity .2s ease}
+    .jc-frame.fading{opacity:0}
+    .jc-side{overflow:hidden;border-radius:12px;cursor:pointer;transition:opacity .3s}
+    .jc-side-prev{mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.7) 60%);-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.7) 60%)}
+    .jc-side-next{mask-image:linear-gradient(to left,transparent 0%,rgba(0,0,0,.7) 60%);-webkit-mask-image:linear-gradient(to left,transparent 0%,rgba(0,0,0,.7) 60%)}
+    .jc-side img{width:100%;display:block;border-radius:12px;opacity:.22;transition:opacity .3s}
+    .jc-side:hover img{opacity:.38}
+    .jc-main img{width:100%;display:block;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 20px 70px rgba(0,0,0,.65);cursor:zoom-in;transition:transform .3s,box-shadow .3s}
+    .jc-main img:hover{transform:translateY(-3px);box-shadow:0 28px 80px rgba(0,0,0,.75)}
+    .jc-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:22px}
+    .jc-arrow{background:#0d0d0d;border:1px solid #242424;color:#c8d0e0;width:42px;height:42px;border-radius:50%;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;line-height:1;padding-bottom:1px}
+    .jc-arrow:hover{border-color:#2060f0;background:rgba(32,96,240,.12);color:#fff}
+    .jc-dots{display:flex;gap:7px;align-items:center}
+    .jc-dot{width:6px;height:6px;border-radius:3px;background:#2a2a2a;cursor:pointer;transition:background .25s,width .25s}
+    .jc-dot.active{background:#2060f0;width:22px}
+    @media(max-width:700px){.jc-frame{grid-template-columns:0 1fr 0}.jc-side{display:none}}
     @media(max-width:900px){.journal-features-row{grid-template-columns:repeat(2,1fr)}.journal-img-grid{grid-template-columns:1fr}}
     .hero-img-wrap{width:100vw!important;max-width:100vw!important;position:relative!important;left:50%!important;right:50%!important;margin-left:-50vw!important;margin-right:-50vw!important;padding:0 24px!important;box-sizing:border-box!important}
     .hero-img{max-width:1600px!important;width:100%!important;margin:0 auto!important;display:block!important}
@@ -183,14 +197,23 @@
         </div>
       </div>
 
-      <div class="journal-img-grid">
-        <img src="dashboard.png" alt="Trading Journal Dashboard" class="journal-img" />
-        <img src="Journal.png" alt="Trading Journal" class="journal-img" />
-        <img src="analysis.png" alt="Trading Journal Analysis" class="journal-img" />
-        <img src="analytics.png" alt="Trading Journal Analytics" class="journal-img" />
-        <img src="pnlchart.png" alt="Trading Journal PnL Chart" class="journal-img" />
-        <img src="equity.png" alt="Trading Journal Equity" class="journal-img" />
-        <img src="hall-of-fame.png" alt="Trading Journal Hall of Fame" class="journal-img" />
+      <div class="jc-wrap">
+        <div class="jc-frame" id="jcFrame">
+          <div class="jc-side jc-side-prev" id="jcSidePrev">
+            <img id="jcImgPrev" src="" alt="" />
+          </div>
+          <div class="jc-main">
+            <img id="jcImgMain" src="" alt="" />
+          </div>
+          <div class="jc-side jc-side-next" id="jcSideNext">
+            <img id="jcImgNext" src="" alt="" />
+          </div>
+        </div>
+        <div class="jc-controls">
+          <button class="jc-arrow" id="jcPrev">&#8249;</button>
+          <div class="jc-dots" id="jcDots"></div>
+          <button class="jc-arrow" id="jcNext">&#8250;</button>
+        </div>
       </div>
     </div>
   </section>
@@ -397,5 +420,69 @@
   </div>
 
   <script src="script.js?v=23"></script>
+  <script>
+  (function(){
+    var imgs = [
+      {src:'dashboard.png',   alt:'Dashboard'},
+      {src:'Journal.png',     alt:'Journal'},
+      {src:'analysis.png',    alt:'Analysis'},
+      {src:'analytics.png',   alt:'Analytics'},
+      {src:'pnlchart.png',    alt:'PnL Chart'},
+      {src:'equity.png',      alt:'Equity'},
+      {src:'hall-of-fame.png',alt:'Hall of Fame'},
+    ];
+    var cur = 0;
+    var n   = imgs.length;
+    var frame   = document.getElementById('jcFrame');
+    var imgPrev = document.getElementById('jcImgPrev');
+    var imgMain = document.getElementById('jcImgMain');
+    var imgNext = document.getElementById('jcImgNext');
+    var dots    = document.getElementById('jcDots');
+
+    imgs.forEach(function(_,i){
+      var d = document.createElement('span');
+      d.className = 'jc-dot' + (i===0?' active':'');
+      d.addEventListener('click', function(){ goTo(i); });
+      dots.appendChild(d);
+    });
+
+    function goTo(idx){
+      frame.classList.add('fading');
+      setTimeout(function(){
+        cur = (idx % n + n) % n;
+        var p = (cur - 1 + n) % n;
+        var nx = (cur + 1) % n;
+        imgPrev.src = imgs[p].src;  imgPrev.alt = imgs[p].alt;
+        imgMain.src = imgs[cur].src; imgMain.alt = imgs[cur].alt;
+        imgNext.src = imgs[nx].src; imgNext.alt = imgs[nx].alt;
+        dots.querySelectorAll('.jc-dot').forEach(function(d,i){
+          d.classList.toggle('active', i===cur);
+        });
+        frame.classList.remove('fading');
+      }, 180);
+    }
+
+    goTo(0);
+
+    document.getElementById('jcPrev').addEventListener('click', function(){ goTo(cur-1); });
+    document.getElementById('jcNext').addEventListener('click', function(){ goTo(cur+1); });
+    document.getElementById('jcSidePrev').addEventListener('click', function(){ goTo(cur-1); });
+    document.getElementById('jcSideNext').addEventListener('click', function(){ goTo(cur+1); });
+
+    imgMain.addEventListener('click', function(){
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lightbox-img');
+      if(lb && lbImg){ lbImg.src = imgs[cur].src; lb.style.display='flex'; }
+    });
+
+    document.addEventListener('keydown', function(e){
+      if(e.key==='ArrowLeft')  goTo(cur-1);
+      if(e.key==='ArrowRight') goTo(cur+1);
+    });
+
+    var autoTimer = setInterval(function(){ goTo(cur+1); }, 4500);
+    frame.addEventListener('mouseenter', function(){ clearInterval(autoTimer); });
+  })();
+  </script>
 </body>
 </html>
