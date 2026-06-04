@@ -952,7 +952,7 @@ footer {
   .oi-card              { flex: 0 1 calc(50% - 6px); }
   .pricing-grid         { grid-template-columns: 1fr; }
   .journal-grid         { grid-template-columns: 1fr; }
-  .journal-features-row { grid-template-columns: repeat(2, 1fr); }
+  .journal-features-row .j-feature { flex: 0 0 calc(50% - 12px); }
   .journal-img-grid     { grid-template-columns: 1fr; }
   .steps                { grid-template-columns: repeat(2, 1fr); }
   .footer-inner         { flex-direction: column; gap: 20px; text-align: center; }
