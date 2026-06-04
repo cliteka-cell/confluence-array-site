@@ -515,6 +515,7 @@
           var nR = slots[L];
           nR.style.opacity   = '0';
           nR.style.transform = 'translateX('+exitDist+'px)';
+          void nR.offsetWidth; /* force reflow so browser commits starting position */
           /* rotate index vars */
           var tmp=L; L=C; C=R; R=tmp;
           requestAnimationFrame(function(){
@@ -552,6 +553,7 @@
           var nL = slots[R];
           nL.style.opacity   = '0';
           nL.style.transform = 'translateX(-'+exitDist+'px)';
+          void nL.offsetWidth; /* force reflow */
           var tmp=R; R=C; C=L; L=tmp;
           requestAnimationFrame(function(){
             nL.style.transition = 'transform .42s cubic-bezier(.4,0,.2,1), opacity .35s ease';
