@@ -7,7 +7,7 @@
   <meta name="description" content="Professional-grade TradingView indicator suite for futures, forex and crypto traders. Trade with confluence. Trade with precision." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=57" />
+  <link rel="stylesheet" href="style.css?v=58" />
   <style>
     .contact-card{max-width:700px;margin:0 auto 40px;background:#080808;border:1px solid #242424;border-radius:20px;padding:44px 48px;text-align:left}
     .form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:40px 20px;gap:12px}
@@ -438,6 +438,9 @@
     var dotsEl  = document.getElementById('jcDots');
     var stage   = document.querySelector('.jc-stage');
 
+    /* preload all images so src swaps never blink */
+    imgs.forEach(function(item){ (new Image()).src = item.src; });
+
     imgs.forEach(function(_,i){
       var d = document.createElement('span');
       d.className = 'jc-dot'+(i===0?' active':'');
@@ -488,14 +491,22 @@
         setSides(cur);
         setDots(cur);
 
-        requestAnimationFrame(function(){ requestAnimationFrame(function(){
-          imgMain.style.transition = 'transform .2s cubic-bezier(.4,0,.2,1), opacity .18s ease';
-          imgMain.style.transform  = 'translateX(0)';
-          imgMain.style.opacity    = '1';
-          imgPrev.style.opacity    = '1';
-          imgNext.style.opacity    = '1';
-          setTimeout(function(){ busy=false; }, 220);
-        });});
+        function enterAnim(){
+          requestAnimationFrame(function(){ requestAnimationFrame(function(){
+            imgMain.style.transition = 'transform .2s cubic-bezier(.4,0,.2,1), opacity .18s ease';
+            imgMain.style.transform  = 'translateX(0)';
+            imgMain.style.opacity    = '1';
+            imgPrev.style.opacity    = '1';
+            imgNext.style.opacity    = '1';
+            setTimeout(function(){ busy=false; }, 220);
+          });});
+        }
+        /* only animate in once the new image is fully decoded — no blink */
+        if(imgMain.complete && imgMain.naturalWidth > 0){
+          enterAnim();
+        } else {
+          imgMain.onload = enterAnim;
+        }
       }, 160);
     }
 
