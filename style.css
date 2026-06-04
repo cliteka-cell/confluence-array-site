@@ -304,6 +304,18 @@ nav {
   margin-bottom: 18px;
 }
 
+/* Bigger headers for OI Matrix and Journal sections */
+#journal .section-label,
+.oi-section .section-label {
+  font-size: 0.88rem;
+  letter-spacing: .18em;
+}
+
+#journal h2,
+.oi-section h2 {
+  font-size: clamp(2.6rem, 5.5vw, 4rem);
+}
+
 .section-sub {
   color: var(--muted);
   font-size: 1rem;
@@ -432,13 +444,16 @@ nav {
 
 /* ── JOURNAL ───────────────────────────────────────────────────────────────── */
 .journal-features-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
   margin-bottom: 52px;
 }
 
 .j-feature {
+  flex: 0 1 calc(33.33% - 16px);
+  min-width: 240px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
