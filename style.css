@@ -432,20 +432,16 @@ nav {
 
 /* ── JOURNAL ───────────────────────────────────────────────────────────────── */
 .journal-features-row {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   margin-bottom: 52px;
 }
 
-/* each card spans 2 of 6 cols → 3 per row */
-.journal-features-row .j-feature { grid-column: span 2; }
-
-/* last 2 cards: start at col 2 and 4 → perfectly centered */
-.journal-features-row .j-feature:nth-child(7) { grid-column: 2 / span 2; }
-.journal-features-row .j-feature:nth-child(8) { grid-column: 4 / span 2; }
-
 .j-feature {
+  flex: 0 1 calc(33.333% - 8px);
+  min-width: 240px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -956,10 +952,7 @@ footer {
   .oi-card              { flex: 0 1 calc(50% - 6px); }
   .pricing-grid         { grid-template-columns: 1fr; }
   .journal-grid         { grid-template-columns: 1fr; }
-  .journal-features-row { grid-template-columns: repeat(2, 1fr); }
-  .journal-features-row .j-feature,
-  .journal-features-row .j-feature:nth-child(7),
-  .journal-features-row .j-feature:nth-child(8) { grid-column: span 1; }
+  .j-feature { flex: 0 1 calc(50% - 6px); }
   .journal-img-grid     { grid-template-columns: 1fr; }
   .steps                { grid-template-columns: repeat(2, 1fr); }
   .footer-inner         { flex-direction: column; gap: 20px; text-align: center; }
