@@ -285,9 +285,9 @@ nav {
 
 .section-label {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.88rem;
   font-weight: 500;
-  letter-spacing: .16em;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 20px;
@@ -297,23 +297,11 @@ nav {
 .section h2,
 .oi-section h2 {
   font-family: var(--display);
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-size: clamp(2.6rem, 5.5vw, 4rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.03em;
   margin-bottom: 18px;
-}
-
-/* Bigger headers for OI Matrix and Journal sections */
-#journal .section-label,
-.oi-section .section-label {
-  font-size: 0.88rem;
-  letter-spacing: .18em;
-}
-
-#journal h2,
-.oi-section h2 {
-  font-size: clamp(2.6rem, 5.5vw, 4rem);
 }
 
 .section-sub {
