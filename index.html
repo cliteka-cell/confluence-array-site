@@ -423,9 +423,9 @@
       {src:'dashboard.png',   alt:'Dashboard'},
       {src:'Journal.png',     alt:'Journal'},
       {src:'analysis.png',    alt:'Analysis'},
-      {src:'analytics.png',   alt:'Analytics'},
       {src:'pnlchart.png',    alt:'PnL Chart'},
       {src:'equity.png',      alt:'Equity'},
+      {src:'analytics.png',   alt:'Analytics'},
       {src:'hall-of-fame.png',alt:'Hall of Fame'},
     ];
     var cur = 0, busy = false, n = imgs.length;
@@ -484,6 +484,8 @@
       slots[R].style.transition = t;
 
       if(fwd){
+        /* clear mask on the slot moving to center — it has right-edge mask that would show during animation */
+        slots[R].style.maskImage = 'none'; slots[R].style.webkitMaskImage = 'none';
         /* left exits off-screen left */
         slots[L].style.transform = 'translateX('+(-(lR.right-sr.left+20))+'px)';
         slots[L].style.opacity   = '0';
@@ -497,7 +499,7 @@
         setTimeout(function(){
           cur = idx;
           /* kill transitions, clear transforms */
-          slots.forEach(function(s){ s.style.transition='none'; s.style.transform=''; s.style.opacity=''; });
+          slots.forEach(function(s){ s.style.transition='none'; s.style.transform=''; s.style.opacity=''; s.style.maskImage=''; s.style.webkitMaskImage=''; });
           /* DOM rotate: move left slot to end → becomes right */
           stageEl.appendChild(slots[L]);
           slotImgs[L].src = imgs[(cur+1)%n].src;
@@ -517,6 +519,8 @@
         }, 400);
 
       } else {
+        /* clear mask on the slot moving to center — it has left-edge mask */
+        slots[L].style.maskImage = 'none'; slots[L].style.webkitMaskImage = 'none';
         /* right exits off-screen right */
         slots[R].style.transform = 'translateX('+(sr.right-rR.left+20)+'px)';
         slots[R].style.opacity   = '0';
@@ -529,7 +533,7 @@
 
         setTimeout(function(){
           cur = idx;
-          slots.forEach(function(s){ s.style.transition='none'; s.style.transform=''; s.style.opacity=''; });
+          slots.forEach(function(s){ s.style.transition='none'; s.style.transform=''; s.style.opacity=''; s.style.maskImage=''; s.style.webkitMaskImage=''; });
           /* DOM rotate: move right slot to front → becomes left */
           stageEl.insertBefore(slots[R], stageEl.firstChild);
           slotImgs[R].src = imgs[(cur-1+n)%n].src;
