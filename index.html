@@ -205,6 +205,8 @@
           <div class="jc-slot jc-slot-left"   id="jcSlot0"><img id="jcImg0" src="" alt="" /></div>
           <div class="jc-slot jc-slot-center" id="jcSlot1"><img id="jcImg1" src="" alt="" /></div>
           <div class="jc-slot jc-slot-right"  id="jcSlot2"><img id="jcImg2" src="" alt="" /></div>
+          <!-- ghost: absolutely positioned, animates concurrently with main, then hands off -->
+          <div id="jcGhost" style="position:absolute;top:50%;visibility:hidden;pointer-events:none;z-index:4;border-radius:14px;border:1px solid #2a2a2a;box-shadow:0 10px 30px rgba(0,0,0,.5);overflow:hidden;"><img id="jcGhostImg" style="width:100%;display:block;border-radius:14px;" src="" alt="" /></div>
         </div>
         <div class="jc-controls">
           <button class="jc-arrow" id="jcPrev">&#8249;</button>
@@ -429,14 +431,15 @@
       {src:'hall-of-fame.png',alt:'Hall of Fame'},
     ];
     var cur = 0, busy = false, n = imgs.length;
-    var stageEl = document.getElementById('jcStage');
-    var dotsEl  = document.getElementById('jcDots');
-    /* L/C/R are indices into slots[] tracking which div is currently left/center/right */
+    var stageEl   = document.getElementById('jcStage');
+    var dotsEl    = document.getElementById('jcDots');
+    var ghost     = document.getElementById('jcGhost');
+    var ghostImg  = document.getElementById('jcGhostImg');
     var slots     = [document.getElementById('jcSlot0'),document.getElementById('jcSlot1'),document.getElementById('jcSlot2')];
     var slotImgs  = [document.getElementById('jcImg0'), document.getElementById('jcImg1'), document.getElementById('jcImg2')];
     var L=0, C=1, R=2;
-    var SCALE_OUT = (60/74).toFixed(4);   /* center→side apparent size */
-    var SCALE_IN  = (74/60).toFixed(4);   /* side→center apparent size */
+    var SCALE_OUT = (60/74).toFixed(4);
+    var SCALE_IN  = (74/60).toFixed(4);
     var DUR = '.38s cubic-bezier(.4,0,.2,1)';
 
     /* preload all images */
@@ -468,7 +471,6 @@
       var fwd = idx > cur || (cur===n-1 && idx===0);
       if(Math.abs(idx-cur) > n/2) fwd = !fwd;
 
-      /* measure current positions */
       var sr  = stageEl.getBoundingClientRect();
       var lR  = slots[L].getBoundingClientRect();
       var cR  = slots[C].getBoundingClientRect();
@@ -477,92 +479,85 @@
       var cCx = cR.left + cR.width/2 - sr.left;
       var rCx = rR.left + rR.width/2 - sr.left;
 
-      /* all transitions on */
+      /* position and image for the ghost (new incoming side slot) */
+      var ghostSlotR, ghostStartX, ghostTargetX, ghostTargetLeft;
+      if(fwd){
+        /* ghost enters from right, lands at right-peek position */
+        ghostTargetLeft = rR.left - sr.left;
+        ghost.style.width   = rR.width + 'px';
+        ghost.style.left    = ghostTargetLeft + 'px';
+        ghostStartX  = Math.round(sr.right - rR.left) + rR.width + 10;
+        ghostImg.src = imgs[(idx+1)%n].src;
+      } else {
+        /* ghost enters from left, lands at left-peek position */
+        ghostTargetLeft = lR.left - sr.left;
+        ghost.style.width   = lR.width + 'px';
+        ghost.style.left    = ghostTargetLeft + 'px';
+        ghostStartX  = -(Math.round(lR.right - sr.left) + lR.width + 10);
+        ghostImg.src = imgs[(idx-1+n)%n].src;
+      }
+      ghost.style.transform  = 'translateY(-50%) translateX('+ghostStartX+'px)';
+      ghost.style.opacity    = '0';
+      ghost.style.visibility = 'visible';
+      ghost.style.transition = 'none';
+
       var t = 'transform '+DUR+', opacity .32s ease';
       slots[L].style.transition = t;
       slots[C].style.transition = t;
       slots[R].style.transition = t;
 
-      /* distance the exiting slot travels — new side slot will enter from same distance */
-      var exitDist = fwd ? Math.round(lR.right - sr.left) + 20 : Math.round(sr.right - rR.left) + 20;
-
       if(fwd){
-        /* clear mask on the slot moving to center — it has right-edge mask that would show during animation */
         slots[R].style.maskImage = 'none'; slots[R].style.webkitMaskImage = 'none';
-        /* left exits off-screen left */
         slots[L].style.transform = 'translateX('+(-(lR.right-sr.left+20))+'px)';
         slots[L].style.opacity   = '0';
-        /* center slides left + shrinks to side size */
         slots[C].style.transform = 'translateX('+(lCx-cCx)+'px) scale('+SCALE_OUT+')';
         slots[C].style.opacity   = '0.36';
-        /* right slides left + grows to center size */
         slots[R].style.transform = 'translateX('+(cCx-rCx)+'px) scale('+SCALE_IN+')';
         slots[R].style.opacity   = '1';
+      } else {
+        slots[L].style.maskImage = 'none'; slots[L].style.webkitMaskImage = 'none';
+        slots[R].style.transform = 'translateX('+(sr.right-rR.left+20)+'px)';
+        slots[R].style.opacity   = '0';
+        slots[C].style.transform = 'translateX('+(rCx-cCx)+'px) scale('+SCALE_OUT+')';
+        slots[C].style.opacity   = '0.36';
+        slots[L].style.transform = 'translateX('+(cCx-lCx)+'px) scale('+SCALE_IN+')';
+        slots[L].style.opacity   = '1';
+      }
 
-        setTimeout(function(){
-          cur = idx;
-          /* kill transitions, clear transforms */
-          slots.forEach(function(s){ s.style.transition='none'; s.style.transform=''; s.style.opacity=''; s.style.maskImage=''; s.style.webkitMaskImage=''; });
-          /* DOM rotate: move left slot to end → becomes right */
+      /* kick off ghost animation at the same time as main slots */
+      void ghost.offsetWidth;
+      ghost.style.transition = t;
+      ghost.style.transform  = 'translateY(-50%) translateX(0)';
+      ghost.style.opacity    = '0.36';
+
+      setTimeout(function(){
+        cur = idx;
+        /* hide ghost — real slot will take its position */
+        ghost.style.transition  = 'none';
+        ghost.style.visibility  = 'hidden';
+        ghost.style.opacity     = '0';
+
+        slots.forEach(function(s){ s.style.transition='none'; s.style.transform=''; s.style.opacity=''; s.style.maskImage=''; s.style.webkitMaskImage=''; });
+
+        if(fwd){
           stageEl.appendChild(slots[L]);
           slotImgs[L].src = imgs[(cur+1)%n].src;
           slotImgs[L].alt = imgs[(cur+1)%n].alt;
-          /* reassign CSS classes */
           slots[L].className = 'jc-slot jc-slot-right';
           slots[C].className = 'jc-slot jc-slot-left';
           slots[R].className = 'jc-slot jc-slot-center';
-          /* slide new right slot in — same distance as the exiting left slot */
-          var nR = slots[L];
-          nR.style.opacity   = '0';
-          nR.style.transform = 'translateX('+exitDist+'px)';
-          void nR.offsetWidth; /* force reflow so browser commits starting position */
-          /* rotate index vars */
           var tmp=L; L=C; C=R; R=tmp;
-          requestAnimationFrame(function(){
-            nR.style.transition = 'transform .42s cubic-bezier(.4,0,.2,1), opacity .35s ease';
-            nR.style.transform  = '';
-            nR.style.opacity    = '';
-            setDots(cur); busy=false;
-          });
-        }, 400);
-
-      } else {
-        /* clear mask on the slot moving to center — it has left-edge mask */
-        slots[L].style.maskImage = 'none'; slots[L].style.webkitMaskImage = 'none';
-        /* right exits off-screen right */
-        slots[R].style.transform = 'translateX('+(sr.right-rR.left+20)+'px)';
-        slots[R].style.opacity   = '0';
-        /* center slides right + shrinks to side size */
-        slots[C].style.transform = 'translateX('+(rCx-cCx)+'px) scale('+SCALE_OUT+')';
-        slots[C].style.opacity   = '0.36';
-        /* left slides right + grows to center size */
-        slots[L].style.transform = 'translateX('+(cCx-lCx)+'px) scale('+SCALE_IN+')';
-        slots[L].style.opacity   = '1';
-
-        setTimeout(function(){
-          cur = idx;
-          slots.forEach(function(s){ s.style.transition='none'; s.style.transform=''; s.style.opacity=''; s.style.maskImage=''; s.style.webkitMaskImage=''; });
-          /* DOM rotate: move right slot to front → becomes left */
+        } else {
           stageEl.insertBefore(slots[R], stageEl.firstChild);
           slotImgs[R].src = imgs[(cur-1+n)%n].src;
           slotImgs[R].alt = imgs[(cur-1+n)%n].alt;
           slots[R].className = 'jc-slot jc-slot-left';
           slots[C].className = 'jc-slot jc-slot-right';
           slots[L].className = 'jc-slot jc-slot-center';
-          /* slide new left slot in — same distance as the exiting right slot */
-          var nL = slots[R];
-          nL.style.opacity   = '0';
-          nL.style.transform = 'translateX(-'+exitDist+'px)';
-          void nL.offsetWidth; /* force reflow */
           var tmp=R; R=C; C=L; L=tmp;
-          requestAnimationFrame(function(){
-            nL.style.transition = 'transform .42s cubic-bezier(.4,0,.2,1), opacity .35s ease';
-            nL.style.transform  = '';
-            nL.style.opacity    = '';
-            setDots(cur); busy=false;
-          });
-        }, 400);
-      }
+        }
+        setDots(cur); busy=false;
+      }, 400);
     }
 
     /* controls */
