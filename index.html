@@ -468,13 +468,13 @@
       var enterX = dir===1 ?  '30%' : '-30%';
 
       /* slide out current main */
-      imgMain.style.transition = 'transform .38s cubic-bezier(.4,0,.2,1), opacity .32s ease';
+      imgMain.style.transition = 'transform .18s cubic-bezier(.4,0,.2,1), opacity .15s ease';
       imgMain.style.transform  = 'translateX('+exitX+')';
       imgMain.style.opacity    = '0';
 
       /* crossfade sides immediately */
-      imgPrev.style.transition = 'opacity .25s ease';
-      imgNext.style.transition = 'opacity .25s ease';
+      imgPrev.style.transition = 'opacity .15s ease';
+      imgNext.style.transition = 'opacity .15s ease';
       imgPrev.style.opacity = '0';
       imgNext.style.opacity = '0';
 
@@ -489,14 +489,14 @@
         setDots(cur);
 
         requestAnimationFrame(function(){ requestAnimationFrame(function(){
-          imgMain.style.transition = 'transform .38s cubic-bezier(.4,0,.2,1), opacity .32s ease';
+          imgMain.style.transition = 'transform .2s cubic-bezier(.4,0,.2,1), opacity .18s ease';
           imgMain.style.transform  = 'translateX(0)';
           imgMain.style.opacity    = '1';
           imgPrev.style.opacity    = '1';
           imgNext.style.opacity    = '1';
-          setTimeout(function(){ busy=false; }, 400);
+          setTimeout(function(){ busy=false; }, 220);
         });});
-      }, 340);
+      }, 160);
     }
 
     /* init */
