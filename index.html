@@ -508,12 +508,16 @@
           slots[L].className = 'jc-slot jc-slot-right';
           slots[C].className = 'jc-slot jc-slot-left';
           slots[R].className = 'jc-slot jc-slot-center';
-          /* fade new right slot in */
-          var nR = slots[L]; nR.style.opacity='0';
+          /* slide new right slot in from further off-screen right */
+          var nR = slots[L];
+          nR.style.opacity  = '0';
+          nR.style.transform = 'translateX(70px)';
           /* rotate index vars */
           var tmp=L; L=C; C=R; R=tmp;
           requestAnimationFrame(function(){
-            nR.style.transition='opacity .3s ease'; nR.style.opacity='';
+            nR.style.transition = 'transform .42s cubic-bezier(.4,0,.2,1), opacity .35s ease';
+            nR.style.transform  = '';
+            nR.style.opacity    = '';
             setDots(cur); busy=false;
           });
         }, 400);
@@ -541,10 +545,15 @@
           slots[R].className = 'jc-slot jc-slot-left';
           slots[C].className = 'jc-slot jc-slot-right';
           slots[L].className = 'jc-slot jc-slot-center';
-          var nL = slots[R]; nL.style.opacity='0';
+          /* slide new left slot in from further off-screen left */
+          var nL = slots[R];
+          nL.style.opacity   = '0';
+          nL.style.transform = 'translateX(-70px)';
           var tmp=R; R=C; C=L; L=tmp;
           requestAnimationFrame(function(){
-            nL.style.transition='opacity .3s ease'; nL.style.opacity='';
+            nL.style.transition = 'transform .42s cubic-bezier(.4,0,.2,1), opacity .35s ease';
+            nL.style.transform  = '';
+            nL.style.opacity    = '';
             setDots(cur); busy=false;
           });
         }, 400);
