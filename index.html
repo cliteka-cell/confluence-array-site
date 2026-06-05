@@ -470,7 +470,7 @@
       busy = true;
 
       var fwd = idx > cur || (cur===n-1 && idx===0);
-      if(Math.abs(idx-cur) > n/2) fwd = !fwd;
+      if(!(cur===n-1 && idx===0) && Math.abs(idx-cur) > n/2) fwd = !fwd;
 
       var sr  = stageEl.getBoundingClientRect();
       var lR  = slots[L].getBoundingClientRect();
