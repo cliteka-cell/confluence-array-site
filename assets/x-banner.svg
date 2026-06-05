@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500">
+  <defs>
+    <filter id="g-xl" x="-400%" y="-400%" width="900%" height="900%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="22"/>
+    </filter>
+    <filter id="g-lg" x="-300%" y="-300%" width="700%" height="700%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14"/>
+    </filter>
+    <filter id="g-md" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
+    </filter>
+    <filter id="g-sm" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4"/>
+    </filter>
+    <filter id="g-xs" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+    <!-- Large nebula gradient behind cluster -->
+    <radialGradient id="nebula-main" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#1a4acc" stop-opacity="0.40"/>
+      <stop offset="40%"  stop-color="#0d2060" stop-opacity="0.22"/>
+      <stop offset="75%"  stop-color="#08144a" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Subtle right-side gradient to fade -->
+    <linearGradient id="fade-right" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#080808" stop-opacity="0"/>
+      <stop offset="60%"  stop-color="#080808" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#080808" stop-opacity="0.6"/>
+    </linearGradient>
+    <!-- Accent line gradient -->
+    <linearGradient id="accent-line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#2060f0" stop-opacity="0"/>
+      <stop offset="20%"  stop-color="#2060f0" stop-opacity="0.8"/>
+      <stop offset="60%"  stop-color="#2060f0" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#2060f0" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1500" height="500" fill="#080808"/>
+
+  <!-- Scattered background stars -->
+  <circle cx="80"   cy="45"  r="1"   fill="#ffffff" opacity="0.40"/>
+  <circle cx="240"  cy="28"  r="0.8" fill="#ffffff" opacity="0.30"/>
+  <circle cx="430"  cy="60"  r="1.1" fill="#ffffff" opacity="0.25"/>
+  <circle cx="580"  cy="35"  r="0.7" fill="#ffffff" opacity="0.28"/>
+  <circle cx="720"  cy="55"  r="0.9" fill="#ffffff" opacity="0.22"/>
+  <circle cx="900"  cy="30"  r="1"   fill="#ffffff" opacity="0.30"/>
+  <circle cx="1050" cy="48"  r="0.8" fill="#ffffff" opacity="0.25"/>
+  <circle cx="1200" cy="22"  r="1"   fill="#ffffff" opacity="0.20"/>
+  <circle cx="1380" cy="58"  r="0.7" fill="#ffffff" opacity="0.22"/>
+  <circle cx="1460" cy="35"  r="0.9" fill="#ffffff" opacity="0.18"/>
+  <circle cx="30"   cy="460" r="1"   fill="#ffffff" opacity="0.28"/>
+  <circle cx="180"  cy="475" r="0.7" fill="#ffffff" opacity="0.22"/>
+  <circle cx="350"  cy="448" r="0.9" fill="#ffffff" opacity="0.25"/>
+  <circle cx="520"  cy="470" r="0.8" fill="#ffffff" opacity="0.20"/>
+  <circle cx="680"  cy="455" r="1"   fill="#ffffff" opacity="0.18"/>
+  <circle cx="850"  cy="478" r="0.7" fill="#ffffff" opacity="0.22"/>
+  <circle cx="1100" cy="462" r="0.9" fill="#ffffff" opacity="0.18"/>
+  <circle cx="1300" cy="480" r="0.8" fill="#ffffff" opacity="0.15"/>
+  <circle cx="1450" cy="458" r="1"   fill="#ffffff" opacity="0.20"/>
+  <circle cx="1480" cy="350" r="0.8" fill="#ffffff" opacity="0.18"/>
+  <circle cx="22"   cy="260" r="0.9" fill="#ffffff" opacity="0.22"/>
+  <circle cx="1490" cy="200" r="0.7" fill="#ffffff" opacity="0.20"/>
+  <circle cx="760"  cy="490" r="0.6" fill="#ffffff" opacity="0.15"/>
+  <circle cx="960"  cy="15"  r="0.8" fill="#ffffff" opacity="0.20"/>
+  <circle cx="1160" cy="490" r="0.7" fill="#ffffff" opacity="0.16"/>
+
+  <!-- Nebula glow behind cluster -->
+  <ellipse cx="370" cy="250" rx="280" ry="260" fill="url(#nebula-main)"/>
+
+  <!-- Constellation lines -->
+  <g stroke="#4d8eff" stroke-opacity="0.20" stroke-width="1.2" fill="none" stroke-linecap="round">
+    <!-- Alcyone (370,250) -->
+    <line x1="370" y1="250" x2="286" y2="177"/>
+    <line x1="370" y1="250" x2="268" y2="283"/>
+    <line x1="370" y1="250" x2="396" y2="148"/>
+    <line x1="370" y1="250" x2="422" y2="292"/>
+    <line x1="286" y1="177" x2="338" y2="126"/>
+    <line x1="396" y1="148" x2="338" y2="126"/>
+    <line x1="286" y1="177" x2="396" y2="148"/>
+    <line x1="370" y1="250" x2="502" y2="241" stroke-opacity="0.11"/>
+  </g>
+
+  <!-- ── ALCYONE ── -->
+  <circle cx="370" cy="250" r="80"  fill="#1a4acc" opacity="0.10" filter="url(#g-xl)"/>
+  <circle cx="370" cy="250" r="50"  fill="#2060f0" opacity="0.18" filter="url(#g-lg)"/>
+  <circle cx="370" cy="250" r="25"  fill="#5090ff" opacity="0.50" filter="url(#g-md)"/>
+  <circle cx="370" cy="250" r="11"  fill="#b8d4ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="370" cy="250" r="8"   fill="#ffffff"/>
+
+  <!-- ── MAIA ── -->
+  <circle cx="286" cy="177" r="55"  fill="#1a4acc" opacity="0.09" filter="url(#g-xl)"/>
+  <circle cx="286" cy="177" r="34"  fill="#2060f0" opacity="0.16" filter="url(#g-lg)"/>
+  <circle cx="286" cy="177" r="17"  fill="#5090ff" opacity="0.48" filter="url(#g-md)"/>
+  <circle cx="286" cy="177" r="7"   fill="#c8e0ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="286" cy="177" r="5.2" fill="#ffffff"/>
+
+  <!-- ── ELECTRA ── -->
+  <circle cx="268" cy="283" r="52"  fill="#1a4acc" opacity="0.09" filter="url(#g-xl)"/>
+  <circle cx="268" cy="283" r="32"  fill="#2060f0" opacity="0.16" filter="url(#g-lg)"/>
+  <circle cx="268" cy="283" r="16"  fill="#5090ff" opacity="0.46" filter="url(#g-md)"/>
+  <circle cx="268" cy="283" r="7"   fill="#c8e0ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="268" cy="283" r="5"   fill="#ffffff"/>
+
+  <!-- ── TAYGETA ── -->
+  <circle cx="396" cy="148" r="44"  fill="#1a4acc" opacity="0.08" filter="url(#g-xl)"/>
+  <circle cx="396" cy="148" r="28"  fill="#2060f0" opacity="0.14" filter="url(#g-lg)"/>
+  <circle cx="396" cy="148" r="14"  fill="#5090ff" opacity="0.42" filter="url(#g-md)"/>
+  <circle cx="396" cy="148" r="6"   fill="#d4e8ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="396" cy="148" r="4.4" fill="#ffffff"/>
+
+  <!-- ── MEROPE ── -->
+  <circle cx="422" cy="292" r="44"  fill="#1a4acc" opacity="0.08" filter="url(#g-xl)"/>
+  <circle cx="422" cy="292" r="28"  fill="#2060f0" opacity="0.14" filter="url(#g-lg)"/>
+  <circle cx="422" cy="292" r="14"  fill="#5090ff" opacity="0.42" filter="url(#g-md)"/>
+  <circle cx="422" cy="292" r="6"   fill="#d4e8ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="422" cy="292" r="4.4" fill="#ffffff"/>
+
+  <!-- ── CELAENO ── -->
+  <circle cx="338" cy="126" r="36"  fill="#1a4acc" opacity="0.07" filter="url(#g-xl)"/>
+  <circle cx="338" cy="126" r="22"  fill="#2060f0" opacity="0.12" filter="url(#g-md)"/>
+  <circle cx="338" cy="126" r="11"  fill="#5090ff" opacity="0.38" filter="url(#g-sm)"/>
+  <circle cx="338" cy="126" r="5"   fill="#e0eeff" opacity="0.82" filter="url(#g-xs)"/>
+  <circle cx="338" cy="126" r="3.6" fill="#ffffff"/>
+
+  <!-- ── ATLAS ── -->
+  <circle cx="502" cy="241" r="28"  fill="#1a4acc" opacity="0.06" filter="url(#g-xl)"/>
+  <circle cx="502" cy="241" r="18"  fill="#2060f0" opacity="0.10" filter="url(#g-md)"/>
+  <circle cx="502" cy="241" r="9"   fill="#5090ff" opacity="0.32" filter="url(#g-sm)"/>
+  <circle cx="502" cy="241" r="4"   fill="#e8f2ff" opacity="0.75" filter="url(#g-xs)"/>
+  <circle cx="502" cy="241" r="2.8" fill="#ffffff"/>
+
+  <!-- Right-side fade overlay -->
+  <rect width="1500" height="500" fill="url(#fade-right)"/>
+
+  <!-- Vertical divider -->
+  <line x1="680" y1="130" x2="680" y2="370" stroke="#2060f0" stroke-opacity="0.25" stroke-width="1"/>
+
+  <!-- Text block -->
+  <!-- Main title -->
+  <text x="730" y="218"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="72" font-weight="700" letter-spacing="6"
+        fill="#ffffff">CONFLUENCE</text>
+  <text x="730" y="300"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="72" font-weight="700" letter-spacing="6"
+        fill="#2060f0">ARRAY</text>
+
+  <!-- Accent line under title -->
+  <rect x="730" y="316" width="580" height="1.5" fill="url(#accent-line)" opacity="0.7"/>
+
+  <!-- Tagline -->
+  <text x="732" y="362"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="22" font-weight="400" letter-spacing="3"
+        fill="#6b8acc" opacity="0.85">Trade With Confluence.</text>
+
+  <!-- URL -->
+  <text x="732" y="406"
+        font-family="'JetBrains Mono', 'Courier New', monospace"
+        font-size="18" font-weight="400" letter-spacing="2"
+        fill="#2060f0" opacity="0.65">confluencearray.com</text>
+
+</svg>

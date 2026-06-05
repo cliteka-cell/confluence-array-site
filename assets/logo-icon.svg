@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- Glow filters -->
+    <filter id="g-xl" x="-400%" y="-400%" width="900%" height="900%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="14"/>
+    </filter>
+    <filter id="g-lg" x="-300%" y="-300%" width="700%" height="700%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="9"/>
+    </filter>
+    <filter id="g-md" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5"/>
+    </filter>
+    <filter id="g-sm" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+    </filter>
+    <filter id="g-xs" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5"/>
+    </filter>
+    <!-- Nebula radial gradient -->
+    <radialGradient id="nebula" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#1a3a8a" stop-opacity="0.35"/>
+      <stop offset="50%"  stop-color="#0d1e50" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#080808" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="400" fill="#080808"/>
+
+  <!-- Nebula glow behind cluster -->
+  <ellipse cx="200" cy="195" rx="160" ry="150" fill="url(#nebula)"/>
+
+  <!-- Background micro-stars -->
+  <circle cx="48"  cy="62"  r="0.8" fill="#ffffff" opacity="0.35"/>
+  <circle cx="332" cy="78"  r="0.6" fill="#ffffff" opacity="0.3"/>
+  <circle cx="355" cy="310" r="0.7" fill="#ffffff" opacity="0.28"/>
+  <circle cx="62"  cy="340" r="0.5" fill="#ffffff" opacity="0.25"/>
+  <circle cx="310" cy="355" r="0.6" fill="#ffffff" opacity="0.22"/>
+  <circle cx="38"  cy="200" r="0.5" fill="#ffffff" opacity="0.2"/>
+  <circle cx="370" cy="190" r="0.7" fill="#ffffff" opacity="0.2"/>
+  <circle cx="200" cy="378" r="0.5" fill="#ffffff" opacity="0.18"/>
+
+  <!-- Constellation lines -->
+  <g stroke="#4d8eff" stroke-opacity="0.22" stroke-width="1" fill="none" stroke-linecap="round">
+    <!-- Alcyone (200,200) to Maia (148,142) -->
+    <line x1="200" y1="200" x2="148" y2="142"/>
+    <!-- Alcyone to Electra (136,226) -->
+    <line x1="200" y1="200" x2="136" y2="226"/>
+    <!-- Alcyone to Taygeta (218,118) -->
+    <line x1="200" y1="200" x2="218" y2="118"/>
+    <!-- Alcyone to Merope (232,234) -->
+    <line x1="200" y1="200" x2="232" y2="234"/>
+    <!-- Maia to Celaeno (182,102) -->
+    <line x1="148" y1="142" x2="182" y2="102"/>
+    <!-- Taygeta to Celaeno -->
+    <line x1="218" y1="118" x2="182" y2="102"/>
+    <!-- Maia to Taygeta -->
+    <line x1="148" y1="142" x2="218" y2="118"/>
+    <!-- Atlas (274,192) - separate, faint line to Alcyone -->
+    <line x1="200" y1="200" x2="274" y2="192" stroke-opacity="0.14"/>
+  </g>
+
+  <!-- ── ALCYONE (brightest, center) ── -->
+  <circle cx="200" cy="200" r="42" fill="#1a4acc" opacity="0.10" filter="url(#g-xl)"/>
+  <circle cx="200" cy="200" r="28" fill="#2060f0" opacity="0.20" filter="url(#g-lg)"/>
+  <circle cx="200" cy="200" r="14" fill="#5090ff" opacity="0.55" filter="url(#g-md)"/>
+  <circle cx="200" cy="200" r="6"  fill="#b8d4ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="200" cy="200" r="4.5" fill="#ffffff"/>
+
+  <!-- ── MAIA ── -->
+  <circle cx="148" cy="142" r="28" fill="#1a4acc" opacity="0.10" filter="url(#g-xl)"/>
+  <circle cx="148" cy="142" r="18" fill="#2060f0" opacity="0.18" filter="url(#g-lg)"/>
+  <circle cx="148" cy="142" r="9"  fill="#5090ff" opacity="0.50" filter="url(#g-md)"/>
+  <circle cx="148" cy="142" r="4"  fill="#c8e0ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="148" cy="142" r="3"  fill="#ffffff"/>
+
+  <!-- ── ELECTRA ── -->
+  <circle cx="136" cy="226" r="28" fill="#1a4acc" opacity="0.10" filter="url(#g-xl)"/>
+  <circle cx="136" cy="226" r="18" fill="#2060f0" opacity="0.18" filter="url(#g-lg)"/>
+  <circle cx="136" cy="226" r="9"  fill="#5090ff" opacity="0.48" filter="url(#g-md)"/>
+  <circle cx="136" cy="226" r="4"  fill="#c8e0ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="136" cy="226" r="3"  fill="#ffffff"/>
+
+  <!-- ── TAYGETA ── -->
+  <circle cx="218" cy="118" r="24" fill="#1a4acc" opacity="0.09" filter="url(#g-xl)"/>
+  <circle cx="218" cy="118" r="15" fill="#2060f0" opacity="0.16" filter="url(#g-lg)"/>
+  <circle cx="218" cy="118" r="8"  fill="#5090ff" opacity="0.45" filter="url(#g-md)"/>
+  <circle cx="218" cy="118" r="3.5" fill="#d4e8ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="218" cy="118" r="2.6" fill="#ffffff"/>
+
+  <!-- ── MEROPE ── -->
+  <circle cx="232" cy="234" r="24" fill="#1a4acc" opacity="0.09" filter="url(#g-xl)"/>
+  <circle cx="232" cy="234" r="15" fill="#2060f0" opacity="0.16" filter="url(#g-lg)"/>
+  <circle cx="232" cy="234" r="8"  fill="#5090ff" opacity="0.45" filter="url(#g-md)"/>
+  <circle cx="232" cy="234" r="3.5" fill="#d4e8ff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="232" cy="234" r="2.6" fill="#ffffff"/>
+
+  <!-- ── CELAENO ── -->
+  <circle cx="182" cy="102" r="20" fill="#1a4acc" opacity="0.08" filter="url(#g-xl)"/>
+  <circle cx="182" cy="102" r="12" fill="#2060f0" opacity="0.14" filter="url(#g-md)"/>
+  <circle cx="182" cy="102" r="6"  fill="#5090ff" opacity="0.40" filter="url(#g-sm)"/>
+  <circle cx="182" cy="102" r="2.8" fill="#e0eeff" opacity="0.85" filter="url(#g-xs)"/>
+  <circle cx="182" cy="102" r="2"  fill="#ffffff"/>
+
+  <!-- ── ATLAS ── -->
+  <circle cx="274" cy="192" r="16" fill="#1a4acc" opacity="0.07" filter="url(#g-xl)"/>
+  <circle cx="274" cy="192" r="10" fill="#2060f0" opacity="0.12" filter="url(#g-md)"/>
+  <circle cx="274" cy="192" r="5"  fill="#5090ff" opacity="0.35" filter="url(#g-sm)"/>
+  <circle cx="274" cy="192" r="2.2" fill="#e8f2ff" opacity="0.80" filter="url(#g-xs)"/>
+  <circle cx="274" cy="192" r="1.6" fill="#ffffff"/>
+
+</svg>
