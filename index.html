@@ -25,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="preload" href="hero-chart.webp" as="image" />
   <link rel="stylesheet" href="style.css?v=61" />
+  <link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg" />
   <style>
     .contact-card{max-width:700px;margin:0 auto 40px;background:#080808;border:1px solid #242424;border-radius:20px;padding:44px 48px;text-align:left}
     .form-success{display:none;flex-direction:column;align-items:center;text-align:center;padding:40px 20px;gap:12px}
@@ -82,7 +83,10 @@
   <!-- ── NAV ──────────────────────────────────────────────────────────────── -->
   <nav>
     <div class="nav-inner">
-      <a href="#hero" class="nav-logo" style="text-decoration:none;">The Confluence Array</a>
+      <a href="#hero" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:9px;">
+        <img src="assets/logo-icon.svg" width="30" height="30" style="display:block;flex-shrink:0;" alt=""/>
+        The Confluence Array
+      </a>
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#journal">Journal</a>
@@ -269,7 +273,10 @@
       <div class="pricing-grid">
 
         <div class="pricing-card">
-          <div class="pricing-name">Confluence Array</div>
+          <div class="pricing-name" style="display:flex;align-items:center;gap:8px;">
+            <img src="assets/logo-icon.svg" width="22" height="22" style="display:block;flex-shrink:0;" alt=""/>
+            Confluence Array
+          </div>
           <div class="pricing-type">Indicator Suite</div>
           <div class="pricing-price"
             data-monthly="$50" data-monthly-period="/month"
@@ -434,7 +441,10 @@
   <footer>
     <div class="container">
       <div class="footer-inner">
-        <a href="#hero" class="nav-logo" style="text-decoration:none;">The Confluence Array</a>
+        <a href="#hero" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:9px;">
+          <img src="assets/logo-icon.svg" width="28" height="28" style="display:block;flex-shrink:0;" alt=""/>
+          The Confluence Array
+        </a>
         <div class="footer-links">
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
