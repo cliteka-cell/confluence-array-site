@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cliteka-cell.github.io/confluence-array-site/sitemap.xml
+Sitemap: https://confluencearray.com/sitemap.xml
