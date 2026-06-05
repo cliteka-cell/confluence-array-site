@@ -24,9 +24,6 @@
     </radialGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="400" height="400" fill="#080808"/>
-
   <!-- Nebula glow behind cluster -->
   <ellipse cx="200" cy="195" rx="160" ry="150" fill="url(#nebula)"/>
 
