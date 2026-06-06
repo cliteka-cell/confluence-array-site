@@ -236,7 +236,7 @@ document.querySelectorAll('.ptoggle').forEach(btn => {
 // Smooth nav background on scroll
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
-  nav.style.borderBottomColor = window.scrollY > 10 ? '#1e2d45' : 'transparent';
+  nav.classList.toggle('scrolled', window.scrollY > 10);
 });
 
 // Fade-in on scroll
