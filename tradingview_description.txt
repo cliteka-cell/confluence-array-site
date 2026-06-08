@@ -1,6 +1,6 @@
-[b]The Confluence Array — Confluence Terminal[/b]
+[b]The Confluence Array - Confluence Terminal[/b]
 
-A professional-grade, all-in-one indicator suite built for futures and forex traders who demand precision. The Confluence Array combines open interest flow analysis, multi-timeframe VWAP, adaptive range bands, Fibonacci pivots, and intelligent bar coloring into a single, unified overlay — eliminating the need for multiple indicators cluttering your chart.
+A professional-grade, all-in-one indicator suite built for futures and forex traders who demand precision. The Confluence Array combines open interest flow analysis, multi-timeframe VWAP, adaptive range bands, Fibonacci pivots, and intelligent bar coloring into a single, unified overlay - eliminating the need for multiple indicators cluttering your chart.
 
 Built and refined through live trading on CME futures and crypto perpetuals. Every tool on this chart earns its place.
 
@@ -9,21 +9,21 @@ Built and refined through live trading on CME futures and crypto perpetuals. Eve
 
 While the Confluence Array incorporates familiar concepts such as VWAP, RSI, ADX, and Fibonacci levels, what justifies source protection is the original logic connecting them. The core of this script is built on three original systems:
 
-The [b]Absolute Moving Average System (ARMAS)[/b] — an original EWMA-based channel constructed from highs and lows, fundamentally different from any public-domain moving average or band implementation.
+The [b]Absolute Moving Average System (ARMAS)[/b] - an original EWMA-based channel constructed from highs and lows, fundamentally different from any public-domain moving average or band implementation.
 
-The [b]OI Signal Matrix[/b] — an original 7-state classification engine that cross-references price action with open interest to identify who is driving a move and why, producing actionable context no standard indicator provides.
+The [b]OI Signal Matrix[/b] - an original 7-state classification engine that cross-references price action with open interest to identify who is driving a move and why, producing actionable context no standard indicator provides.
 
-The [b]Confluence Engine[/b] — an original scoring system that evaluates every key level on the chart (VWAP bands, ARMAS boundaries, pivot levels, session highs/lows) and assigns a real-time confluence score to each zone. It surfaces the highest-scoring support and resistance areas automatically, along with a multi-timeframe bias alignment score, removing the guesswork from zone selection entirely.
+The [b]Confluence Engine[/b] - an original scoring system that evaluates every key level on the chart (VWAP bands, ARMAS boundaries, pivot levels, session highs/lows) and assigns a real-time confluence score to each zone. It surfaces the highest-scoring support and resistance areas automatically, along with a multi-timeframe bias alignment score, removing the guesswork from zone selection entirely.
 
 These three systems, and the logic integrating them with session analysis, bar coloring, and the live dashboard, represent original work that is not available in any open-source publication on TradingView.
 
 
 [b]⚡ Absolute Moving Average System (ARMAS)[/b]
 
-ARMAS is the backbone of the indicator. It constructs a dynamic price pipe using EWMA (Exponentially Weighted Moving Average) of highs and lows, forming upper and lower bands that hug price action and adapt naturally to market structure. The result is a clean, responsive channel that tells you at a glance whether price is trending, ranging, or overextended — without the lag of traditional moving averages.
+ARMAS is the backbone of the indicator. It constructs a dynamic price pipe using EWMA (Exponentially Weighted Moving Average) of highs and lows, forming upper and lower bands that hug price action and adapt naturally to market structure. The result is a clean, responsive channel that tells you at a glance whether price is trending, ranging, or overextended - without the lag of traditional moving averages.
 
 [list]
-[*] EWMA-based pipe built from highs and lows — not ATR, not static multipliers
+[*] EWMA-based pipe built from highs and lows - not ATR, not static multipliers
 [*] Upper and lower bands track price structure dynamically
 [*] Multi-timeframe trend bias derived from the EWMA channel
 [*] Color-coded channels: bullish (blue/green), bearish (red), ranging (neutral)
@@ -33,12 +33,12 @@ ARMAS is the backbone of the indicator. It constructs a dynamic price pipe using
 
 [b]📊 Multi-Timeframe VWAP[/b]
 
-Institutional traders anchor to VWAP. Now you can too — across every relevant timeframe simultaneously.
+Institutional traders anchor to VWAP. Now you can too - across every relevant timeframe simultaneously.
 
 [list]
 [*] Daily, Weekly, and Monthly VWAP plotted simultaneously
 [*] Standard deviation bands (1σ, 2σ, 3σ) for each timeframe
-[*] Correct session anchoring — crypto and CME futures handled separately
+[*] Correct session anchoring - crypto and CME futures handled separately
 [*] Previous session VWAP as a key reference level
 [/list]
 
@@ -54,45 +54,45 @@ Institutional traders anchor to VWAP. Now you can too — across every relevant 
 
 [b]🎯 Fibonacci Pivot Levels[/b]
 
-Key institutional reference levels — automatically plotted, always visible.
+Key institutional reference levels - automatically plotted, always visible.
 
 [list]
 [*] Previous Week High / Low with Fibonacci retracements
 [*] Previous Day High / Low
 [*] Handles CME Sunday open correctly for crypto vs traditional futures
-[*] Clean label display — no chart clutter
+[*] Clean label display - no chart clutter
 [/list]
 
-[b]Default Mode — All Levels Visible[/b]
+[b]Default Mode - All Levels Visible[/b]
 [image]https://www.tradingview.com/x/hd0jDavR[/image]
 
-[b]Clean Mode — Minimal Overlay[/b]
+[b]Clean Mode - Minimal Overlay[/b]
 [image]https://www.tradingview.com/x/AhXpAVjv[/image]
 
 
 [b]🔍 Open Interest Signal Matrix[/b]
 
-Most indicators tell you what price did. The OI Matrix tells you [i]why[/i]. By cross-referencing price action with open interest changes, it classifies current market conditions into 7 distinct states — so you always know who is actually moving price.
+Most indicators tell you what price did. The OI Matrix tells you [i]why[/i]. By cross-referencing price action with open interest changes, it classifies current market conditions into 7 distinct states - so you always know who is actually moving price.
 
 [list]
-[*] [b]New Longs[/b] — Price up + OI up → genuine buyers entering the market
-[*] [b]Short Cover[/b] — Price up + OI down → shorts being forced out
-[*] [b]Weak Rally[/b] — Price up + OI flat → low conviction, fade candidate
-[*] [b]New Shorts[/b] — Price down + OI up → genuine sellers entering the market
-[*] [b]Long Liquidation[/b] — Price down + OI down → longs being stopped out
-[*] [b]Liq Bounce[/b] — Price down + OI flat → weak selling pressure
-[*] [b]Mixed[/b] — No clear signal → stay patient
+[*] [b]New Longs[/b] - Price up + OI up → genuine buyers entering the market
+[*] [b]Short Cover[/b] - Price up + OI down → shorts being forced out
+[*] [b]Weak Rally[/b] - Price up + OI flat → low conviction, fade candidate
+[*] [b]New Shorts[/b] - Price down + OI up → genuine sellers entering the market
+[*] [b]Long Liquidation[/b] - Price down + OI down → longs being stopped out
+[*] [b]Liq Bounce[/b] - Price down + OI flat → weak selling pressure
+[*] [b]Mixed[/b] - No clear signal → stay patient
 [/list]
 
 
 [b]🎨 Intelligent Bar Coloring[/b]
 
-Two bar coloring modes — toggle between them based on what you need to read at a glance.
+Two bar coloring modes - toggle between them based on what you need to read at a glance.
 
-[b]Color Bars by Trend[/b] — candles colored by ARMAS trend direction. Instantly see whether the current bar is aligned with the macro bias or fighting it.
+[b]Color Bars by Trend[/b] - candles colored by ARMAS trend direction. Instantly see whether the current bar is aligned with the macro bias or fighting it.
 [image]https://www.tradingview.com/x/smHv0SXR[/image]
 
-[b]Color Bars by OI Signal[/b] — candles colored by the OI Signal Matrix state. Each color maps directly to a market condition: lime = New Longs, aqua = Short Cover, yellow = Weak Rally, red = New Shorts, orange = Long Liq, purple = Liq Bounce. ADX-based opacity ensures colors are vivid in strong trends and faded in choppy conditions — so you never react to a weak signal.
+[b]Color Bars by OI Signal[/b] - candles colored by the OI Signal Matrix state. Each color maps directly to a market condition: lime = New Longs, aqua = Short Cover, yellow = Weak Rally, red = New Shorts, orange = Long Liq, purple = Liq Bounce. ADX-based opacity ensures colors are vivid in strong trends and faded in choppy conditions - so you never react to a weak signal.
 [image]https://www.tradingview.com/x/G0Pn0pbd[/image]
 
 
@@ -101,17 +101,17 @@ Two bar coloring modes — toggle between them based on what you need to read at
 [list]
 [*] London, New York, and Asia sessions highlighted automatically
 [*] Live dashboard panel showing: Session, Volatility, RSI, ADX, OI Signal, Flow Divergence, Macro/HTF/Intraday bias, Alignment score
-[*] Hourly zone scoring — rates key support/resistance zones by confluence strength
-[*] Best Zone — automatically identifies the highest-scoring zone on the chart
+[*] Hourly zone scoring - rates key support/resistance zones by confluence strength
+[*] Best Zone - automatically identifies the highest-scoring zone on the chart
 [/list]
 
 
 [b]⚙️ Compatibility[/b]
 
 [list]
-[*] CME Futures — ES, NQ, YM, GC, CL and all major contracts
-[*] Crypto Perpetuals — BTC, ETH and all major pairs
-[*] Forex — all major and minor pairs
+[*] CME Futures - ES, NQ, YM, GC, CL and all major contracts
+[*] Crypto Perpetuals - BTC, ETH and all major pairs
+[*] Forex - all major and minor pairs
 [*] Works on all timeframes from 1m to 1W
 [/list]
 

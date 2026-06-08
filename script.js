@@ -97,7 +97,7 @@
           });
         }
 
-        // Draw on ctx — galaxy canvas is z-index:-1, text renders on top naturally
+        // Draw on ctx - galaxy canvas is z-index:-1, text renders on top naturally
         for (let i = streaks.length - 1; i >= 0; i--) {
           const s = streaks[i];
           s.life -= s.decay;
@@ -207,12 +207,12 @@ async function handleForm(e) {
       form.style.cssText = 'display:none!important';
       success.style.cssText = 'display:flex!important';
     } else {
-      btn.textContent = 'Failed — try again';
+      btn.textContent = 'Failed - try again';
       btn.style.opacity = '1';
       btn.disabled = false;
     }
   } catch {
-    btn.textContent = 'Failed — try again';
+    btn.textContent = 'Failed - try again';
     btn.style.opacity = '1';
     btn.disabled = false;
   }

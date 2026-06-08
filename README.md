@@ -1,4 +1,4 @@
-# Confluence Array — Landing Page
+# Confluence Array - Landing Page
 
 Marketing and product landing page for the Confluence Array trading indicator suite, hosted on GitHub Pages with a custom domain.
 
@@ -8,11 +8,11 @@ Live site: [confluencearray.com](https://confluencearray.com)
 
 ## Sections
 
-- **Hero** — Animated typing sequence ("Trade With Confluence.") with white cursor block, blue-to-white gradient on "Confluence." text, and white streak particle effect on a live galaxy canvas background
-- **The Indicator** — Feature overview with OI Signal Matrix cards (per-signal glow colors)
-- **Trading Journal** — Journal app feature highlights with "Try Live Preview" button linking to the Streamlit preview app
-- **Pricing** — Three-tier pricing with Monthly / 3 Months / Annual billing toggle
-- **Contact** — Formspree-powered contact form
+- **Hero** - Animated typing sequence ("Trade With Confluence.") with white cursor block, blue-to-white gradient on "Confluence." text, and white streak particle effect on a live galaxy canvas background
+- **The Indicator** - Feature overview with OI Signal Matrix cards (per-signal glow colors)
+- **Trading Journal** - Journal app feature highlights with "Try Live Preview" button linking to the Streamlit preview app
+- **Pricing** - Three-tier pricing with Monthly / 3 Months / Annual billing toggle
+- **Contact** - Formspree-powered contact form
 
 ---
 
@@ -28,7 +28,7 @@ Live site: [confluencearray.com](https://confluencearray.com)
 
 ## Tech
 
-Plain HTML / CSS / JS — no framework, no build step. Deployed via GitHub Pages with custom domain `confluencearray.com`.
+Plain HTML / CSS / JS - no framework, no build step. Deployed via GitHub Pages with custom domain `confluencearray.com`.
 
 - `style.css?v=61`
 - `script.js?v=23`
