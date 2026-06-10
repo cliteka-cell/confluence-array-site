@@ -123,13 +123,14 @@
   draw();
 })();
 
-// Terminal typing animation
+// Terminal typing animation (only runs on pages that have the hero type targets)
 (function () {
-  const line1   = 'Trade With';
-  const wrong   = 'Confidence.';
-  const correct = 'Confluence.';
   const el1 = document.getElementById('hero-line1');
   const el2 = document.getElementById('hero-line2');
+  if (!el1 || !el2) return;
+  const line1   = el1.dataset.line   || 'Trade With';
+  const wrong   = el2.dataset.wrong  || 'Confidence.';
+  const correct = el2.dataset.correct || 'Confluence.';
 
   function type(text, el, i, cb) {
     if (i < text.length) {
@@ -235,9 +236,11 @@ document.querySelectorAll('.ptoggle').forEach(btn => {
 
 // Smooth nav background on scroll
 const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 10);
-});
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+  });
+}
 
 // Fade-in on scroll
 const observer = new IntersectionObserver((entries) => {

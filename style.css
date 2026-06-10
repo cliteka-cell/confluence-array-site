@@ -973,3 +973,26 @@ footer {
   .nav-links a:not(.btn-nav) { display: none; }
   .hero h1       { font-size: 2.6rem; }
 }
+
+/* ══ Confluencer brand hub ════════════════════════════════════════════════ */
+.vision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+.vision-pillar{background:#080808;border:1px solid #242424;border-radius:16px;padding:30px 26px;text-align:left}
+.vision-pillar .vp-k{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#4d8eff}
+.vision-pillar h3{font-size:1.25rem;font-weight:700;color:#e8edf5;margin:10px 0 8px}
+.vision-pillar p{font-size:.92rem;line-height:1.6;color:#8a93a6}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.product-card{position:relative;display:flex;flex-direction:column;background:#0a0a0a;border:1px solid #242424;border-radius:18px;padding:30px 28px;text-decoration:none;transition:border-color .25s,transform .2s,box-shadow .25s}
+.product-card:hover{border-color:#2060f0;transform:translateY(-4px);box-shadow:0 18px 60px rgba(32,96,240,.12)}
+.product-card .pc-icon{width:54px;height:54px;margin-bottom:18px}
+.product-card h3{font-size:1.3rem;font-weight:700;color:#e8edf5;margin-bottom:6px}
+.product-card .pc-type{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;margin-bottom:14px}
+.product-card p{font-size:.92rem;line-height:1.6;color:#8a93a6;flex-grow:1}
+.product-card .pc-go{margin-top:20px;font-size:.9rem;font-weight:600;color:#4d8eff}
+.product-card .pc-badge{position:absolute;top:18px;right:18px;font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:100px}
+.pc-badge.commercial{color:#4d8eff;background:rgba(32,96,240,.12);border:1px solid rgba(32,96,240,.3)}
+.pc-badge.soon{color:#ffb74d;background:rgba(255,167,77,.1);border:1px solid rgba(255,167,77,.3)}
+.pc-badge.free{color:#00d084;background:rgba(0,208,132,.1);border:1px solid rgba(0,208,132,.3)}
+.tools-strip{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:10px}
+.tool-chip{display:inline-flex;align-items:center;gap:7px;background:#0a0a0a;border:1px solid #242424;border-radius:100px;padding:9px 18px;color:#b0b8cc;font-size:.85rem;font-weight:500;text-decoration:none;transition:border-color .2s,color .2s}
+.tool-chip:hover{border-color:#2060f0;color:#fff}
+@media (max-width: 880px){.vision-grid,.product-grid{grid-template-columns:1fr}}
